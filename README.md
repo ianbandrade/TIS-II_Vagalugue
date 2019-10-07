@@ -4,13 +4,13 @@ Passo 1. Abra o terminal, vá até a pasta que será armazenada o código.
 
 Passo 2. Escrever:
 ```
-git clone  https://github.com/ianbandrade/TISII.git
+git clone  https://github.com/ianbandrade/TIS-II.git
 ```
 
-Passo 3. Uma pasta chamada TISII será criada no seu diretório atual.
+Passo 3. Uma pasta chamada TIS-II será criada no seu diretório atual.
 Escrever:
 ```
-cd TISII
+cd TIS-II
 ```
 
 Passo 4. Mude seu branch atual para dev.
