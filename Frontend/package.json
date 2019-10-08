@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ianbandrade/TIS-II#readme",
   "dependencies": {
+    "jquery-mask-plugin": "^1.14.16",
     "semantic-ui": "^2.4.2"
   }
 }
