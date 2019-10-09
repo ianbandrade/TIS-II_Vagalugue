@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,11 @@
             <h3>Informações Locatário</h3>
             <div class="field">
                 <label for="nome">Nome (*)</label>
-                <input type="text" name="nome" placeholder="Nome" required="True">
+                <input class="required" type="text" name="nome" placeholder="Nome" required="True">
             </div>
             <div class="field">
                 <label for="sobrenome">Sobrenome (*)</label>
-                <input type="text" name="sobrenome" placeholder="Sobrenome" required="True">
+                <input class="required" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
             </div>
         </div>
         <br>
@@ -38,7 +38,12 @@
                 <h4>Detalhes</h4>
                 <div class="field">
                     <label for="indicador_vaga">Indicador da Vaga (*)</label>
-                    <input type="text" name="cidade" placeholder="ex: Vaga 42B/ apto. 402" required="True">
+                    <input class="required" type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402"
+                        required="True">
+                </div>
+                <div class="field">
+                    <label for="foto_vaga">Foto da vaga</label>
+                    <input class="required" type="file" name="foto_vaga" placeholder="Foto">
                 </div>
                 <div class="field">
                     <label>Descrição</label>
@@ -50,40 +55,43 @@
                 <h4>Dimensões</h4>
                 <div class="field">
                     <label for="largura">Largura (*)</label>
-                    <input type="number" step="0.1" name="largura" placeholder="Largura (metros)" required="True">
-                </div>
-                <div class="field">
-                    <label for="comprimento">Comprimento (*)</label>
-                    <input type="number" step="0.1" name="comprimento" placeholder="Comprimento (metros)"
+                    <input class="required" type="number" step="0.1" name="largura" placeholder="Largura (metros)"
                         required="True">
                 </div>
                 <div class="field">
+                    <label for="comprimento">Comprimento (*)</label>
+                    <input class="required" type="number" step="0.1" name="comprimento"
+                        placeholder="Comprimento (metros)" required="True">
+                </div>
+                <div class="field">
                     <label for="altura">Altura (*)</label>
-                    <input type="number" step="0.1" name="altura" placeholder="Altura (metros)" required="True">
+                    <input class="required" type="number" step="0.1" name="altura" placeholder="Altura (metros)"
+                        required="True">
                 </div>
             </div>
             <div class="localizacao">
                 <br>
                 <h4>Localização</h4>
-                <div class="field">
+                <div id="cep-field" class="field">
                     <label for="cep">CEP (*)</label>
-                    <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
+                    <input id="cep" class="required" type="text" name="cep" placeholder="CEP" required="True">
                 </div>
                 <div class="field">
                     <label for="endereco">Endereço (*)</label>
-                    <input id="endereco" type="text" name="endereco" placeholder="Endereço" required="True">
+                    <input id="endereco" class="required" type="text" name="endereco" placeholder="Endereço"
+                        required="True">
                 </div>
                 <div class="field">
                     <label for="numero">Numero (*)</label>
-                    <input id= "numero" type="text" name="numero" placeholder="Numero" required="True">
+                    <input id="numero" class="required" type="text" name="numero" placeholder="Numero" required="True">
                 </div>
                 <div class="field">
                     <label for="bairro">Bairro (*)</label>
-                    <input id="bairro" type="text" name="bairro" placeholder="Bairro" required="True">
+                    <input id="bairro" class="required" type="text" name="bairro" placeholder="Bairro" required="True">
                 </div>
                 <div class="field">
                     <label for="cidade">Cidade (*)</label>
-                    <input id="cidade" type="text" name="cidade" placeholder="Cidade" required="True">
+                    <input id="cidade" class="required" type="text" name="cidade" placeholder="Cidade" required="True">
                 </div>
                 <div class="field">
                     <label for="Estado">Estado (*)</label>
@@ -122,7 +130,7 @@
         </div>
         <br>
         <p style="color: red">(*) Itens Obrigatórios</p>
-        <button class="ui button" type="submit">Enviar</button>
+        <button id="submit-form" class="ui button" type="submit">Enviar</button>
     </form>
 
 
@@ -139,49 +147,84 @@
         $('#cep').mask('00000-000');
         $('#numero').mask('000000');
 
-        function limpa_form_cep() {
-            $("#endereco").val("");
-            $("#bairro").val("");
-            $("#cidade").val("");
-            $("#estado").val("");
-        }
+        //Muda a cor dos campos não preenchidos ao tentar enviar
+        $('#submit-form').click(function () {
+            $('.required').each(function () {
+                if (!$(this).val()) {
+                    $(this).parent().addClass("ui error");
+                }
+            });
+        });
 
-        $("#cep").blur(function () {
+        //Volta a cor dos campos para a normal se preenchidos
+        $('.required').blur(function () {
+            $('.required').each(function () {
+                if ($(this).val()) {
+                    $(this).parent().removeClass("ui error");
+                }
+            });
+        });
 
-            var cep = $(this).val().replace(/\D/g, '');
+    function limpa_form_cep() {
+        $('#endereco').val("");
+        $('#bairro').val("");
+        $('#cidade').val("");
+        $('#estado').val("");
+        $('#endereco').prop('readOnly', false);
+        $('#bairro').prop('readOnly', false);
+        $('#cidade').prop('readOnly', false);
+        $('#estado').prop('disabled', false);
+    }
 
-            if (cep != "") {
+    function cep_encontrado() {
+        $('#endereco').prop('readOnly', true);
+        $('#bairro').prop('readOnly', true);
+        $('#cidade').prop('readOnly', true);
+        $('#estado').prop('disabled', true);
+    }
 
-                var validacep = /^[0-9]{8}$/;
+    $('#cep').blur(function () {
 
-                if (validacep.test(cep)) {
+    var cep = $(this).val().replace(/\D/g, '');
 
-                    $("#endereco").val("...");
-                    $("#bairro").val("...");
-                    $("#cidade").val("...");
-                    $("#estado").val("...");
+    if (cep != "") {
 
-                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (
-                        dados) {
-                        console.log(dados);
-                        if (!("erro" in dados)) {
-                            $("#endereco").val(dados.logradouro);
-                            $("#bairro").val(dados.bairro);
-                            $("#cidade").val(dados.localidade);
-                            $("#estado").val(dados.uf);
-                        } else {
-                            limpa_form_cep();
-                            alert("CEP não encontrado!");
-                        }
-                    });
+        var validacep = /^[0-9]{8}$/;
+
+        if (validacep.test(cep)) {
+
+            $("#endereco").val("...");
+            $("#bairro").val("...");
+            $("#cidade").val("...");
+            $("#estado").val("...");
+
+            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (
+                dados) {
+                console.log(dados);
+                if (!("erro" in dados)) {
+                    $('#endereco').val(dados.logradouro);
+                    $('#bairro').val(dados.bairro);
+                    $('#cidade').val(dados.localidade);
+                    $('#estado').val(dados.uf);
+                    $('#cep-field').removeClass("ui input error");
+                    cep_encontrado();
                 } else {
                     limpa_form_cep();
-                    alert("CEP inválido!");
+                    alert("CEP não encontrado!");
+                    $('#cep-field').addClass("ui error");
+                    $('#cep').val("");
                 }
-            } else {
-                limpa_form_cep();
-            }
-        });
+            });
+        } else {
+            limpa_form_cep();
+            alert("CEP inválido!");
+            $('#cep-field').addClass("ui error");
+            $('#cep').val("");
+        }
+    } else {
+        limpa_form_cep();
+    }
+    });
     })
 </script>
 
