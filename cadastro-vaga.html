@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cadastro Vaga</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="Frontend/node_modules/semantic-ui/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -19,13 +20,13 @@
         <br>
         <div class="dados_locador">
             <h3>Informações Locatário</h3>
-            <div class="field">
-                <label for="nome">Nome (*)</label>
-                <input class="required" type="text" name="nome" placeholder="Nome" required="True">
+            <div class="field required required-input">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" placeholder="Nome" required="True">
             </div>
-            <div class="field">
-                <label for="sobrenome">Sobrenome (*)</label>
-                <input class="required" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
+            <div class="field required required-input">
+                <label for="sobrenome">Sobrenome</label>
+                <input type="text" name="sobrenome" placeholder="Sobrenome" required="True">
             </div>
         </div>
         <br>
@@ -36,10 +37,9 @@
             <br>
             <div class="detalhes">
                 <h4>Detalhes</h4>
-                <div class="field">
-                    <label for="indicador_vaga">Indicador da Vaga (*)</label>
-                    <input class="required" type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402"
-                        required="True">
+                <div class="field required required-input">
+                    <label for="indicador_vaga">Indicador da Vaga</label>
+                    <input type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402" required="True">
                 </div>
                 <div class="field">
                     <label for="foto_vaga">Foto da vaga</label>
@@ -53,48 +53,68 @@
             <br>
             <div class="dimensoes">
                 <h4>Dimensões</h4>
-                <div class="field">
-                    <label for="largura">Largura (*)</label>
-                    <input class="required" type="number" step="0.1" name="largura" placeholder="Largura (metros)"
-                        required="True">
+                <div class="field required required-input">
+                    <label for="largura">Largura</label>
+                    <div class="ui right labeled input">
+                        <input type="number" step="0.1" name="largura" placeholder="Largura" required="True">
+                        <div class="ui basic label">
+                            metros
+                        </div>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="comprimento">Comprimento (*)</label>
-                    <input class="required" type="number" step="0.1" name="comprimento"
-                        placeholder="Comprimento (metros)" required="True">
+                <div class="field required required-input">
+                    <label for="comprimento">Comprimento</label>
+                    <div class="ui right labeled input">
+                        <input type="number" step="0.1" name="comprimento" placeholder="Comprimento" required="True">
+                        <div class="ui basic label">
+                            metros
+                        </div>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="altura">Altura (*)</label>
-                    <input class="required" type="number" step="0.1" name="altura" placeholder="Altura (metros)"
-                        required="True">
+                <div class="field required required-input">
+                    <label for="altura">Altura</label>
+                    <div class="ui right labeled input">
+                        <input type="number" step="0.1" name="altura" placeholder="Altura" required="True">
+                        <div class="ui basic label">
+                            metros
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="localizacao">
                 <br>
                 <h4>Localização</h4>
-                <div id="cep-field" class="field">
-                    <label for="cep">CEP (*)</label>
-                    <input id="cep" class="required" type="text" name="cep" placeholder="CEP" required="True">
+                <div id="cep-field" class="field required required-input">
+                    <label for="cep">CEP</label>
+                    <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
                 </div>
-                <div class="field">
-                    <label for="endereco">Endereço (*)</label>
-                    <input id="endereco" class="required" type="text" name="endereco" placeholder="Endereço"
-                        required="True">
+                <div class="field required required-input">
+                    <label for="endereco">Endereço</label>
+                    <div class="ui input loading">
+                        <input id="endereco" type="text" name="endereco" placeholder="Endereço" required="True">
+                        <i class="search icon form hide"></i>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="numero">Numero (*)</label>
-                    <input id="numero" class="required" type="text" name="numero" placeholder="Numero" required="True">
+                <div class="field required required-input">
+                    <label for="numero">Numero</label>
+                    <input id="numero" type="text" name="numero" placeholder="Numero" required="True">
                 </div>
-                <div class="field">
-                    <label for="bairro">Bairro (*)</label>
-                    <input id="bairro" class="required" type="text" name="bairro" placeholder="Bairro" required="True">
+                <div class="field required required-input">
+                    <label for="bairro">Bairro</label>
+                    <div class="ui input loading">
+                        <input id="bairro" type="text" name="bairro" placeholder="Bairro" required="True">
+                        <i class="search icon form hide"></i>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="cidade">Cidade (*)</label>
-                    <input id="cidade" class="required" type="text" name="cidade" placeholder="Cidade" required="True">
+                <div class="field required required-input">
+                    <label for="cidade">Cidade</label>
+                    <div class="ui input loading">
+                        <input id="cidade" type="text" name="cidade" placeholder="Cidade" required="True">
+                        <i class="search icon form hide"></i>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="Estado">Estado (*)</label>
+                <div class="field required required-select">
+                    <label for="Estado">Estado</label>
                     <select id="estado" class="ui fluid dropdown" required="True">
                         <option value="" disabled selected value>Selecione um estado</option>
                         <option value="AC">Acre</option>
@@ -143,88 +163,102 @@
 
 <script>
     $(document).ready(function () {
+
         //mascaras
         $('#cep').mask('00000-000');
         $('#numero').mask('000000');
 
         //Muda a cor dos campos não preenchidos ao tentar enviar
         $('#submit-form').click(function () {
-            $('.required').each(function () {
-                if (!$(this).val()) {
-                    $(this).parent().addClass("ui error");
+            $('.required-input').each(function () {
+                if (!$(this).find('input').val()) {
+                    $(this).addClass("ui error");
                 }
             });
+            if (!$('.required-select').find('select').val()) {
+                $('.required-select').addClass("ui error");
+            }
         });
 
         //Volta a cor dos campos para a normal se preenchidos
-        $('.required').blur(function () {
-            $('.required').each(function () {
-                if ($(this).val()) {
-                    $(this).parent().removeClass("ui error");
+        $('.required-input').find('input').blur(function () {
+            $('.required-input').each(function () {
+                if ($(this).find('input').val()) {
+                    $(this).removeClass("ui error");
                 }
             });
         });
+        $('.required-select').click(function () {
+            if ($('.required-select').find('select').val()) {
+                $('.required-select').removeClass("ui error");
+            }
+        });
 
-    function limpa_form_cep() {
-        $('#endereco').val("");
-        $('#bairro').val("");
-        $('#cidade').val("");
-        $('#estado').val("");
-        $('#endereco').prop('readOnly', false);
-        $('#bairro').prop('readOnly', false);
-        $('#cidade').prop('readOnly', false);
-        $('#estado').prop('disabled', false);
-    }
+        function limpa_form_cep() {
+            $('.ui.input.loading').removeClass("left icon");
+            $('.search.icon.form').addClass("hide");
+            $('#endereco').val("");
+            $('#bairro').val("");
+            $('#cidade').val("");
+            $('#estado').val("");
+            $('#endereco').prop('readOnly', false);
+            $('#bairro').prop('readOnly', false);
+            $('#cidade').prop('readOnly', false);
+            $('#estado').prop('disabled', false);
+        }
 
-    function cep_encontrado() {
-        $('#endereco').prop('readOnly', true);
-        $('#bairro').prop('readOnly', true);
-        $('#cidade').prop('readOnly', true);
-        $('#estado').prop('disabled', true);
-    }
+        $('#cep').blur(function () {
 
-    $('#cep').blur(function () {
+            var cep = $(this).val().replace(/\D/g, '');
 
-    var cep = $(this).val().replace(/\D/g, '');
+            if (cep != "") {
 
-    if (cep != "") {
+                var validacep = /^[0-9]{8}$/;
 
-        var validacep = /^[0-9]{8}$/;
+                if (validacep.test(cep)) {
 
-        if (validacep.test(cep)) {
+                    $('.ui.input.loading').addClass("left icon");
+                    $('.search.icon.form').removeClass("hide");
+                    $("#endereco").val("...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
+                    $("#estado").val("...");
 
-            $("#endereco").val("...");
-            $("#bairro").val("...");
-            $("#cidade").val("...");
-            $("#estado").val("...");
-
-            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (
-                dados) {
-                console.log(dados);
-                if (!("erro" in dados)) {
-                    $('#endereco').val(dados.logradouro);
-                    $('#bairro').val(dados.bairro);
-                    $('#cidade').val(dados.localidade);
-                    $('#estado').val(dados.uf);
-                    $('#cep-field').removeClass("ui input error");
-                    cep_encontrado();
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (
+                        dados) {
+                        if (!("erro" in dados)) {
+                            $('.ui.input.loading').removeClass("left icon");
+                            $('.search.icon.form').addClass("hide");
+                            $('#endereco').val(dados.logradouro);
+                            $('#bairro').val(dados.bairro);
+                            $('#cidade').val(dados.localidade);
+                            $('#estado').val(dados.uf);
+                            $('#cep-field').removeClass("ui input error");
+                            if (dados.logradouro != "")
+                                $('#endereco').prop('readOnly', true);
+                            if (dados.bairro != "")
+                                $('#bairro').prop('readOnly', true);
+                            if (dados.localidade != "")
+                                $('#cidade').prop('readOnly', true);
+                            if (dados.uf != "")
+                                $('#estado').prop('disabled', true);
+                        } else {
+                            limpa_form_cep();
+                            alert("CEP não encontrado!");
+                            $('#cep-field').addClass("ui error");
+                            $('#cep').val("");
+                        }
+                    });
                 } else {
                     limpa_form_cep();
-                    alert("CEP não encontrado!");
+                    alert("CEP inválido!");
                     $('#cep-field').addClass("ui error");
                     $('#cep').val("");
                 }
-            });
-        } else {
-            limpa_form_cep();
-            alert("CEP inválido!");
-            $('#cep-field').addClass("ui error");
-            $('#cep').val("");
-        }
-    } else {
-        limpa_form_cep();
-    }
-    });
+            } else {
+                limpa_form_cep();
+            }
+        });
     })
 </script>
 
