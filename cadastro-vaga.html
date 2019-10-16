@@ -129,36 +129,39 @@
                     </div>
                     <div class="field required required-select five wide">
                         <label for="Estado">Estado</label>
-                        <select id="estado" class="ui fluid dropdown" required="True">
-                            <option value="" disabled selected value>Selecione um estado</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
+                        <div id="estado-select">
+                            <select id="estado" class="ui fluid dropdown" required="True">
+                                <option value="" disabled selected value>Selecione um estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <input id="estado-input" class="hide" type="text" name="Estado" readOnly="true">
                     </div>
                 </div>
             </div>
@@ -168,11 +171,9 @@
         <button id="submit-form" class="ui button" type="submit">Enviar</button>
     </form>
 
-
     <br>
     <br>
     <br>
-
 
 </body>
 
@@ -216,11 +217,13 @@
             $('#bairro').val("");
             $('#cidade').val("");
             $('#estado').val("");
-            $('#endereco').prop('readOnly', false);
-            $('#bairro').prop('readOnly', false);
-            $('#cidade').prop('readOnly', false);
-            $('#estado').prop('disabled', false);
-        }
+            $('#estado-input').val("");
+            $('#endereco').prop("readOnly", false);
+            $('#bairro').prop("readOnly", false);
+            $('#cidade').prop("readOnly", false);
+            $('#estado-select').removeClass("hide");
+            $('#estado-input').addClass("hide")
+        }   
 
         $('#cep').blur(function () {
 
@@ -250,13 +253,14 @@
                             $('#estado').val(dados.uf);
                             $('#cep-field').removeClass("ui input error");
                             if (dados.logradouro != "")
-                                $('#endereco').prop('readOnly', true);
+                                $('#endereco').prop("readOnly", true);
                             if (dados.bairro != "")
-                                $('#bairro').prop('readOnly', true);
+                                $('#bairro').prop("readOnly", true);
                             if (dados.localidade != "")
-                                $('#cidade').prop('readOnly', true);
+                                $('#cidade').prop("readOnly", true);
                             if (dados.uf != "")
-                                $('#estado').prop('disabled', true);
+                                $('#estado-select').addClass("hide");
+                                $('#estado-input').removeClass("hide").val($('#estado :selected').text());
                         } else {
                             limpa_form_cep();
                             alert("CEP não encontrado!");

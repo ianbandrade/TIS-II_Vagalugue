@@ -4,4 +4,9 @@
 
 body {
     margin: 5% 25% !important;
+    background-color:#E0DAD5 !important;
+}
+
+form {
+    background-color:#FAFAFA !important;
 }
