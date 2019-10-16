@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../node_modules\semantic-ui\dist\semantic.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="../node_modules\semantic-ui\dist\semantic.min.js "></script>
+  <!-- Site Properties -->
+  <title>Login Example - Semantic</title>
+
+
+  <style type="text/css">
+    body {
+      background-color: rgb(34, 31, 27);
+    }
+
+    body>.grid {
+      height: 100%;
+    }
+
+    .image {
+      margin-top: -100px;
+    }
+
+    .column {
+      max-width: 800px;
+    }
+    .parag{
+      color: rgb(31, 26, 26);
+    }
+  </style>
+  <script>
+    $(document)
+      .ready(function () {
+        $('.ui.form')
+          .form({
+            fields: {
+              email: {
+                identifier: 'email',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter your e-mail'
+                  },
+                  {
+                    type: 'email',
+                    prompt: 'Please enter a valid e-mail'
+                  }
+                ]
+              },
+              password: {
+                identifier: 'password',
+                rules: [
+                  {
+                    type: 'empty',
+                    prompt: 'Please enter your password'
+                  },
+                  {
+                    type: 'length[6]',
+                    prompt: 'Your password must be at least 6 characters'
+                  }
+                ]
+              }
+            }
+          })
+          ;
+      })
+      ;
+  </script>
+</head>
+
+<body>
+
+  <div class="ui middle aligned center aligned grid">
+    <div class=" 18 wide column">
+      <h2 class="ui gray image header">
+        <img src="vagalugue branco.png" class="image">
+        <div class="content">
+          <p class="parag"> Log-in to your account </p>
+        </div>
+      </h2>
+      <div class="ui basic segment">
+        <div class="ui two column middle aligned center aligned grid">
+          <div class="left floated right aligned six wide column">
+            <form class="ui attached large form">
+
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="E-mail address">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" placeholder="Password">
+                </div>
+              </div>
+              <button class="ui fluid large gray submit button">Login</button>
+
+
+
+              <div class="ui error message"></div>
+
+            </form>
+          </div>
+
+          <div class="ui vertical divider">Ou</div>
+
+          <div class="column">
+            <div class="ui labeled button">
+              <div class="ui google plus button">
+                <i class="google icon"></i>
+              </div>
+              <a class="ui basic label button">
+                   Fazer Login com o Google
+               </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--      <div class="ui message">
+        New to us? <a href="#">Sign Up</a>
+      </div>-->
+    </div>
+  </div>
+
+</body>
+
+</html>
