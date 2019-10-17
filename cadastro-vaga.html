@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <form class="ui form segment">
+    <!-- Action definida para LocalHost porta 880-->
+    <form class="ui form segment" action="http://127.0.0.1:880/vaga" method="POST">
         <h1>Cadastro de Vaga</h1>
         <br>
         <div class="dados_locador">
@@ -48,13 +49,14 @@
                     </div>
                     <div class="field eigth wide">
                         <label for="foto_vaga">Foto da vaga</label>
-                        <input type="file" name="foto_vaga" placeholder="Foto">
+                        <input id="foto_vaga" type="file" name="foto_vagaaaa" placeholder="Foto" accept="image/*">
+                        <input id="foto_input" type="text" name="foto_vaga" readonly hidden>
                     </div>
                 </div>
                 <div class="field">
                     <br>
                     <label>Descrição</label>
-                    <textarea rows="2" placeholder="Descrição da Vaga"></textarea>
+                    <textarea name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
                 </div>
             </div>
             <br>
@@ -66,7 +68,8 @@
                     <div class="field required required-input five wide ">
                         <label for="largura">Largura</label>
                         <div class="ui right labeled input">
-                            <input type="number" step="0.1" name="largura" placeholder="Largura" required="True">
+                            <input type="number" min="0" step="0.1" name="largura" placeholder="Largura"
+                                required="True">
                             <div class="ui basic label">
                                 metros
                             </div>
@@ -75,7 +78,7 @@
                     <div class="field required required-input five wide">
                         <label for="comprimento">Comprimento</label>
                         <div class="ui right labeled input">
-                            <input type="number" step="0.1" name="comprimento" placeholder="Comprimento"
+                            <input type="number" min="0" step="0.1" name="comprimento" placeholder="Comprimento"
                                 required="True">
                             <div class="ui basic label">
                                 metros
@@ -85,7 +88,7 @@
                     <div class="field required required-input five wide">
                         <label for="altura">Altura</label>
                         <div class="ui right labeled input">
-                            <input type="number" step="0.1" name="altura" placeholder="Altura" required="True">
+                            <input type="number" min="0" step="0.1" name="altura" placeholder="Altura" required="True">
                             <div class="ui basic label">
                                 metros
                             </div>
@@ -130,7 +133,7 @@
                     <div class="field required required-select five wide">
                         <label for="Estado">Estado</label>
                         <div id="estado-select">
-                            <select id="estado" class="ui fluid dropdown" required="True">
+                            <select id="estado" name="estado" class="ui fluid dropdown" required="True">
                                 <option value="" disabled selected value>Selecione um estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -161,7 +164,7 @@
                                 <option value="TO">Tocantins</option>
                             </select>
                         </div>
-                        <input id="estado-input" class="hide" type="text" name="Estado" readOnly="true">
+                        <input id="estado-input" class="hide" type="text" name="estado-input" readOnly="true">
                     </div>
                 </div>
             </div>
@@ -181,8 +184,24 @@
     $(document).ready(function () {
 
         //mascaras
-        $('#cep').mask('00000-000');
-        $('#numero').mask('000000');
+        $('#cep').mask("00000-000");
+        $('#numero').mask("000000");
+
+        //Converter imagem para Base64
+        $("#foto_vaga").on("change", function () {
+                $('#foto_input').val("");
+                var file =  $("#foto_vaga")[0].files[0];
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    $('#foto_input').val(reader.result);
+                }, false);  
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            }
+        );
 
         //Muda a cor dos campos não preenchidos ao tentar enviar
         $('#submit-form').click(function () {
@@ -223,7 +242,7 @@
             $('#cidade').prop("readOnly", false);
             $('#estado-select').removeClass("hide");
             $('#estado-input').addClass("hide")
-        }   
+        }
 
         $('#cep').blur(function () {
 
@@ -260,7 +279,8 @@
                                 $('#cidade').prop("readOnly", true);
                             if (dados.uf != "")
                                 $('#estado-select').addClass("hide");
-                                $('#estado-input').removeClass("hide").val($('#estado :selected').text());
+                            $('#estado-input').removeClass("hide").val($('#estado :selected')
+                                .text());
                         } else {
                             limpa_form_cep();
                             alert("CEP não encontrado!");
