@@ -12,12 +12,15 @@
     <script src="Frontend/node_modules/semantic-ui/dist/semantic.min.js"></script>
     <script src="Frontend/node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
   <!-- Site Properties -->
-  <title>Login Example - Semantic</title>
+  <title>Página de Login</title>
 
 
   <style type="text/css">
     body {
-      background-color: rgb(34, 31, 27);
+      background-image: url("fundo-carros.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
 
     body>.grid {
@@ -31,9 +34,10 @@
     .column {
       max-width: 800px;
     }
-    .parag{
-      color: rgb(31, 26, 26);
+    .fundo{
+     background-color: rgba(0, 0, 0, 0.719);
     }
+
   </style>
   <script>
     $(document)
@@ -78,11 +82,11 @@
 <body>
 
   <div class="ui middle aligned center aligned grid">
-    <div class=" 18 wide column">
-      <h2 class="ui gray image header">
-        <img src="vagalugue branco.png" class="image">
+    <div class=" 18 wide column fundo">
+      <h2 class="ui image header">
+        <img src="vagalugue.png" class="image">
         <div class="content">
-          <p class="parag"> Log-in to your account </p>
+          <p class="inverted"> Log-in to your account </p>
         </div>
       </h2>
       <div class="ui basic segment">
@@ -104,22 +108,20 @@
               </div>
               <button class="ui fluid large gray submit button">Login</button>
 
-
-
               <div class="ui error message"></div>
 
             </form>
           </div>
 
-          <div class="ui vertical divider">Ou</div>
+          <div class="ui inverted vertical divider">Ou</div>
 
           <div class="column">
             <div class="ui labeled button">
-              <div class="ui google plus button">
-                <i class="google icon"></i>
+              <div class="ui button">
+                <i class="heart icon"></i>
               </div>
-              <a class="ui basic label button">
-                   Fazer Login com o Google
+              <a class="ui label button">
+                   CADASTRAR
                </a>
             </div>
           </div>
