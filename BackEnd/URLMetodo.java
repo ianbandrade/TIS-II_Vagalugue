@@ -12,10 +12,9 @@ import org.simpleframework.transport.connect.Connection;
 import org.simpleframework.transport.connect.SocketConnection;
 
 public class URLMetodo implements Container {
-	
+
 	static TisService tisService;
-	
-	
+
 	public void handle(Request request, Response response) {
 		try {
 			// Recupera a URL e o método utilizado.
@@ -31,6 +30,11 @@ public class URLMetodo implements Container {
 			if (path.equalsIgnoreCase("/vaga") && "POST".equals(method)) {
 				// http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
 				mensagem = tisService.adicionar(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+
+			} else if (path.equalsIgnoreCase("/vagas")) {
+				// http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
+				mensagem = tisService.listar();
 				this.enviaResposta(Status.CREATED, response, mensagem);
 
 			} else {
@@ -65,12 +69,11 @@ public class URLMetodo implements Container {
 		body.close();
 	}
 
-
 	public static void main(String[] list) throws Exception {
-		
+
 		// Instancia o tisService Service
 		tisService = new TisService();
-		
+
 		// Se você receber uma mensagem
 		// "Address already in use: bind error",
 		// tente mudar a porta.
@@ -94,4 +97,3 @@ public class URLMetodo implements Container {
 	}
 
 }
-

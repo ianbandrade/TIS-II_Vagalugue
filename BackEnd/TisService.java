@@ -5,6 +5,10 @@ import org.simpleframework.http.Request;
 
 public final class TisService {
 
+	private final static int NUM_VAGAS_MAX = 100;
+	static Vaga[] vagas = new Vaga[NUM_VAGAS_MAX];
+	public static int count_vagas;
+
 	public JSONObject adicionar(Request request) {
 		String nome;
 		String sobrenome;
@@ -46,12 +50,18 @@ public final class TisService {
 		v = new Vaga(new Locatario(nome, sobrenome), indicador, foto, descricao,
 				new Dimensoes(largura, comprimento, altura),
 				new Localizacao(cep, endereco, numero, bairro, cidade, estado));
+		
+		vagas[count_vagas++] = v;
 
 		return toJson(v);
 
 	}
 
-	private JSONObject toJson(Vaga v) throws JSONException {
+	public JSONObject listar() {
+		return arrayToJson(vagas);
+	}
+
+	private static JSONObject toJson(Vaga v) throws JSONException {
 		JSONObject json = new JSONObject();
 		json.put("Locatario", v.getLocatarioJson());
 		json.put("Indicador", v.getIndicador());
@@ -62,4 +72,23 @@ public final class TisService {
 		return json;
 	}
 
+	private static JSONObject arrayToJson(Vaga[] vagas) throws JSONException {
+		JSONObject jsonArray = new JSONObject();
+		Vaga v;
+		int i = 0;
+		 while(vagas[i] != null) {
+ 			v = vagas[i];
+			JSONObject json = new JSONObject();
+			json.put("ID", i);
+			json.put("Locatario", v.getLocatarioJson());
+			json.put("Indicador", v.getIndicador());
+			json.put("Foto", v.getFoto());
+			json.put("Descricao", v.getDescricao());
+			json.put("Dimensoes", v.getDimensoesJson());
+			json.put("Localizacao", v.getLocalizacaoJson());
+			jsonArray.put("vaga " + i, json);
+			i++;
+		}
+		return jsonArray;
+	}
 }
