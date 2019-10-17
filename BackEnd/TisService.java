@@ -53,11 +53,11 @@ public final class TisService {
 
 	private JSONObject toJson(Vaga v) throws JSONException {
 		JSONObject json = new JSONObject();
-		json.put("Locatário", v.getLocatarioJson());
+		json.put("Locatario", v.getLocatarioJson());
 		json.put("Indicador", v.getIndicador());
 		json.put("Foto", v.getFoto());
-		json.put("Descrição", v.getDescricao());
-		json.put("Dimensões", v.getDimensoesJson());
+		json.put("Descricao", v.getDescricao());
+		json.put("Dimensoes", v.getDimensoesJson());
 		json.put("Localizacao", v.getLocalizacaoJson());
 		return json;
 	}
