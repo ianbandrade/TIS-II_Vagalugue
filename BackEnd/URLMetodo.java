@@ -1,6 +1,9 @@
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.charset.StandardCharsets;
+
 import org.json.JSONObject;
 
 import org.simpleframework.http.Request;
@@ -13,87 +16,91 @@ import org.simpleframework.transport.connect.SocketConnection;
 
 public class URLMetodo implements Container {
 
-	static TisService tisService;
+    static TisService tisService;
 
-	public void handle(Request request, Response response) {
-		try {
-			// Recupera a URL e o método utilizado.
+    public void handle(Request request, Response response) {
+        try {
+            // Recupera a URL e o mï¿½todo utilizado.
+            String path = request.getPath().getPath();
+            System.out.println(path);
+            String method = request.getMethod();
+            JSONObject mensagem;
 
-			String path = request.getPath().getPath();
-			System.out.println(path);
-			String method = request.getMethod();
-			JSONObject mensagem;
+            System.out.println(method);
+            // Verifica qual aï¿½ï¿½o estï¿½ sendo chamada
 
-			System.out.println(method);
-			// Verifica qual ação está sendo chamada
+            if ( path.equalsIgnoreCase("/vaga") && "POST".equals(method) ) {
+                // http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
+                mensagem = tisService.adicionar(request);
+                this.enviaResposta(Status.CREATED, response, mensagem);
 
-			if (path.equalsIgnoreCase("/vaga") && "POST".equals(method)) {
-				// http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
-				mensagem = tisService.adicionar(request);
-				this.enviaResposta(Status.CREATED, response, mensagem);
+            } else if ( path.equalsIgnoreCase("/vagas") ) {
+                // http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
+                mensagem = tisService.listar();
+                this.enviaResposta(Status.CREATED, response, mensagem);
 
-			} else if (path.equalsIgnoreCase("/vagas")) {
-				// http://127.0.0.1:880/adicionarProduto?descricao=leite&preco=3.59&quant=10&tipo=2&dataFabricacao=2017-01-01
-				mensagem = tisService.listar();
-				this.enviaResposta(Status.CREATED, response, mensagem);
+            } else {
+                this.naoEncontrado(response, path);
+            }
 
-			} else {
-				this.naoEncontrado(response, path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void naoEncontrado(Response response, String path) throws Exception {
+        JSONObject error = new JSONObject();
+        error.put("error", "Nï¿½o encontrado.");
+        error.put("path", path);
+        enviaResposta(Status.NOT_FOUND, response, error);
+    }
+
+    private void enviaResposta(Status status, Response response, JSONObject json) throws Exception {
+
+        long time = System.currentTimeMillis();
+
+        response.setValue("Content-Type", "application/json");
+        response.setValue("Server", "Controle de Estoque Service (1.0)");
+        response.setValue("Access-Control-Allow-Origin", "*");
+        response.setDate("Date", time);
+        response.setDate("Last-Modified", time);
+        response.setStatus(status);
+
+        PrintStream body = response.getPrintStream();
+        if ( json != null )
+			try (OutputStreamWriter out = new OutputStreamWriter(
+					response.getOutputStream(), StandardCharsets.UTF_8)) {
+				out.write(json.toString());
 			}
+        body.close();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    }
 
-	private void naoEncontrado(Response response, String path) throws Exception {
-		JSONObject error = new JSONObject();
-		error.put("error", "Não encontrado.");
-		error.put("path", path);
-		enviaResposta(Status.NOT_FOUND, response, error);
-	}
+    public static void main(String[] list) throws Exception {
 
-	private void enviaResposta(Status status, Response response, JSONObject json) throws Exception {
+        // Instancia o tisService Service
+        tisService = new TisService();
 
-		long time = System.currentTimeMillis();
+        // Se vocï¿½ receber uma mensagem
+        // "Address already in use: bind error",
+        // tente mudar a porta.
 
-		response.setValue("Content-Type", "application/json");
-		response.setValue("Server", "Controle de Estoque Service (1.0)");
-		response.setDate("Date", time);
-		response.setDate("Last-Modified", time);
-		response.setStatus(status);
+        int porta = 880;
 
-		PrintStream body = response.getPrintStream();
-		if (json != null)
-			body.println(json);
-		body.close();
-	}
+        // Configura uma conexï¿½o soquete para o servidor HTTP.
+        Container container = new URLMetodo();
+        ContainerSocketProcessor servidor = new ContainerSocketProcessor(container);
+        Connection conexao = new SocketConnection(servidor);
+        SocketAddress endereco = new InetSocketAddress(porta);
+        conexao.connect(endereco);
 
-	public static void main(String[] list) throws Exception {
+        System.out.println("Tecle ENTER para interromper o servidor...");
+        System.in.read();
 
-		// Instancia o tisService Service
-		tisService = new TisService();
+        conexao.close();
+        servidor.stop();
+        System.out.println("Servidor interrompido.");
 
-		// Se você receber uma mensagem
-		// "Address already in use: bind error",
-		// tente mudar a porta.
-
-		int porta = 880;
-
-		// Configura uma conexão soquete para o servidor HTTP.
-		Container container = new URLMetodo();
-		ContainerSocketProcessor servidor = new ContainerSocketProcessor(container);
-		Connection conexao = new SocketConnection(servidor);
-		SocketAddress endereco = new InetSocketAddress(porta);
-		conexao.connect(endereco);
-
-		System.out.println("Tecle ENTER para interromper o servidor...");
-		System.in.read();
-
-		conexao.close();
-		servidor.stop();
-		System.out.println("Servidor interrompido.");
-
-	}
+    }
 
 }
