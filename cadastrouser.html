@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+        <meta charset="utf-8">
+        <title>Teste</title>
+        <!-- importando css + js do semantic ui 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <!-- o jquery é necessário para o funcionamento do semantic 
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+        -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="Frontend/node_modules/semantic-ui/dist/semantic.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="Frontend/node_modules/semantic-ui/dist/semantic.min.js"></script>
+        <script src="Frontend/node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <!-- metade esquerda do body -->
+        <div class="divide esquerda">
+            <div class="centralizar">
+                <!-- insira o conteúdo -->
+            </div>
+        </div>
+        <!-- metade direita do body -->
+        <div class="divide direita">
+            <div class="centralizar">
+                <!-- início do formulário -->
+                <form class="ui form">
+                    <!-- linha 1: label, nome e sobrenome -->
+                    <div class="field">
+                        <label>Nome Completo</label>
+                        <div class="two fields">
+                            <div class="six wide field">
+                                <input type="text" name="shipping[first-name]" placeholder="Nome">
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" name="shipping[last-name]" placeholder="Sobrenome">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- linha 2: label, logradouro, número e complemento -->
+                    <div class="field">
+                        <label>Endereço</label>
+                        <div class="three fields">
+                            <div class="six wide field">
+                                <input type="text" name="shipping[address]" placeholder="Logradouro">
+                            </div>
+                            <div class="three wide field">
+                                <input type="text" name="shipping[address-2]" placeholder="Número">
+                            </div>
+                            <div class="three wide field">
+                                <input type="text" name="shipping[address-2]" placeholder="Complemento">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- linha 3: bairro, estado e cep -->
+                    <div class="field">
+                        <div class="three fields">
+                            <div class="six wide field">
+                                <input type="text" name="shipping[address]" placeholder="Bairro">
+                            </div>
+                            <!-- dropdown de estado -->
+                            <div class="three wide field">
+                                <select class="ui fluid dropdown">
+                                    <option value="">Estado</option>
+                                    <option value="AL">Acre</option>
+                                    <option value="AK">Alagoas</option>
+                                    <option value="AZ">Amapá</option>
+                                    <option value="AR">Amazonas</option>
+                                    <option value="CA">Bahia</option>
+                                    <option value="CO">Ceará</option>
+                                    <option value="CT">Distrito Federal</option>
+                                    <option value="DE">Espírito Santo</option>
+                                    <option value="DC">Goiás</option>
+                                    <option value="FL">Maranhão</option>
+                                    <option value="GA">Mato Grosso</option>
+                                    <option value="HI">Mato Grosso do Sul</option>
+                                    <option value="ID">Minas Gerais</option>
+                                    <option value="IL">Pará</option>
+                                    <option value="IN">Paraíba</option>
+                                    <option value="IA">Paraná</option>
+                                    <option value="KS">Pernambuco</option>
+                                    <option value="KY">Piauí</option>
+                                    <option value="LA">Rio de Janeiro</option>
+                                    <option value="ME">Rio Grande do Norte</option>
+                                    <option value="MD">Rio Grande do Sul</option>
+                                    <option value="MA">Rondônia</option>
+                                    <option value="MI">Roraima</option>
+                                    <option value="MN">Santa Catarina</option>
+                                    <option value="MS">São Paulo</option>
+                                    <option value="MO">Sergipe</option>
+                                    <option value="MT">Tocantins</option>
+                                </select>
+                            </div>
+                            <div class="three wide field">
+                                <input type="text" name="shipping[address]" placeholder="CEP">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- linha 4: label, e-mail e telefone -->
+                    <div class="field">
+                        <label>Contato</label>
+                        <div class="two fields">
+                            <div class="six wide field">
+                                <input type="text" name="shipping[address]" placeholder="E-mail">
+                            </div>
+                            <div class="six wide field">
+                                <input type="text" name="shipping[address]" placeholder="Telefone">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- linha 5: label, senha e confirmar senha -->
+                    <div class="field">
+                        <label>Senha</label>
+                        <div class="two fields">
+                            <div class="six wide field">
+                                <input type="password" name="shipping[address]" placeholder="Senha">
+                            </div>
+                            <div class="six wide field">
+                                <input type="password" name="shipping[address]" placeholder="Confirmar senha">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- checkbox -->
+                    <div class="ui form">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="example">
+                            <label>Concordo com as condições e termos de uso</label>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- botão de cadastrar -->
+                    <button class="ui inverted orange button" tabindex="1">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <style>
+
+            .divide {
+                height: 100%;
+                width: 50%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                overflow-x: hidden;
+                padding-top: 20px;
+            }
+
+            .esquerda {
+                /*
+                width: 50%;
+                float: left;
+                margin: 3%;
+                */
+                background-image: url("imgs/tema.jpeg");
+                background-repeat: no-repeat;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                left: 0;
+            }
+
+            .direita {
+                background-color: #E0DAD5;
+                right: 0;
+                /* alterar depois, afim de centralizar o form */
+                padding-left: 8%;
+                padding-top: 4%;
+            }
+
+            /* talvez a centralização do form seja possível com essa class */
+            .centralizar {
+                /*
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                */
+            }
+
+        </style>
+    </body>
+</html>
