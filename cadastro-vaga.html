@@ -15,8 +15,8 @@
 </head>
 
 <body>
-    <!-- Action definida para LocalHost porta 880-->
-    <form class="ui form segment" action="http://127.0.0.1:880/vaga" method="POST">
+
+    <form id="form-vaga" class="ui form segment">
         <h1>Cadastro de Vaga</h1>
         <br>
         <div class="dados_locador">
@@ -25,11 +25,11 @@
             <div class="ui grid">
                 <div class="field required required-input eight wide">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" placeholder="Nome" required="True">
+                    <input id="nome" type="text" name="nome" placeholder="Nome" required="True">
                 </div>
                 <div class="field required required-input eight wide">
                     <label for="sobrenome">Sobrenome</label>
-                    <input type="text" name="sobrenome" placeholder="Sobrenome" required="True">
+                    <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
                 </div>
             </div>
         </div>
@@ -45,18 +45,18 @@
                 <div class="ui grid">
                     <div class="field required required-input eight wide">
                         <label for="indicador_vaga">Indicador da Vaga</label>
-                        <input type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402" required="True">
+                        <input id="indicador" type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402"
+                            required="True">
                     </div>
                     <div class="field eigth wide">
                         <label for="foto_vaga">Foto da vaga</label>
-                        <input id="foto_vaga" type="file" name="foto_vagaaaa" placeholder="Foto" accept="image/*">
-                        <input id="foto_input" type="text" name="foto_vaga" readonly hidden>
+                        <input id="foto-vaga" type="file" name="foto_vaga" placeholder="Foto" accept="image/*">
                     </div>
                 </div>
                 <div class="field">
                     <br>
                     <label>Descrição</label>
-                    <textarea name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
+                    <textarea id="descricao" name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
                 </div>
             </div>
             <br>
@@ -68,7 +68,7 @@
                     <div class="field required required-input five wide ">
                         <label for="largura">Largura</label>
                         <div class="ui right labeled input">
-                            <input type="number" min="0" step="0.1" name="largura" placeholder="Largura"
+                            <input id="largura" type="number" min="0" step="0.1" name="largura" placeholder="Largura"
                                 required="True">
                             <div class="ui basic label">
                                 metros
@@ -78,8 +78,8 @@
                     <div class="field required required-input five wide">
                         <label for="comprimento">Comprimento</label>
                         <div class="ui right labeled input">
-                            <input type="number" min="0" step="0.1" name="comprimento" placeholder="Comprimento"
-                                required="True">
+                            <input id="comprimento" type="number" min="0" step="0.1" name="comprimento"
+                                placeholder="Comprimento" required="True">
                             <div class="ui basic label">
                                 metros
                             </div>
@@ -88,7 +88,8 @@
                     <div class="field required required-input five wide">
                         <label for="altura">Altura</label>
                         <div class="ui right labeled input">
-                            <input type="number" min="0" step="0.1" name="altura" placeholder="Altura" required="True">
+                            <input id="altura" type="number" min="0" step="0.1" name="altura" placeholder="Altura"
+                                required="True">
                             <div class="ui basic label">
                                 metros
                             </div>
@@ -164,7 +165,7 @@
                                 <option value="TO">Tocantins</option>
                             </select>
                         </div>
-                        <input id="estado-input" class="hide" type="text" name="estado-input" readOnly="true">
+                        <input id="estado-input" class="hide" type="text" name="estado-input">
                     </div>
                 </div>
             </div>
@@ -182,28 +183,86 @@
 
 <script>
     $(document).ready(function () {
+        var foto_vaga = "";
 
         //mascaras
         $('#cep').mask("00000-000");
         $('#numero').mask("000000");
 
         //Converter imagem para Base64
-        $("#foto_vaga").on("change", function () {
-                $('#foto_input').val("");
-                var file =  $("#foto_vaga")[0].files[0];
-                var reader = new FileReader();
+        $("#foto-vaga").on("change", function () {
+            var file = $("#foto-vaga")[0].files[0];
+            var reader = new FileReader();
 
-                reader.addEventListener("load", function () {
-                    $('#foto_input').val(reader.result);
-                }, false);  
+            reader.addEventListener("load", function () {
+                foto_vaga = reader.result
+            }, false);
 
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
+            if (file) {
+                reader.readAsDataURL(file);
             }
-        );
+        });
 
-        //Muda a cor dos campos não preenchidos ao tentar enviar
+        function limpa_form() {
+            nome = $('#nome').val("");
+            sobrenome = $('#sobrenome').val("");
+            indicador = $('#indicador').val("");
+            descricao = $('#descricao').val("");
+            largura = $('#largura').val("");
+            comprimento = $('#comprimento').val("");
+            altura = $('#altura').val("");
+            cep = $('#cep').val("");
+            endereco = $('#endereco').val("");
+            numero = $('#numero').val("");
+            bairro = $('#bairro').val("");
+            cidade = $('#cidade').val("");
+            estado = $('#estado-input').val("");
+            foto_vaga = "";
+        }
+
+        $("#form-vaga").submit(async function (event) {
+            event.preventDefault();
+            let nome = $('#nome').val();
+            let sobrenome = $('#sobrenome').val();
+            let indicador = $('#indicador').val();
+            let descricao = $('#descricao').val();
+            let largura = $('#largura').val();
+            let comprimento = $('#comprimento').val();
+            let altura = $('#altura').val();
+            let cep = $('#cep').val();
+            let endereco = $('#endereco').val();
+            let numero = $('#numero').val();
+            let bairro = $('#bairro').val();
+            let cidade = $('#cidade').val();
+            let estado = $('#estado-input').val();
+
+            let data = {
+                nome,
+                sobrenome,
+                indicador,
+                foto_vaga,
+                descricao,
+                largura,
+                comprimento,
+                altura,
+                cep,
+                endereco,
+                numero,
+                bairro,
+                cidade,
+                estado
+            }
+
+            try {
+                let response = await $.post('http://localhost:880/vaga', data)
+                alert("Form Enviado");
+                limpa_form();
+                console.log(response);
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
         $('#submit-form').click(function () {
             $('.required-input').each(function () {
                 if (!$(this).find('input').val()) {
