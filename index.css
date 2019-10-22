@@ -1,42 +1,41 @@
-        
-        .logo{
+        .logo {
             max-width: 100%;
         }
-        .TextoHome{
+
+        .TextoHome {
             margin-top: 0px;
         }
+
         .landing-image {
             background-image: url("imagens/fundo.png") !important;
             background-size: cover !important;
             background-repeat: no-repeat;
-
         }
+
         .landing-image-footer {
             background-image: url("imagens/fundo.png") !important;
             background-size: cover !important;
             background-position-y: bottom!important;
-
         }
-        
-        .ui.huge.primary.button, .ui.primary.button, .ui.primary.buttons .button{
+
+        .ui.huge.primary.button, .ui.primary.button, .ui.primary.buttons .button {
             background-color: #f27620ff !important;
         }
-         .ui.primary.button:hover, .ui.primary.buttons:hover .button:hover{
+
+        .ui.primary.button:hover, .ui.primary.buttons:hover .button:hover {
             background-color: #8b380eff;
         }
-        
-       
+
         .hidden.menu {
             display: none;
         }
 
         .masthead.segment {
-            min-height: 700px;
-            padding: 1em 0em;
-
+            min-height: 780px;
+            padding: 1em;
         }
 
-        .masthead .logo.item img {
+        .masthead .`.item img {
             margin-right: 1em;
         }
 
@@ -64,8 +63,7 @@
             font-size: 2em;
         }
 
-        .ui.vertical.stripe .button+h3,
-        .ui.vertical.stripe p+h3 {
+        .ui.vertical.stripe .button+h3, .ui.vertical.stripe p+h3 {
             margin-top: 3em;
         }
 
@@ -102,46 +100,45 @@
             .ui.fixed.menu {
                 display: none !important;
             }
-
-            .secondary.pointing.menu .item,
-            .secondary.pointing.menu .menu {
+            .secondary.pointing.menu .item, .secondary.pointing.menu .menu {
                 display: none;
             }
-
             .secondary.pointing.menu .toc.item {
                 display: block;
             }
-
             .masthead.segment {
                 min-height: 350px;
             }
-
             .masthead h1.ui.header {
                 font-size: 2em;
                 margin-top: 1.5em;
             }
-
             .masthead h2 {
                 margin-top: 0.5em;
                 font-size: 1.5em;
             }
         }
-body {
-  background-image: url("imgs/Background.jpg")
-}
 
-body>.grid {
-  height: 100%;
-}
+        body {
+            background-image: url("imgs/Background.jpg")
+        }
 
-.image {
-  margin-top: -100px;
-}
+        body>.grid {
+            height: 100%;
+        }
 
-.column {
-  max-width: 430px;
-}
+        .image {
+            margin-top: -100px;
+        }
 
-.parag {
-  color: #F28907;
-}
+        .column {
+            max-width: 430px;
+        }
+
+        .parag {
+            color: #F28907;
+        }
+
+        #login-button {
+            margin: -0.5em 15px !important;
+        }

@@ -23,7 +23,6 @@
     <script>
         $(document)
             .ready(function () {
-                // fix menu when passed
                 $('.masthead')
                     .visibility({
                         once: false,
@@ -34,7 +33,6 @@
                             $('.fixed.menu').transition('fade out');
                         }
                     });
-                // create sidebar and attach to menu open
                 $('.ui.sidebar')
                     .sidebar('attach events', '.toc.item');
             });
@@ -65,8 +63,6 @@
         <!-- Sidebar Menu -->
         <div class="ui vertical inverted sidebar menu">
             <a href="index.html" class="active item">Início</a>
-            <a class="item">Locatário</a>
-            <a class="item">Locador</a>
             <a href="lista_vagas.html" class="item">Vagas</a>
             <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
             <a href="login.html" class="item">Login</a>
@@ -84,29 +80,22 @@
                         <i class="sidebar icon"></i>
                     </a>
                     <a class="active item">Início</a>
-                    <a class="item">Locatário</a>
-                    <a class="item">Locatário</a>
                     <a href="lista_vagas.html" class="item">Vagas</a>
                     <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
                     <div class="right item">
-                        <a href="login.html" class="ui inverted button">Login</a>
+                        <a href="login.html" class="ui inverted button" id="login-button">Login</a>
                         <a class="ui inverted button">Cadastre-se</a>
                     </div>
                 </div>
             </div>
 
             <div class="ui sombreamento-header text container">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br> <br> <br> <br> <br> <br><br><br>
                 <img class="logo" src="/imagens/LogoTextoBranco.png">
                 <h2 class="TextoHome">Sua melhor opção para alugar vagas de garagem</h2>
-                <a href="lista_vagas.html" class="ui huge primary button">Alugue<i class="right arrow icon"></i></a>
-                <a href="cadastro_vaga.html" class="ui huge primary button">Cadastrar vaga<i
+                <a href="lista_vagas.html" class="ui huge primary button">Alugue<i class="right arrow icon" class="central-buttons"></i></a>
+                <a href="cadastro_vaga.html" class="ui huge primary button" class="central-buttons">Cadastrar vaga<i
                         class="right arrow icon"></i></a>
-
             </div>
 
         </div>
