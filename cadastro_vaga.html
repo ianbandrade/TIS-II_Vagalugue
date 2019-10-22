@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Cadastro Vaga</title>
+
+    <link rel="stylesheet" href="cadastro_vaga.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/visibility.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <!-- Following Menu -->
+        <div class="ui large top  menu">
+            <div class="ui container">
+                <a href="index.html" class="item">Início</a>
+                <a class="item">Locatário</a>
+                <a class="item">Locador</a>
+                <a href="lista_vagas.html" class="item">Vagas</a>
+                <a href="cadastro_vaga.html" class="active item">Cadastro de Vagas</a>
+                <div class="right menu">
+                    <div class="item">
+                        <a href="login.html" class="ui button">Login</a>
+                    </div>
+                    <div class="item">
+                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <div class="ui vertical inverted sidebar menu">
+            <a href="index.html" class="item">Início</a>
+            <a class="item">Locatário</a>
+            <a class="item">Locador</a>
+            <a href="lista_vagas.html" class="item">Vagas</a>
+            <a href="cadastro_vaga.html" class="active item">Cadastro de Vagas</a>
+            <a href="login.html" class="item">Login</a>
+            <a href="cadastro_usuario.html" class="item">Cadastre-se</a>
+        </div>
+    </header>
+
+    <form id="form-vaga" class="ui form segment">
+        <h1>Cadastro de Vaga</h1>
+        <br>
+        <div class="dados_locador">
+            <h3>Informações Locatário</h3>
+            <br>
+            <div class="ui grid">
+                <div class="field required required-input eight wide">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" name="nome" placeholder="Nome" required="True">
+                </div>
+                <div class="field required required-input eight wide">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="ui divider"></div>
+        <br>
+        <div class="dados_vaga">
+            <h3>Informações Vaga</h3>
+            <br>
+            <div class="detalhes">
+                <h4 class="ui horizontal divider header">Detalhes</h4>
+                <br>
+                <div class="ui grid">
+                    <div class="field required required-input eight wide">
+                        <label for="indicador_vaga">Indicador da Vaga</label>
+                        <input id="indicador" type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402"
+                            required="True">
+                    </div>
+                    <div class="field eigth wide">
+                        <label for="foto_vaga">Foto da vaga</label>
+                        <input id="foto-vaga" type="file" name="foto_vaga" placeholder="Foto" accept="image/*">
+                    </div>
+                </div>
+                <div class="field">
+                    <br>
+                    <label>Descrição</label>
+                    <textarea id="descricao" name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="dimensoes">
+                <h4 class="ui horizontal divider header">Dimensões</h4>
+                <br>
+                <div class="ui grid centered">
+                    <div class="field required required-input five wide ">
+                        <label for="largura">Largura</label>
+                        <div class="ui right labeled input">
+                            <input id="largura" type="number" min="0" step="0.1" name="largura" placeholder="Largura"
+                                required="True">
+                            <div class="ui basic label">
+                                metros
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field required required-input five wide">
+                        <label for="comprimento">Comprimento</label>
+                        <div class="ui right labeled input">
+                            <input id="comprimento" type="number" min="0" step="0.1" name="comprimento"
+                                placeholder="Comprimento" required="True">
+                            <div class="ui basic label">
+                                metros
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field required required-input five wide">
+                        <label for="altura">Altura</label>
+                        <div class="ui right labeled input">
+                            <input id="altura" type="number" min="0" step="0.1" name="altura" placeholder="Altura"
+                                required="True">
+                            <div class="ui basic label">
+                                metros
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="localizacao">
+                <br>
+                <h4 class="ui horizontal divider header">Localização</h4>
+                <br>
+                <div class="ui grid">
+                    <div id="cep-field" class="field required required-input three wide">
+                        <label for="cep">CEP</label>
+                        <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
+                    </div>
+                    <div class="field required required-input ten wide">
+                        <label for="endereco">Endereço</label>
+                        <div class="ui input loading">
+                            <input id="endereco" type="text" name="endereco" placeholder="Endereço" required="True">
+                            <i class="search icon form hide"></i>
+                        </div>
+                    </div>
+                    <div class="field required required-input three wide">
+                        <label for="numero">Numero</label>
+                        <input id="numero" type="text" name="numero" placeholder="Numero" required="True">
+                    </div>
+                    <div class="field required required-input five wide">
+                        <label for="bairro">Bairro</label>
+                        <div class="ui input loading">
+                            <input id="bairro" type="text" name="bairro" placeholder="Bairro" required="True">
+                            <i class="search icon form hide"></i>
+                        </div>
+                    </div>
+                    <div class="field required required-input six wide">
+                        <label for="cidade">Cidade</label>
+                        <div class="ui input loading">
+                            <input id="cidade" type="text" name="cidade" placeholder="Cidade" required="True">
+                            <i class="search icon form hide"></i>
+                        </div>
+                    </div>
+                    <div class="field required required-select five wide">
+                        <label for="Estado">Estado</label>
+                        <div id="estado-select">
+                            <select id="estado" name="estado" class="ui fluid dropdown" required="True">
+                                <option value="" disabled selected value>Selecione um estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <input id="estado-input" class="hide" type="text" name="estado-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <p style="color: red">(*) Itens Obrigatórios</p>
+        <button id="submit-form" class="ui button" type="submit">Enviar</button>
+    </form>
+
+    <footer class="ui landing-image-footer inverted vertical footer segment">
+        <div class="ui container">
+            <div class="ui stackable inverted divided equal height stackable grid">
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Alunos</h4>
+                    <div class="ui inverted link list">
+                        <p href="#" class="item">Beatriz Melo</p>
+                        <p href="#" class="item">Belle Nerissa </p>
+                        <p href="#" class="item">Camila Campos</p>
+                        <p href="#" class="item">Ian Bittencourt</p>
+                        <p href="#" class="item">Ian Guelman</p>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Services</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Home</a>
+                        <a href="#" class="item">Locatário</a>
+                        <a href="#" class="item">Locador</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">Codigo:</h4>
+                    <p>GITHUB</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        var foto_vaga = "";
+
+        //mascaras
+        $('#cep').mask("00000-000");
+        $('#numero').mask("000000");
+
+        //Converter imagem para Base64
+        $("#foto-vaga").on("change", function () {
+            var file = $("#foto-vaga")[0].files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                foto_vaga = reader.result
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function limpa_form() {
+            nome = $('#nome').val("");
+            sobrenome = $('#sobrenome').val("");
+            indicador = $('#indicador').val("");
+            descricao = $('#descricao').val("");
+            largura = $('#largura').val("");
+            comprimento = $('#comprimento').val("");
+            altura = $('#altura').val("");
+            cep = $('#cep').val("");
+            endereco = $('#endereco').val("");
+            numero = $('#numero').val("");
+            bairro = $('#bairro').val("");
+            cidade = $('#cidade').val("");
+            estado = $('#estado-input').val("");
+            foto_vaga = "";
+        }
+
+        $("#form-vaga").submit(async function (event) {
+            event.preventDefault();
+            let nome = $('#nome').val();
+            let sobrenome = $('#sobrenome').val();
+            let indicador = $('#indicador').val();
+            let descricao = $('#descricao').val();
+            let largura = $('#largura').val();
+            let comprimento = $('#comprimento').val();
+            let altura = $('#altura').val();
+            let cep = $('#cep').val();
+            let endereco = $('#endereco').val();
+            let numero = $('#numero').val();
+            let bairro = $('#bairro').val();
+            let cidade = $('#cidade').val();
+            let estado = $('#estado-input').val();
+
+            let data = {
+                nome,
+                sobrenome,
+                indicador,
+                foto_vaga,
+                descricao,
+                largura,
+                comprimento,
+                altura,
+                cep,
+                endereco,
+                numero,
+                bairro,
+                cidade,
+                estado
+            }
+
+            try {
+                let response = await $.post('http://localhost:880/vaga', data)
+                alert("Form Enviado");
+                limpa_form();
+                console.log(response);
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
+        $('#submit-form').click(function () {
+            $('.required-input').each(function () {
+                if (!$(this).find('input').val()) {
+                    $(this).addClass("ui error");
+                }
+            });
+            if (!$('.required-select').find('select').val()) {
+                $('.required-select').addClass("ui error");
+            }
+        });
+
+        //Volta a cor dos campos para a normal se preenchidos
+        $('.required-input').find('input').blur(function () {
+            $('.required-input').each(function () {
+                if ($(this).find('input').val()) {
+                    $(this).removeClass("ui error");
+                }
+            });
+        });
+        $('.required-select').click(function () {
+            if ($('.required-select').find('select').val()) {
+                $('.required-select').removeClass("ui error");
+            }
+        });
+
+        function limpa_form_cep() {
+            $('.ui.input.loading').removeClass("left icon");
+            $('.search.icon.form').addClass("hide");
+            $('#endereco').val("");
+            $('#bairro').val("");
+            $('#cidade').val("");
+            $('#estado').val("");
+            $('#estado-input').val("");
+            $('#endereco').prop("readOnly", false);
+            $('#bairro').prop("readOnly", false);
+            $('#cidade').prop("readOnly", false);
+            $('#estado-select').removeClass("hide");
+            $('#estado-input').addClass("hide")
+        }
+
+        $('#cep').blur(function () {
+
+            var cep = $(this).val().replace(/\D/g, '');
+
+            if (cep != "") {
+
+                var validacep = /^[0-9]{8}$/;
+
+                if (validacep.test(cep)) {
+
+                    $('.ui.input.loading').addClass("left icon");
+                    $('.search.icon.form').removeClass("hide");
+                    $("#endereco").val("...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
+                    $("#estado").val("...");
+
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (
+                        dados) {
+                        if (!("erro" in dados)) {
+                            $('.ui.input.loading').removeClass("left icon");
+                            $('.search.icon.form').addClass("hide");
+                            $('#endereco').val(dados.logradouro);
+                            $('#bairro').val(dados.bairro);
+                            $('#cidade').val(dados.localidade);
+                            $('#estado').val(dados.uf);
+                            $('#cep-field').removeClass("ui input error");
+                            if (dados.logradouro != "")
+                                $('#endereco').prop("readOnly", true);
+                            if (dados.bairro != "")
+                                $('#bairro').prop("readOnly", true);
+                            if (dados.localidade != "")
+                                $('#cidade').prop("readOnly", true);
+                            if (dados.uf != "")
+                                $('#estado-select').addClass("hide");
+                            $('#estado-input').removeClass("hide").val($('#estado :selected')
+                                .text());
+                        } else {
+                            limpa_form_cep();
+                            alert("CEP não encontrado!");
+                            $('#cep-field').addClass("ui error");
+                            $('#cep').val("");
+                        }
+                    });
+                } else {
+                    limpa_form_cep();
+                    alert("CEP inválido!");
+                    $('#cep-field').addClass("ui error");
+                    $('#cep').val("");
+                }
+            } else {
+                limpa_form_cep();
+            }
+        });
+    })
+</script>
+
+</html>
