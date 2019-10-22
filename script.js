@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $(".ui.form").form({
     fields: {
       email: {
@@ -15,7 +15,7 @@ $(document).ready(function() {
         ]
       },
       password: {
-        identifier: "password",
+        identifier: "senha",
         rules: [
           {
             type: "empty",
@@ -29,4 +29,47 @@ $(document).ready(function() {
       }
     }
   });
+
+  function limpa_form() {
+    email = $('#email').val("");
+    senha = $('#senha').val("");
+  }
+
+  $("#form-login").submit(async function (event) {
+    event.preventDefault();
+    let email = $('#email').val();
+    let senha = $('#senha').val();
+
+    let data = {
+      email,
+      senha
+    }
+
+    try {
+      let response = await $.post('http://localhost:880/login', data)
+      alert("FORM ENVIADO");
+      limpa_form();
+      console.log(response);
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  $('#submit-form').click(function () {
+    $('.required-input').each(function () {
+      if (!$(this).find('input').val()) {
+        $(this).addClass("ui error");
+      }
+    });
+  });
+
+  //Volta a cor dos campos para a normal se preenchidos
+  $('.required-input').find('input').blur(function () {
+    $('.required-input').each(function () {
+      if ($(this).find('input').val()) {
+        $(this).removeClass("ui error");
+      }
+    });
+  });
+
 });
