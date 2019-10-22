@@ -35,7 +35,7 @@
             padding: 1em;
         }
 
-        .masthead .`.item img {
+        .masthead .item img {
             margin-right: 1em;
         }
 
@@ -141,4 +141,9 @@
 
         #login-button {
             margin: -0.5em 15px !important;
+        }
+
+        #github_icon {
+            color: #F79307;
+            font-size: 30px;
         }
