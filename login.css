@@ -10,7 +10,7 @@ body>.grid {
 }
 
 .image {
-  margin-top: -100px; 
+  margin-top: -100px;
 }
 
 .column {
@@ -19,4 +19,17 @@ body>.grid {
 
 .parag {
   color: rgb(255, 255, 255);
+}
+
+#button {
+  background-color: #F79307;
+}
+
+#github_icon {
+  color: #F79307;
+  font-size: 30px;
+}
+
+.content, parag {
+  color: #F79307;
 }
