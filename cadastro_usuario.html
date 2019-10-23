@@ -27,8 +27,6 @@
         <div class="ui large top  menu">
             <div class="ui container">
                 <a href="index.html" class="item">Início</a>
-                <a class="item">Locatário</a>
-                <a class="item">Locador</a>
                 <a href="lista_vagas.html" class="active item">Vagas</a>
                 <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
                 <div class="right menu">
@@ -36,22 +34,13 @@
                         <a href="login.html" class="ui button">Login</a>
                     </div>
                     <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
+                        <a href="cadastro_usuario.html" class="ui primary button" id="button">Cadastre-se</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Sidebar Menu -->
-        <div class="ui vertical inverted sidebar menu">
-            <a href="index.html" class="item">Início</a>
-            <a class="item">Locatário</a>
-            <a class="item">Locador</a>
-            <a href="lista_vagas.html" class="active item">Vagas</a>
-            <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-            <a href="login.html" class="item">Login</a>
-            <a href="cadastro_usuario.html" class="item">Cadastre-se</a>
-        </div>
+
     </header>
 
     <div class="centralizar">
@@ -161,7 +150,7 @@
             </div>
             <br>
             <!-- botão de cadastrar -->
-            <button class="ui inverted orange button" tabindex="1">Cadastrar</button>
+            <button class="ui central button" tabindex="1">Cadastrar</button>
         </form>
 
     </div>
@@ -170,38 +159,42 @@
         <div class="ui container">
             <div class="ui stackable inverted divided equal height stackable grid">
                 <div class="four wide column">
-                    <h4 class="ui inverted header">Alunos</h4>
-                    <div class="ui inverted link list">
-                        <p href="#" class="item">Beatriz Melo</p>
-                        <p href="#" class="item">Belle Nerissa </p>
-                        <p href="#" class="item">Camila Campos</p>
-                        <p href="#" class="item">Ian Bittencourt</p>
-                        <p href="#" class="item">Ian Guelman</p>
+                    <div class="ui inverted list">
+                        <p class="item">Beatriz Melo</p>
+                        <p class="item">Belle Nerissa </p>
+                        <p class="item">Camila Campos</p>
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header">Services</h4>
+                    <div class="ui inverted list">
+                        <p class="item">Ian Bittencourt</p>
+                        <p class="item">Ian Guelman</p>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h3 class="ui inverted header">Páginas</h3>
                     <div class="ui inverted link list">
-                        <a href="#" class="item">Home</a>
+                        <a href="index.html" class="item">Home</a>
                         <a href="#" class="item">Locatário</a>
                         <a href="#" class="item">Locador</a>
                     </div>
                 </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">Codigo:</h4>
-                    <p>GITHUB</p>
+                <div class="three wide column">
+                    <h3 class="ui inverted header">Codigo</h3>
+                    <a href="">
+                        <i class="github icon" id="github_icon"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
     <style>
-
         form {
             background-color: #FAFAFA;
             margin: 5% 25% !important;
         }
-        
+
         .divide {
             height: 100%;
             width: 50%;
@@ -233,17 +226,6 @@
             /* alterar depois, afim de centralizar o form */
             padding-left: 8%;
             padding-top: 4%;
-        }
-
-        /* talvez a centralização do form seja possível com essa class */
-        .centralizar {
-            /*
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-                */
         }
     </style>
 </body>
