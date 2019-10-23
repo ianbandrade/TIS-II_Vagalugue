@@ -113,7 +113,7 @@
                         </select>
                     </div>
                     <div class="four wide field">
-                        <input type="text" name="shipping[address]" placeholder="CEP">
+                        <input type="text" id="cep" name="shipping[address]" placeholder="CEP">
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                         <input type="text" name="shipping[address]" placeholder="E-mail">
                     </div>
                     <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="Telefone">
+                        <input id="telefone" type="text" name="shipping[address]" placeholder="Telefone">
                     </div>
                 </div>
             </div>
@@ -228,6 +228,13 @@
             padding-top: 4%;
         }
     </style>
+
+    <script>
+
+        $('#cep').mask("00000-000");
+        $('#telefone').mask("(00) 0000-00000");
+
+    </script>
 </body>
 
 </html>
