@@ -1,3 +1,7 @@
+$(".special.cards .image").dimmer({
+  on: "hover"
+});
+
 var req = new XMLHttpRequest();
 var url = "http://127.0.0.1:880/vagas";
 
