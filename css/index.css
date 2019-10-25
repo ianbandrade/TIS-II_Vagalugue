@@ -1,149 +1,154 @@
-        .logo {
-            max-width: 100%;
-        }
+.logo {
+  max-width: 100%;
+}
 
-        .TextoHome {
-            margin-top: 0px;
-        }
+.TextoHome {
+  margin-top: 0px;
+}
 
-        .landing-image {
-            background-image: url("imagens/fundo.png") !important;
-            background-size: cover !important;
-            background-repeat: no-repeat;
-        }
+.landing-image {
+  background-image: url("/img/fundo.png") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+}
 
-        .landing-image-footer {
-            background-image: url("imagens/fundo.png") !important;
-            background-size: cover !important;
-            background-position-y: bottom!important;
-        }
+.landing-image-footer {
+  background-image: url("/img/fundo.png") !important;
+  background-size: cover !important;
+  background-position-y: bottom !important;
+}
 
-        .ui.huge.primary.button, .ui.primary.button, .ui.primary.buttons .button {
-            background-color: #F79307 !important;
-        }
+.ui.huge.primary.button,
+.ui.primary.button,
+.ui.primary.buttons .button {
+  background-color: #f79307 !important;
+}
 
-        .ui.primary.button:hover, .ui.primary.buttons:hover .button:hover {
-            background-color: #F79307;
-        }
+.ui.primary.button:hover,
+.ui.primary.buttons:hover .button:hover {
+  background-color: #f79307;
+}
 
-        .hidden.menu {
-            display: none;
-        }
+.hidden.menu {
+  display: none;
+}
 
-        .masthead.segment {
-            min-height: 780px;
-            padding: 1em;
-        }
+.masthead.segment {
+  min-height: 780px;
+  padding: 1em;
+}
 
-        .masthead .item img {
-            margin-right: 1em;
-        }
+.masthead .item img {
+  margin-right: 1em;
+}
 
-        .masthead .ui.menu .ui.button {
-            margin-left: 0.5em;
-        }
+.masthead .ui.menu .ui.button {
+  margin-left: 0.5em;
+}
 
-        .masthead h1.ui.header {
-            margin-top: 3em;
-            margin-bottom: 0em;
-            font-size: 4em;
-            font-weight: normal;
-        }
+.masthead h1.ui.header {
+  margin-top: 3em;
+  margin-bottom: 0em;
+  font-size: 4em;
+  font-weight: normal;
+}
 
-        .masthead h2 {
-            font-size: 1.7em;
-            font-weight: normal;
-        }
+.masthead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
 
-        .ui.vertical.stripe {
-            padding: 8em 0em;
-        }
+.ui.vertical.stripe {
+  padding: 8em 0em;
+}
 
-        .ui.vertical.stripe h3 {
-            font-size: 2em;
-        }
+.ui.vertical.stripe h3 {
+  font-size: 2em;
+}
 
-        .ui.vertical.stripe .button+h3, .ui.vertical.stripe p+h3 {
-            margin-top: 3em;
-        }
+.ui.vertical.stripe .button + h3,
+.ui.vertical.stripe p + h3 {
+  margin-top: 3em;
+}
 
-        .ui.vertical.stripe .floated.image {
-            clear: both;
-        }
+.ui.vertical.stripe .floated.image {
+  clear: both;
+}
 
-        .ui.vertical.stripe p {
-            font-size: 1.33em;
-        }
+.ui.vertical.stripe p {
+  font-size: 1.33em;
+}
 
-        .ui.vertical.stripe .horizontal.divider {
-            margin: 3em 0em;
-        }
+.ui.vertical.stripe .horizontal.divider {
+  margin: 3em 0em;
+}
 
-        .quote.stripe.segment {
-            padding: 0em;
-        }
+.quote.stripe.segment {
+  padding: 0em;
+}
 
-        .quote.stripe.segment .grid .column {
-            padding-top: 5em;
-            padding-bottom: 5em;
-        }
+.quote.stripe.segment .grid .column {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
 
-        .footer.segment {
-            padding: 5em 0em;
-        }
+.footer.segment {
+  padding: 5em 0em;
+}
 
-        .secondary.pointing.menu .toc.item {
-            display: none;
-        }
+.secondary.pointing.menu .toc.item {
+  display: none;
+}
 
-        @media only screen and (max-width: 700px) {
-            .ui.fixed.menu {
-                display: none !important;
-            }
-            .secondary.pointing.menu .item, .secondary.pointing.menu .menu {
-                display: none;
-            }
-            .secondary.pointing.menu .toc.item {
-                display: block;
-            }
-            .masthead.segment {
-                min-height: 350px;
-            }
-            .masthead h1.ui.header {
-                font-size: 2em;
-                margin-top: 1.5em;
-            }
-            .masthead h2 {
-                margin-top: 0.5em;
-                font-size: 1.5em;
-            }
-        }
+@media only screen and (max-width: 700px) {
+  .ui.fixed.menu {
+    display: none !important;
+  }
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
+    display: none;
+  }
+  .secondary.pointing.menu .toc.item {
+    display: block;
+  }
+  .masthead.segment {
+    min-height: 350px;
+  }
+  .masthead h1.ui.header {
+    font-size: 2em;
+    margin-top: 1.5em;
+  }
+  .masthead h2 {
+    margin-top: 0.5em;
+    font-size: 1.5em;
+  }
+}
 
-        body {
-            background-image: url("imgs/Background.jpg")
-        }
+body {
+  background-image: url("/img/background.jpg");
+}
 
-        body>.grid {
-            height: 100%;
-        }
+body > .grid {
+  height: 100%;
+}
 
-        .image {
-            margin-top: -100px;
-        }
+.image {
+  margin-top: -100px;
+}
 
-        .column {
-            max-width: 430px;
-        }
+.column {
+  max-width: 430px;
+}
 
-        .parag {
-            color: #F79307;
-        }
+.parag {
+  color: #f79307;
+}
 
-        #login-button {
-            margin: -0.5em 15px !important;
-        }
+#login-button {
+  margin: -0.5em 15px !important;
+}
 
-        #github_icon {
-            color: #F79307;
-            font-size: 30px;
-        }
+#github_icon {
+  color: #f79307;
+  font-size: 30px;
+}

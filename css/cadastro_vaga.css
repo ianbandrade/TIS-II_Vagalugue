@@ -1,15 +1,15 @@
 .hide {
-    display: none !important;
+  display: none !important;
 }
 
 form {
-    margin: 5% 25% !important;
+  margin: 5% 25% !important;
 }
 
 body {
-    background-image: url("imagens/Background.jpg") !important;
+  background-image: url("/img/background.jpg") !important;
 }
 
 form {
-    background-color:#FAFAFA !important;
+  background-color: #fafafa !important;
 }

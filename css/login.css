@@ -1,11 +1,11 @@
 body {
-  background-image: url("imagens/Background.jpg") !important;
+  background-image: url("/img/background.jpg") !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-body>.grid {
+body > .grid {
   height: 100%;
 }
 
@@ -22,14 +22,10 @@ body>.grid {
 }
 
 #button {
-  background-color: #F79307;
+  background-color: #f79307;
 }
 
-#github_icon {
-  color: #F79307;
-  font-size: 30px;
-}
-
-.content, parag {
-  color: #F79307;
+.content,
+parag {
+  color: #f79307;
 }
