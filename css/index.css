@@ -126,7 +126,7 @@ body > .grid {
 }
 
 .column {
-  max-width: 430px;
+  max-width: 550px;
 }
 
 .parag {
@@ -146,4 +146,5 @@ body > .grid {
   background-image: url("/img/fundo.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }

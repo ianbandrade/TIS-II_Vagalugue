@@ -17,6 +17,7 @@ i.search.hide.icon.hide {
   display: none;
 }
 
-form#form-vaga.ui.form.segment {
+form#form-vaga.ui.form.segment,
+form.ui.form.segment {
   margin: 5% 20%;
 }
