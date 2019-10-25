@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
   <script src="js/login.js"></script>
+
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/forms.css">
 </head>
@@ -47,25 +48,23 @@
           Entre com sua conta
         </div>
       </h1>
-      <form class="ui large form">
+      <form class="ui large form" action="http://localhost:880/login" method="post">
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" placeholder="E-mail">
+              <input type="text" name="email" value="" placeholder="E-mail">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Senha">
+              <input type="password" name="senha" value="" placeholder="Senha">
             </div>
           </div>
-          <div class="ui fluid large submit button">Entre</div>
+          <input type="submit" value="Entrar" class="ui fluid large submit button">
         </div>
-
         <div class="ui error message"></div>
-
       </form>
 
       <div class="ui message">
