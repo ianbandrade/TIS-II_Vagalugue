@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Cadastro Vaga</title>
 
-    <link rel="stylesheet" href="css/cadastro_vaga.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/forms.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -23,7 +24,6 @@
 
 <body>
     <header>
-        <!-- Following Menu -->
         <div class="ui large top  menu">
             <div class="ui container">
                 <a href="index.html" class="item">Início</a>
@@ -42,164 +42,168 @@
 
     </header>
 
-    <form id="form-vaga" class="ui form segment">
-        <h1>Cadastro de Vaga</h1>
-        <br>
-        <div class="dados_locador">
-            <h3>Informações Locatário</h3>
+    <section>
+
+
+        <form id="form-vaga" class="ui form segment">
+            <h1>Cadastro de Vaga</h1>
             <br>
-            <div class="ui grid">
-                <div class="field required required-input eight wide">
-                    <label for="nome">Nome</label>
-                    <input id="nome" type="text" name="nome" placeholder="Nome" required="True">
-                </div>
-                <div class="field required required-input eight wide">
-                    <label for="sobrenome">Sobrenome</label>
-                    <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="ui divider"></div>
-        <br>
-        <div class="dados_vaga">
-            <h3>Informações Vaga</h3>
-            <br>
-            <div class="detalhes">
-                <h4 class="ui horizontal divider header">Detalhes</h4>
+            <div class="dados_locador">
+                <h3>Informações Locatário</h3>
                 <br>
                 <div class="ui grid">
                     <div class="field required required-input eight wide">
-                        <label for="indicador_vaga">Indicador da Vaga</label>
-                        <input id="indicador" type="text" name="indicador_vaga" placeholder="ex: Vaga 42B/ apto. 402"
-                            required="True">
+                        <label for="nome">Nome</label>
+                        <input id="nome" type="text" name="nome" placeholder="Nome" required="True">
                     </div>
-                    <div class="field eigth wide">
-                        <label for="foto_vaga">Foto da vaga</label>
-                        <input id="foto-vaga" type="file" name="foto_vaga" placeholder="Foto" accept="image/*">
+                    <div class="field required required-input eight wide">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
                     </div>
                 </div>
-                <div class="field">
+            </div>
+            <br>
+            <div class="ui divider"></div>
+            <br>
+            <div class="dados_vaga">
+                <h3>Informações Vaga</h3>
+                <br>
+                <div class="detalhes">
+                    <h4 class="ui horizontal divider header">Detalhes</h4>
                     <br>
-                    <label>Descrição</label>
-                    <textarea id="descricao" name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
+                    <div class="ui grid">
+                        <div class="field required required-input eight wide">
+                            <label for="indicador_vaga">Indicador da Vaga</label>
+                            <input id="indicador" type="text" name="indicador_vaga"
+                                placeholder="ex: Vaga 42B/ apto. 402" required="True">
+                        </div>
+                        <div class="field eigth wide">
+                            <label for="foto_vaga">Foto da vaga</label>
+                            <input id="foto-vaga" type="file" name="foto_vaga" placeholder="Foto" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <br>
+                        <label>Descrição</label>
+                        <textarea id="descricao" name="descricao" rows="2" placeholder="Descrição da Vaga"></textarea>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="dimensoes">
+                    <h4 class="ui horizontal divider header">Dimensões</h4>
+                    <br>
+                    <div class="ui grid centered">
+                        <div class="field required required-input five wide ">
+                            <label for="largura">Largura</label>
+                            <div class="ui right labeled input">
+                                <input id="largura" type="number" min="0" step="0.1" name="largura"
+                                    placeholder="Largura" required="True">
+                                <div class="ui basic label">
+                                    metros
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field required required-input five wide">
+                            <label for="comprimento">Comprimento</label>
+                            <div class="ui right labeled input">
+                                <input id="comprimento" type="number" min="0" step="0.1" name="comprimento"
+                                    placeholder="Comprimento" required="True">
+                                <div class="ui basic label">
+                                    metros
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field required required-input five wide">
+                            <label for="altura">Altura</label>
+                            <div class="ui right labeled input">
+                                <input id="altura" type="number" min="0" step="0.1" name="altura" placeholder="Altura"
+                                    required="True">
+                                <div class="ui basic label">
+                                    metros
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="localizacao">
+                    <br>
+                    <h4 class="ui horizontal divider header">Localização</h4>
+                    <br>
+                    <div class="ui grid">
+                        <div id="cep-field" class="field required required-input three wide">
+                            <label for="cep">CEP</label>
+                            <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
+                        </div>
+                        <div class="field required required-input ten wide">
+                            <label for="endereco">Endereço</label>
+                            <div class="ui input loading">
+                                <input id="endereco" type="text" name="endereco" placeholder="Endereço" required="True">
+                                <i class="search icon form hide"></i>
+                            </div>
+                        </div>
+                        <div class="field required required-input three wide">
+                            <label for="numero">Numero</label>
+                            <input id="numero" type="text" name="numero" placeholder="Numero" required="True">
+                        </div>
+                        <div class="field required required-input five wide">
+                            <label for="bairro">Bairro</label>
+                            <div class="ui input loading">
+                                <input id="bairro" type="text" name="bairro" placeholder="Bairro" required="True">
+                                <i class="search icon form hide"></i>
+                            </div>
+                        </div>
+                        <div class="field required required-input six wide">
+                            <label for="cidade">Cidade</label>
+                            <div class="ui input loading">
+                                <input id="cidade" type="text" name="cidade" placeholder="Cidade" required="True">
+                                <i class="search icon form hide"></i>
+                            </div>
+                        </div>
+                        <div class="field required required-select five wide">
+                            <label for="Estado">Estado</label>
+                            <div id="estado-select">
+                                <select id="estado" name="estado" class="ui fluid dropdown" required="True">
+                                    <option value="" disabled selected value>Selecione um estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                            <input id="estado-input" class="hide" type="text" name="estado-input">
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>
-            <br>
-            <div class="dimensoes">
-                <h4 class="ui horizontal divider header">Dimensões</h4>
-                <br>
-                <div class="ui grid centered">
-                    <div class="field required required-input five wide ">
-                        <label for="largura">Largura</label>
-                        <div class="ui right labeled input">
-                            <input id="largura" type="number" min="0" step="0.1" name="largura" placeholder="Largura"
-                                required="True">
-                            <div class="ui basic label">
-                                metros
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field required required-input five wide">
-                        <label for="comprimento">Comprimento</label>
-                        <div class="ui right labeled input">
-                            <input id="comprimento" type="number" min="0" step="0.1" name="comprimento"
-                                placeholder="Comprimento" required="True">
-                            <div class="ui basic label">
-                                metros
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field required required-input five wide">
-                        <label for="altura">Altura</label>
-                        <div class="ui right labeled input">
-                            <input id="altura" type="number" min="0" step="0.1" name="altura" placeholder="Altura"
-                                required="True">
-                            <div class="ui basic label">
-                                metros
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="localizacao">
-                <br>
-                <h4 class="ui horizontal divider header">Localização</h4>
-                <br>
-                <div class="ui grid">
-                    <div id="cep-field" class="field required required-input three wide">
-                        <label for="cep">CEP</label>
-                        <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
-                    </div>
-                    <div class="field required required-input ten wide">
-                        <label for="endereco">Endereço</label>
-                        <div class="ui input loading">
-                            <input id="endereco" type="text" name="endereco" placeholder="Endereço" required="True">
-                            <i class="search icon form hide"></i>
-                        </div>
-                    </div>
-                    <div class="field required required-input three wide">
-                        <label for="numero">Numero</label>
-                        <input id="numero" type="text" name="numero" placeholder="Numero" required="True">
-                    </div>
-                    <div class="field required required-input five wide">
-                        <label for="bairro">Bairro</label>
-                        <div class="ui input loading">
-                            <input id="bairro" type="text" name="bairro" placeholder="Bairro" required="True">
-                            <i class="search icon form hide"></i>
-                        </div>
-                    </div>
-                    <div class="field required required-input six wide">
-                        <label for="cidade">Cidade</label>
-                        <div class="ui input loading">
-                            <input id="cidade" type="text" name="cidade" placeholder="Cidade" required="True">
-                            <i class="search icon form hide"></i>
-                        </div>
-                    </div>
-                    <div class="field required required-select five wide">
-                        <label for="Estado">Estado</label>
-                        <div id="estado-select">
-                            <select id="estado" name="estado" class="ui fluid dropdown" required="True">
-                                <option value="" disabled selected value>Selecione um estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
-                        </div>
-                        <input id="estado-input" class="hide" type="text" name="estado-input">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <p style="color: red">(*) Itens Obrigatórios</p>
-        <button id="submit-form" class="ui button" type="submit">Enviar</button>
-    </form>
+            <p style="color: rgba(255, 41, 41, 0.995)">( * ) Itens Obrigatórios</p>
+            <button id="submit-form" class="ui button" type="submit">Enviar</button>
+        </form>
+    </section>
 
     <footer class="ui landing-image-footer inverted vertical footer segment">
         <div class="ui container">
@@ -234,6 +238,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 
 <script>

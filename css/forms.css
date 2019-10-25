@@ -1,24 +1,7 @@
 body {
   background-image: url("/img/background.jpg") !important;
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
-}
-
-body > .grid {
-  height: 100%;
-}
-
-.image {
-  margin-top: -100px;
-}
-
-.column {
-  max-width: 430px;
-}
-
-.parag {
-  color: rgb(255, 255, 255);
 }
 
 #button {
@@ -28,4 +11,12 @@ body > .grid {
 .content,
 parag {
   color: #f79307;
+}
+
+i.search.hide.icon.hide {
+  display: none;
+}
+
+form#form-vaga.ui.form.segment {
+  margin: 5% 20%;
 }
