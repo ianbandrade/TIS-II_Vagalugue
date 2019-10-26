@@ -77,6 +77,7 @@ $(document).ready(function() {
       let response = await $.post("http://localhost:880/vaga", data);
       alert("Form Enviado");
       limpa_form();
+      limpa_form_cep();
       console.log(response);
     } catch (error) {
       console.log(error);
