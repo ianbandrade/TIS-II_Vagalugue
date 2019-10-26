@@ -19,23 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/visibility.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
-    <script>
-        $(document)
-            .ready(function () {
-                $('.masthead')
-                    .visibility({
-                        once: false,
-                        onBottomPassed: function () {
-                            $('.fixed.menu').transition('fade in');
-                        },
-                        onBottomPassedReverse: function () {
-                            $('.fixed.menu').transition('fade out');
-                        }
-                    });
-                $('.ui.sidebar')
-                    .sidebar('attach events', '.toc.item');
-            });
-    </script>
+    <script src="/js/index.js"></script>
 </head>
 
 <body>
@@ -57,7 +41,6 @@
             </div>
         </div>
 
-        <!-- Sidebar Menu -->
         <div class="ui vertical inverted sidebar menu">
             <a href="lista_vagas.html" class="item">Vagas</a>
             <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
@@ -138,6 +121,7 @@
             </div>
         </div>
     </div>
+
     <footer class="ui landing-image-footer inverted vertical footer segment">
         <div class="ui container">
             <div class="ui stackable inverted divided equal height stackable grid">
