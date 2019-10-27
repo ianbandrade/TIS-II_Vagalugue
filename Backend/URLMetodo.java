@@ -17,102 +17,97 @@ import org.simpleframework.transport.connect.SocketConnection;
 
 public class URLMetodo implements Container {
 
-	static TisService tisService;
+    static TisService tisService;
 
-	public void handle(Request request, Response response) {
-		try {
+    public void handle(Request request, Response response) {
+        try {
+            String path = request.getPath().getPath();
+            System.out.println(path);
+            String method = request.getMethod();
+            JSONObject mensagem;
 
-			// Recupera a URL e o método utilizado.
-			String path = request.getPath().getPath();
-			System.out.println(path);
-			String method = request.getMethod();
-			JSONObject mensagem;
+            System.out.println(method);
 
-			System.out.println(method);
+            if ( path.equalsIgnoreCase("/vaga") && "POST".equals(method) ) {
+                mensagem = tisService.adicionar(request);
+                this.enviaResposta(Status.CREATED, response, mensagem);
+            } else if ( path.equalsIgnoreCase("/vagas") ) {
+                mensagem = tisService.listar();
+                this.enviaResposta(Status.CREATED, response, mensagem);
+            } else {
+                this.naoEncontrado(response, path);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			// Verifica qual ação está sendo chamada
-			if (path.equalsIgnoreCase("/login") && "POST".equals(method)) {
-				mensagem = tisService.verificarLogin(request);
+    private void naoEncontrado(Response response, String path) throws Exception {
+        JSONObject error = new JSONObject();
+        error.put("error", "Nao encontrado.");
+        error.put("path", path);
+        enviaResposta(Status.NOT_FOUND, response, error);
+    }
 
-				this.enviaResposta(Status.CREATED, response, mensagem);
+    private void enviaResposta(Status status, Response response, JSONObject json) throws Exception {
 
-			} else if (path.equalsIgnoreCase("/vaga") && "POST".equals(method)) {
-				mensagem = tisService.adicionar(request);
-				this.enviaResposta(Status.CREATED, response, mensagem);
-			} else if (path.equalsIgnoreCase("/vagas")) {
-				mensagem = tisService.listar();
-				this.enviaResposta(Status.CREATED, response, mensagem);
-			} else {
-				this.naoEncontrado(response, path);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        long time = System.currentTimeMillis();
 
-	private void naoEncontrado(Response response, String path) throws Exception {
-		JSONObject error = new JSONObject();
-		error.put("error", "Nao encontrado.");
-		error.put("path", path);
-		enviaResposta(Status.NOT_FOUND, response, error);
-	}
+        response.setValue("Content-Type", "application/json");
+        response.setValue("Server", "Controle de Estoque Service (1.0)");
+        response.setValue("Access-Control-Allow-Origin", "*");
+        response.setDate("Date", time);
+        response.setDate("Last-Modified", time);
+        response.setStatus(status);
 
-	private void enviaResposta(Status status, Response response, JSONObject json) throws Exception {
+        PrintStream body = response.getPrintStream();
+        if ( json != null )
+            try (OutputStreamWriter out = new OutputStreamWriter(
+                    response.getOutputStream(), StandardCharsets.UTF_8)) {
+                out.write(json.toString());
+            }
+        body.close();
+    }
 
-		long time = System.currentTimeMillis();
-
-		response.setValue("Content-Type", "application/json");
-		response.setValue("Server", "Controle de Estoque Service (1.0)");
-		response.setValue("Access-Control-Allow-Origin", "*");
-		response.setDate("Date", time);
-		response.setDate("Last-Modified", time);
-		response.setStatus(status);
-
-		PrintStream body = response.getPrintStream();
-
-		if (json != null)
-			try (OutputStreamWriter out = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8)) {
-				out.write(json.toString());
-			}
-		body.close();
-	}
-
+    @SuppressWarnings("unused")
 	private void enviaResposta(Status status, Response response, JSONArray json) throws Exception {
 
-		long time = System.currentTimeMillis();
+        long time = System.currentTimeMillis();
 
-		response.setValue("Content-Type", "application/json");
-		response.setValue("Server", "Controle de Estoque Service (1.0)");
-		response.setValue("Access-Control-Allow-Origin", "*");
-		response.setDate("Date", time);
-		response.setDate("Last-Modified", time);
-		response.setStatus(status);
+        response.setValue("Content-Type", "application/json");
+        response.setValue("Server", "Controle de Estoque Service (1.0)");
+        response.setValue("Access-Control-Allow-Origin", "*");
+        response.setDate("Date", time);
+        response.setDate("Last-Modified", time);
+        response.setStatus(status);
 
-		PrintStream body = response.getPrintStream();
-		if (json != null)
-			try (OutputStreamWriter out = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8)) {
-				out.write(json.toString());
-			}
-		body.close();
-	}
+        PrintStream body = response.getPrintStream();
+        if ( json != null )
+            try (OutputStreamWriter out = new OutputStreamWriter(
+                    response.getOutputStream(), StandardCharsets.UTF_8)) {
+                out.write(json.toString());
+            }
+        body.close();
+    }
 
-	public static void main(String[] list) throws Exception {
-		tisService = new TisService();
+    public static void main(String[] list) throws Exception {
+        tisService = new TisService();
 
-		int porta = 880;
+        int porta = 880;
 
-		Container container = new URLMetodo();
-		ContainerSocketProcessor servidor = new ContainerSocketProcessor(container);
-		Connection conexao = new SocketConnection(servidor);
-		SocketAddress endereco = new InetSocketAddress(porta);
-		conexao.connect(endereco);
+        Container container = new URLMetodo();
+        ContainerSocketProcessor servidor = new ContainerSocketProcessor(container);
+        Connection conexao = new SocketConnection(servidor);
+        SocketAddress endereco = new InetSocketAddress(porta);
+        conexao.connect(endereco);
 
-		System.out.println("Tecle ENTER para interromper o servidor...");
-		System.in.read();
+        System.out.println("Tecle ENTER para interromper o servidor...");
+        System.in.read();
 
-		conexao.close();
-		servidor.stop();
-		System.out.println("Servidor interrompido.");
-	}
+        conexao.close();
+        servidor.stop();
+        System.out.println("Servidor interrompido.");
+    }
 
 }
+

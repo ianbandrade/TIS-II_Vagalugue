@@ -1,5 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,49 +12,9 @@ import org.simpleframework.http.Request;
 
 public final class TisService {
 
-	static List<Usuario> usuarios = new ArrayList<Usuario>(); // Essa será a lista que armazenará todos os cadastros de
-																// usuário
 	private final static int NUM_VAGAS_MAX = 100;
 	static Vaga[] vagas = new Vaga[NUM_VAGAS_MAX];
 	public static int count_vagas;
-
-	public JSONObject verificarLogin(Request request) {
-
-		usuarios.add(new Usuario("user@gmail.com", "123456")); // Suposição de cadastro para teste de login
-
-		String email;
-		String senha;
-
-		Usuario u = null;
-
-		Query query = request.getQuery();
-
-		email = query.get("email");
-		senha = query.get("senha");
-
-		u = new Usuario(email, senha);
-
-		return toJson(u, email, senha);
-	}
-
-	private static JSONObject toJson(Usuario u, String email, String senha) throws JSONException {
-		JSONObject json = new JSONObject();
-		boolean eLoginValido = false;
-		eLoginValido = saoIguais(email, senha);
-		json.put("Login", eLoginValido);
-		return json;
-	}
-
-	public static boolean saoIguais(String email, String senha) {
-		boolean x = false;
-		for (Usuario u : usuarios) {
-			x = u.getEmail().equals(email) && u.getSenha().equals(senha);
-			if (x)
-				break;
-		}
-		return x;
-
-	}
 
 	public JSONObject adicionar(Request request) {
 		String nome;
@@ -101,7 +64,26 @@ public final class TisService {
 	}
 
 	public JSONObject listar() {
-		return arrayToJson(vagas);
+		JSONObject json0 = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		json0.put("vagas", jsonArray);
+
+		try {
+			FileReader reader = new FileReader("Vaga.json");
+			BufferedReader bufferedReader = new BufferedReader(reader);
+
+			String line;
+
+			while ((line = bufferedReader.readLine()) != null) {
+				JSONObject json = new JSONObject(line);
+				jsonArray.put(json);
+			}
+			reader.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return json0;
 	}
 
 	private static JSONObject toJson(Vaga v) throws JSONException {
@@ -112,28 +94,18 @@ public final class TisService {
 		json.put("Descricao", v.getDescricao());
 		json.put("Dimensoes", v.getDimensoesJson());
 		json.put("Localizacao", v.getLocalizacaoJson());
+		try {
+			FileWriter writer = new FileWriter("Vaga.json", true);
+			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+			bufferedWriter.write(json.toString());
+			bufferedWriter.newLine();
+
+			bufferedWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return json;
 	}
 
-	private static JSONObject arrayToJson(Vaga[] vagas) throws JSONException {
-		JSONObject jsonO = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		jsonO.put("vagas", jsonArray);
-		Vaga v;
-		int i = 0;
-		while (vagas[i] != null) {
-			v = vagas[i];
-			JSONObject json = new JSONObject();
-			json.put("ID", i);
-			json.put("Locatario", v.getLocatarioJson());
-			json.put("Indicador", v.getIndicador());
-			json.put("Foto", v.getFoto());
-			json.put("Descricao", v.getDescricao());
-			json.put("Dimensoes", v.getDimensoesJson());
-			json.put("Localizacao", v.getLocalizacaoJson());
-			jsonArray.put(json);
-			i++;
-		}
-		return jsonO;
-	}
 }
