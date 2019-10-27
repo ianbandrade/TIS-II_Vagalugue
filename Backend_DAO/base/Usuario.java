@@ -1,10 +1,12 @@
 package base;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
-	//Os demais m�todos e vari�veis devem ser colocados quando for desenvolver o cadastro de usu�rio
+	
+	private static final long serialVersionUID = 1L;
 	static List<Usuario> usuarios = new ArrayList<Usuario>(); // Essa ser� a lista que armazenar� todos os cadastros de
 	private String nome;
 	private String telefone;

@@ -1,7 +1,10 @@
 package base;
 
-public class Locatario {
+import java.io.Serializable;
+
+public class Locatario implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private String numConta;
 	private Endereco endereco;

@@ -1,11 +1,12 @@
 package base;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Locador {
+public class Locador implements Serializable {
 	
-	
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private String numCartao;
 	static List<Vaga> vagasAlugadas = new ArrayList<Vaga>();
