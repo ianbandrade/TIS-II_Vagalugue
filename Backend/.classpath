@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-common-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-http-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-transport-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-xml-2.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/json-20160810.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
