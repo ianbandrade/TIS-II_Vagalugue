@@ -1,4 +1,5 @@
 package dao;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,15 +12,15 @@ import java.util.List;
 import base.Locador;
 
 public class LocadorDAO implements DAO<Locador, String> {
-	
-	private List<Locador> Locadores;
+
+	private static List<Locador> locadores;
 	private File file;
 	private FileOutputStream fos;
 	private ObjectOutputStream outputFile;
 
 	public LocadorDAO(String filename) throws IOException {
 
-		Locadores = new ArrayList<Locador>();
+		locadores = new ArrayList<Locador>();
 
 		file = new File(filename);
 		readFromFile();
@@ -27,7 +28,7 @@ public class LocadorDAO implements DAO<Locador, String> {
 
 	public void add(Locador Locador) {
 		try {
-			Locadores.add(Locador);
+			locadores.add(Locador);
 			saveToFile();
 		} catch (Exception e) {
 			System.out.println("ERRO ao gravar o Locador '" + Locador.getUsuario().getNome() + "' no disco!");
@@ -54,24 +55,24 @@ public class LocadorDAO implements DAO<Locador, String> {
 		return null;
 	}
 
-	public void update(Locador p) {
-		int index = Locadores.indexOf(p);
-		if (index != -1) {
-			Locadores.set(index, p);
-			saveToFile();
-		}
+	public void update(Locador atual, Locador novo) {
+
+		locadores.remove(atual);
+		locadores.add(novo);
+		saveToFile();
+
 	}
 
 	public void remove(Locador p) {
-		int index = Locadores.indexOf(p);
+		int index = locadores.indexOf(p);
 		if (index != -1) {
-			Locadores.remove(index);
+			locadores.remove(index);
 			saveToFile();
 		}
 	}
 
 	public List<Locador> getAll() {
-		return Locadores;
+		return locadores;
 	}
 
 	private List<Locador> readFromFile() {
@@ -81,13 +82,13 @@ public class LocadorDAO implements DAO<Locador, String> {
 
 			while (fis.available() > 0) {
 				Locador = (Locador) inputFile.readObject();
-				Locadores.add(Locador);
+				locadores.add(Locador);
 			}
 		} catch (Exception e) {
 			System.out.println("ERRO ao ler Locador no disco!");
 			e.printStackTrace();
 		}
-		return Locadores;
+		return locadores;
 	}
 
 	private void saveToFile() {
@@ -96,7 +97,7 @@ public class LocadorDAO implements DAO<Locador, String> {
 			fos = new FileOutputStream(file, false);
 			outputFile = new ObjectOutputStream(fos);
 
-			for (Locador Locador : Locadores) {
+			for (Locador Locador : locadores) {
 				outputFile.writeObject(Locador);
 			}
 			outputFile.flush();
@@ -119,6 +120,5 @@ public class LocadorDAO implements DAO<Locador, String> {
 	protected void finalize() throws Throwable {
 		this.close();
 	}
-
 
 }

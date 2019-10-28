@@ -1,21 +1,11 @@
 package service;
 
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
-import base.Usuario;
-//import base.Estoque;
 import dao.UsuarioDAO;
 
 //@Path("login")
@@ -25,7 +15,7 @@ public class UsuarioService {
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean login(@PathParam("email") String email, @PathParam("senha") String senha) {
-		//System.out.println("Entrou em /login no usuarioSerivce");
+		// System.out.println("Entrou em /login no usuarioSerivce");
 		return UsuarioDAO.eLoginValido(email, senha);
 
 	}

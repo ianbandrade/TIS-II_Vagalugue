@@ -1,4 +1,5 @@
 package dao;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,7 +38,8 @@ public class VagaDAO implements DAO<Vaga, String> {
 	public Vaga get(String chave) {
 		Vaga produto = null;
 
-		try (FileInputStream fis = new FileInputStream(file); ObjectInputStream inputFile = new ObjectInputStream(fis)) {
+		try (FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream inputFile = new ObjectInputStream(fis)) {
 			while (fis.available() > 0) {
 				produto = (Vaga) inputFile.readObject();
 
@@ -52,13 +54,12 @@ public class VagaDAO implements DAO<Vaga, String> {
 		return null;
 	}
 
+	public void update(Vaga atual, Vaga novo) {
 
-	public void update(Vaga p) {
-		int index = vagas.indexOf(p);
-		if (index != -1) {
-			vagas.set(index, p);
-			saveToFile();
-		}
+		vagas.remove(atual);
+		vagas.add(novo);
+		saveToFile();
+
 	}
 
 	public void remove(Vaga p) {
@@ -68,14 +69,15 @@ public class VagaDAO implements DAO<Vaga, String> {
 			saveToFile();
 		}
 	}
-	
+
 	public List<Vaga> getAll() {
 		return vagas;
 	}
 
 	private List<Vaga> readFromFile() {
 		Vaga produto = null;
-		try (FileInputStream fis = new FileInputStream(file); ObjectInputStream inputFile = new ObjectInputStream(fis)) {
+		try (FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream inputFile = new ObjectInputStream(fis)) {
 
 			while (fis.available() > 0) {
 				produto = (Vaga) inputFile.readObject();
@@ -91,7 +93,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 	private void saveToFile() {
 		try {
 			close();
-			fos = new FileOutputStream(file, false); 
+			fos = new FileOutputStream(file, false);
 			outputFile = new ObjectOutputStream(fos);
 
 			for (Vaga produto : vagas) {
@@ -103,9 +105,9 @@ public class VagaDAO implements DAO<Vaga, String> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void close() throws IOException {
-		if (outputFile != null ) {
+		if (outputFile != null) {
 			outputFile.close();
 			fos.close();
 			outputFile = null;

@@ -13,7 +13,7 @@ import base.Locatario;
 
 public class LocatarioDAO implements DAO<Locatario, String> {
 
-	private List<Locatario> locatarios;
+	private static List<Locatario> locatarios;
 	private File file;
 	private FileOutputStream fos;
 	private ObjectOutputStream outputFile;
@@ -55,12 +55,12 @@ public class LocatarioDAO implements DAO<Locatario, String> {
 		return null;
 	}
 
-	public void update(Locatario p) {
-		int index = locatarios.indexOf(p);
-		if (index != -1) {
-			locatarios.set(index, p);
-			saveToFile();
-		}
+	public void update(Locatario atual, Locatario novo) {
+
+		locatarios.remove(atual);
+		locatarios.add(novo);
+		saveToFile();
+
 	}
 
 	public void remove(Locatario p) {

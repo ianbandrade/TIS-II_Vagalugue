@@ -8,11 +8,9 @@ public class Locatario implements Serializable {
 	private Usuario usuario;
 	private String numConta;
 	private Endereco endereco;
-	private Vaga vaga; //será na hora de cadasrtar vaga
-	//private Vaga listaDeVagas DAO implemena
+	private Vaga vaga; 
 	
 	public Locatario(Usuario usuario, String numConta, Endereco endereco) {
-		//super();
 		this.usuario = usuario;
 		this.numConta = numConta;
 		this.endereco = endereco;

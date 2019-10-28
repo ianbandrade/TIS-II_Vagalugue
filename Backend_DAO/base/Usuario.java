@@ -41,33 +41,12 @@ public class Usuario implements Serializable {
 		return nome;
 	}
 	
-//	public JSONObject verificacaoDeLogin(Request request) {
-//
-//		usuarios.add(new Usuario("Username", "(XX) XXXX-XXXX", "user@gmail.com", "123456")); // Suposi��o de cadastro para teste de login
-//
-//		String email;
-//		String senha;
-//
-//		Usuario u = null;
-//
-//		Query query = request.getQuery();
-//
-//		email = query.get("email");
-//		senha = query.get("senha");
-//
-//		u = new Usuario(email, senha);
-//
-//		return toJson(u, email, senha);
-//	}
-//
-//	private static JSONObject toJson(Usuario u, String email, String senha) throws JSONException {
-//		JSONObject json = new JSONObject();
-//		boolean eLoginValido = false;
-//		eLoginValido = eLoginValido(email, senha);
-//		json.put("Login", eLoginValido);
-//		return json;
-//	}
-//	
+	@Override
+	public String toString() {
+		return "Nome: " +nome+ " - Telefone: " +telefone;
+		
+	}
+	
 	public static boolean eLoginValido(String email, String senha) {
 		boolean x = false;
 		for (Usuario u : usuarios) {

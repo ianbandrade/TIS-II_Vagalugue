@@ -12,7 +12,6 @@ public class Locador implements Serializable {
 	static List<Vaga> vagasAlugadas = new ArrayList<Vaga>();
 		
 	public Locador(Usuario usuario, String numCartao, Endereco endereco) {
-		//super();
 		this.usuario = usuario;
 		this.numCartao = numCartao;
 	}

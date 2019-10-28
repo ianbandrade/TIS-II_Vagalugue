@@ -11,7 +11,7 @@ import java.util.List;
 
 import base.Usuario;
 
-public class UsuarioDAO implements DAO<Usuario, String>{
+public class UsuarioDAO implements DAO<Usuario, String> {
 
 	private static List<Usuario> usuarios;
 	private File file;
@@ -21,12 +21,12 @@ public class UsuarioDAO implements DAO<Usuario, String>{
 	public UsuarioDAO(String filename) throws IOException {
 
 		usuarios = new ArrayList<Usuario>();
-
 		file = new File(filename);
 		readFromFile();
 
 	}
 
+	@Override
 	public void add(Usuario usuario) {
 		try {
 			usuarios.add(usuario);
@@ -68,12 +68,13 @@ public class UsuarioDAO implements DAO<Usuario, String>{
 		return null;
 	}
 
-	public void update(Usuario p) {
-		int index = usuarios.indexOf(p);
-		if (index != -1) {
-			usuarios.set(index, p);
-			saveToFile();
-		}
+	@Override
+	public void update(Usuario atual, Usuario novo) {
+
+		usuarios.remove(atual);
+		usuarios.add(novo);
+		saveToFile();
+
 	}
 
 	public void remove(Usuario p) {
@@ -133,5 +134,6 @@ public class UsuarioDAO implements DAO<Usuario, String>{
 	protected void finalize() throws Throwable {
 		this.close();
 	}
+
 
 }
