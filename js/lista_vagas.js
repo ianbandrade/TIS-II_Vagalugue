@@ -60,24 +60,30 @@ async function get() {
       <i class="user outline icon"></i>
     </div>
     <div class="content ui grid">
-      <h2>Locador: </h2>
-      <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
-      <p>Indicador da vaga:  ${element["Indicador"]}</p>
-      <h2>Localização:</h2>
-      <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
-      <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
-      <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
-      <p>Estado: ${element["Localizacao"]["Estado"]}</p>
-      <h2>Dimensões:</h2>
-      <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
-      <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
-      <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
-      <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
-      <p class="confirmacao">Confirmar aluguel da vaga?</p>
+      <section style="display: flex">
+        <div style="flex-grow: 1">
+          <h2>Locador: </h2>
+          <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
+          <p>Indicador da vaga:  ${element["Indicador"]}</p>
+          <h2>Localização:</h2>
+          <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
+          <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
+          <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
+          <p>Estado: ${element["Localizacao"]["Estado"]}</p>
+          <h2>Dimensões:</h2>
+          <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
+          <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
+          <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
+        </div>
+        <div>
+          <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
+        </div>
+      </section>
 
     </div>
-    <div class="actions">
-      <div class="ui red cancel inverted button">
+    <div class="actions" style="text-align: center">
+    <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
+    <div class="ui red cancel inverted button">
         <i class="remove icon"></i>
         Cancelar
       </div>
