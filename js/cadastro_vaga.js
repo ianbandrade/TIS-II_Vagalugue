@@ -44,7 +44,7 @@ $(document).ready(function() {
     event.preventDefault();
     let nome = $("#nome").val();
     let sobrenome = $("#sobrenome").val();
-    let indicador = $("#indicador").val();
+    let indicador_vaga = $("#indicador").val();
     let descricao = $("#descricao").val();
     let largura = $("#largura").val();
     let comprimento = $("#comprimento").val();
@@ -59,7 +59,7 @@ $(document).ready(function() {
     let data = {
       nome,
       sobrenome,
-      indicador,
+      indicador_vaga,
       foto_vaga,
       descricao,
       largura,
