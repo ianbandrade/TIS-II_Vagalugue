@@ -86,7 +86,6 @@
                     element = element["Localizacao"]
                     let endereco = element.Numero + ", " + element.Endereco + ", " + element.Bairro + ", " +
                         element.Cidade + ", " + element.Estado + ", " + element.Cep + ", Brazil"
-                    console.log(endereco)
                     addPin(endereco, e)
                 });
             }
@@ -96,12 +95,11 @@
                     ".json?country=BR&access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A",
                     function (dados) {
                         let coordenadas = dados.features[0].geometry.coordinates
-                        console.log(coordenadas)
                         var el = document.createElement(
-                        'div'); //remover para tirar icone carro e voltar para pin
+                            'div'); //remover para tirar icone carro e voltar para pin
                         el.className = 'marker'; //remover para tirar icone carro e voltar para pin
                         new mapboxgl
-                        .Marker() //new mapboxgl.Marker() _ remover <<<<el>>>> para tirar icone carro e voltar para pin 
+                            .Marker() //new mapboxgl.Marker() _ remover <<<<el>>>> para tirar icone carro e voltar para pin 
                             .setLngLat(coordenadas)
                             .addTo(map)
                             .setPopup(new mapboxgl.Popup({
