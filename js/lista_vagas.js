@@ -1,6 +1,5 @@
 async function reply_click(clicked_id) {
   try {
-    console.log(clicked_id);
     $(() => {
       $(`#modal_${clicked_id}`)
         .modal({
@@ -16,14 +15,28 @@ async function reply_click(clicked_id) {
 
 get();
 
+async function getCoordenadas(Endereco) {
+  return new Promise((resolve, reject) => {
+    $.getJSON(
+      "https://api.mapbox.com/geocoding/v5/mapbox.places/" + Endereco +
+      ".json?country=BR&access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A",
+      function (dados) {
+        let coordenadas = dados.features[0].geometry.coordinates
+        resolve(coordenadas)
+      }
+    )
+  });
+}
+
 async function get() {
   try {
     let response = await $.getJSON("http://127.0.0.1:880/vagas");
 
-    console.log(response);
-
     let vagas = "";
-    response.vagas.forEach((element, index) => {
+    response.vagas.forEach(async (element, index) => {
+      let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
+        element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
+      coordenadas = await getCoordenadas(endereco)
       vagas += `
       <li class="cards_item">
       <div class="card">
@@ -46,8 +59,7 @@ async function get() {
     <div class="ui icon header">
       <i class="user outline icon"></i>
     </div>
-    <div class="content" class="ui grid">
-
+    <div class="content ui grid">
       <h2>Locador: </h2>
       <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
       <p>Indicador da vaga:  ${element["Indicador"]}</p>
@@ -60,6 +72,7 @@ async function get() {
       <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
       <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
       <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
+      <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
       <p class="confirmacao">Confirmar aluguel da vaga?</p>
 
     </div>
@@ -74,9 +87,9 @@ async function get() {
       </div>
     </div>
   </div>`;
-    });
 
-    document.getElementById("vagas").innerHTML += vagas;
+      document.getElementById("vagas").innerHTML = vagas;
+    });
   } catch (errors) {
     console.log(errors);
   }
