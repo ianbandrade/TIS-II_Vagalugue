@@ -1,8 +1,7 @@
 /* Font */
+
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -106,4 +105,18 @@ footer.ui.inverted.vertical.footer.segment {
   width: 100%;
   position: relative !important;
   bottom: -25px;
+}
+
+.confirmacao {
+  text-align: right;
+}
+
+div.content>p {
+  color: black;
+  margin-right: 35px;
+  font-size: 15px
+}
+
+.ui.icon.header .icon {
+  color: #f79307;
 }

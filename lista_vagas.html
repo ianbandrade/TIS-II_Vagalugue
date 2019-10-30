@@ -57,7 +57,20 @@
               <p class="card_text">Vaga bem localizada, possui fácil acesso ao Centro e região da Savassi
               </p>
               <h5> Dimensões: 4m x 6m x 7m </h5>
-              <button class="btn card_btn">Alugar</button>
+              <button class="btn card_btn" id="X" onclick="reply_click(this.id)"> Alugar</button>
+            </div>
+          </div>
+        </li>
+        <li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="/img/vaga.JPG"></div>
+            <div class="card_content">
+              <h2 class="card_title">Rua Cláudio Manoel, 546</h2>
+              <br>
+              <p class="card_text">Vaga bem localizada, possui fácil acesso ao Centro e região da Savassi
+              </p>
+              <h5> Dimensões: 4m x 6m x 7m </h5>
+              <button class="btn card_btn" id="Y" onclick="reply_click(this.id)"> Alugar</button>
             </div>
           </div>
         </li>
@@ -99,6 +112,39 @@
       </div>
     </div>
   </footer>
+
+  <div class="ui test modal" id="X">
+    <div class="ui icon header">
+      <i class="user outline icon"></i>
+    </div>
+    <div class="content" class="ui grid">
+
+      <h2>Locador: </h2>
+      <p>Nome: Miguel Rodrigues</p>
+      <p>Indicador da vaga: 402B</p>
+      <h2>Localização: </h2>
+      <p>Rua: Cláudio Manoel, 546</p>
+      <p>Bairro: Savassi</p>
+      <p>Cidade: Belo Horizonte</p>
+      <p>Estado: Minas Gerais</p>
+      <h2>Dimensões:</h2>
+      <p>Altura: 4m</p>
+      <p>Largura: 6m</p>
+      <p>Comprimento: 7m</p>
+      <p class="confirmacao">Confirmar aluguel da vaga?</p>
+
+    </div>
+    <div class="actions">
+      <div class="ui red cancel inverted button">
+        <i class="remove icon"></i>
+        Cancelar
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Alugar
+      </div>
+    </div>
+  </div>
 
 </body>
 
