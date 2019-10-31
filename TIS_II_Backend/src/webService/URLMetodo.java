@@ -1,10 +1,10 @@
+package webService;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.charset.StandardCharsets;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import org.simpleframework.http.Request;
@@ -17,7 +17,7 @@ import org.simpleframework.transport.connect.SocketConnection;
 
 public class URLMetodo implements Container {
 
-    static TisService tisService;
+    static VagaService vagaService;
 
     public void handle(Request request, Response response) {
         try {
@@ -29,10 +29,10 @@ public class URLMetodo implements Container {
             System.out.println(method);
 
             if ( path.equalsIgnoreCase("/vaga") && "POST".equals(method) ) {
-                mensagem = tisService.adicionar(request);
+                mensagem = vagaService.adicionar(request);
                 this.enviaResposta(Status.CREATED, response, mensagem);
             } else if ( path.equalsIgnoreCase("/vagas") ) {
-                mensagem = tisService.listar();
+                mensagem = vagaService.listar();
                 this.enviaResposta(Status.CREATED, response, mensagem);
             } else {
                 this.naoEncontrado(response, path);
@@ -69,29 +69,8 @@ public class URLMetodo implements Container {
         body.close();
     }
 
-    @SuppressWarnings("unused")
-	private void enviaResposta(Status status, Response response, JSONArray json) throws Exception {
-
-        long time = System.currentTimeMillis();
-
-        response.setValue("Content-Type", "application/json");
-        response.setValue("Server", "Controle de Estoque Service (1.0)");
-        response.setValue("Access-Control-Allow-Origin", "*");
-        response.setDate("Date", time);
-        response.setDate("Last-Modified", time);
-        response.setStatus(status);
-
-        PrintStream body = response.getPrintStream();
-        if ( json != null )
-            try (OutputStreamWriter out = new OutputStreamWriter(
-                    response.getOutputStream(), StandardCharsets.UTF_8)) {
-                out.write(json.toString());
-            }
-        body.close();
-    }
-
     public static void main(String[] list) throws Exception {
-        tisService = new TisService();
+        vagaService = new VagaService();
 
         int porta = 880;
 
