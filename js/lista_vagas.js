@@ -49,7 +49,7 @@ async function get() {
       }</h2>
           <p class="card_text">${element["Descricao"]}
           </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
-        element.Dimensoes.Altura
+        element.Dimensoes.Largura
       }m x ${element.Dimensoes.Altura}m </h5>
           <button class="btn card_btn" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
         </div>
