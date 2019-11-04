@@ -76,7 +76,7 @@ async function listar(url) {
     let response = await $.getJSON(url);
     let vagas = "";
     if (response.vagas.length == 0) {
-      document.getElementById("vagas").innerHTML = "<h2 style='color: #f79307; width: 100%; text-align: center'>Não existem vagas cadastradas nesta categoria</h2>";
+      document.getElementById("vagas").innerHTML = "<br><br><br><h2 style='color: #f79307; height: 470px; width: 100%; text-align: center; vertical-align: middle'>Não existem vagas cadastradas nesta categoria</h2>";
     } else {
       response.vagas.forEach(async (element, index) => {
         let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
