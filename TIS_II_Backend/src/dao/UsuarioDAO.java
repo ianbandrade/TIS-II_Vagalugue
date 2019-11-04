@@ -62,22 +62,18 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 	@Override
 	public void update(Usuario p) {
 		List<Usuario> usuarios = getAll();
-		Usuario novoUsuario = usuarios.stream().filter(usuario -> usuario.getEmail().equals(p.getEmail())).collect(Collectors.toList()).get(0);
-		int index = usuarios.indexOf(novoUsuario);
+		Usuario usuarioUpdate = usuarios.stream().filter(usuario -> usuario.getEmail().equals(p.getEmail()))
+				.collect(Collectors.toList()).get(0);
+		int index = usuarios.indexOf(usuarioUpdate);
 		if (index != -1) {
 			usuarios.set(index, p);
 		}
 		saveToFile(usuarios);
-
 	}
 
 	@Override
 	public void remove(Usuario p) {
 		List<Usuario> usuarios = getAll();
-//		int index = usuarios.indexOf(p);
-//		if (index != -1) {
-//			usuarios.remove(index);
-//		}
 		usuarios.removeIf((usuario) -> p.getEmail().equals(usuario.getEmail()));
 		saveToFile(usuarios);
 	}

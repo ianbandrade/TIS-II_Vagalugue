@@ -26,6 +26,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 				if (chave.equals(idSTR)) {
 					vaga = new Vaga();
 					vaga.setIndicador(idSTR);
+					vaga.setAlugada(Boolean.parseBoolean(buffer_entrada.readLine()));
 					vaga.setLocatario(new Usuario(buffer_entrada.readLine(), buffer_entrada.readLine()));
 					vaga.setFoto(buffer_entrada.readLine());
 					vaga.setDescricao(buffer_entrada.readLine());
@@ -36,6 +37,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 							Integer.parseInt(buffer_entrada.readLine()), buffer_entrada.readLine(),
 							buffer_entrada.readLine(), buffer_entrada.readLine()));
 				} else {
+					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
@@ -65,6 +67,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 		try (BufferedWriter buffer_saida = new BufferedWriter(new FileWriter("vaga.txt", true))) {
 			String separadorDeLinha = System.getProperty("line.separator");
 			buffer_saida.write(v.getIndicador() + separadorDeLinha);
+			buffer_saida.write(v.isAlugada() + separadorDeLinha);
 			buffer_saida.write(v.getLocatario().getNome() + separadorDeLinha);
 			buffer_saida.write(v.getLocatario().getSobrenome() + separadorDeLinha);
 			buffer_saida.write(v.getFoto() + separadorDeLinha);
@@ -90,8 +93,9 @@ public class VagaDAO implements DAO<Vaga, String> {
 	@Override
 	public void update(Vaga p) {
 		List<Vaga> vagas = getAll();
-		Vaga novaVaga = vagas.stream().filter(vaga -> vaga.getIndicador().equals(p.getIndicador())).collect(Collectors.toList()).get(0);
-		int index = vagas.indexOf(novaVaga);
+		Vaga vagaUpdate = vagas.stream().filter(vaga -> vaga.getIndicador().equals(p.getIndicador()))
+				.collect(Collectors.toList()).get(0);
+		int index = vagas.indexOf(vagaUpdate);
 		if (index != -1) {
 			vagas.set(index, p);
 		}
@@ -116,6 +120,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 			while ((idSTR = buffer_entrada.readLine()) != null) {
 				vaga = new Vaga();
 				vaga.setIndicador(idSTR);
+				vaga.setAlugada(Boolean.parseBoolean(buffer_entrada.readLine()));
 				vaga.setLocatario(new Usuario(buffer_entrada.readLine(), buffer_entrada.readLine()));
 				vaga.setFoto(buffer_entrada.readLine());
 				vaga.setDescricao(buffer_entrada.readLine());
@@ -139,6 +144,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 			String separadorDeLinha = System.getProperty("line.separator");
 			for (Vaga v : vagas) {
 				buffer_saida.write(v.getIndicador() + separadorDeLinha);
+				buffer_saida.write(v.isAlugada() + separadorDeLinha);
 				buffer_saida.write(v.getLocatario().getNome() + separadorDeLinha);
 				buffer_saida.write(v.getLocatario().getSobrenome() + separadorDeLinha);
 				buffer_saida.write(v.getFoto() + separadorDeLinha);

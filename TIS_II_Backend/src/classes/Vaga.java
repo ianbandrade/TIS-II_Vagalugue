@@ -19,6 +19,12 @@ public class Vaga {
 
 	public Vaga() {
 		super();
+		this.locatario = new Usuario();
+		this.indicador = null;
+		this.foto = null;
+		this.descricao = null;
+		this.dimensoes = new Dimensoes(0, 0, 0);
+		this.localizacao = new Localizacao(null, null, 0, null, null, null);	
 	}
 
 	public Vaga(Usuario locatario, String indicador, String foto, String descricao, Dimensoes dimensoes,

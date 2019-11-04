@@ -4,7 +4,50 @@ async function reply_click(clicked_id) {
       $(`#modal_${clicked_id}`)
         .modal({
           closable: false,
-          inverted: true
+          inverted: true,
+          onApprove: async function () {
+
+            let response = await $.getJSON("http://127.0.0.1:880/vagas");
+
+            let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
+            let sobrenome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Sobrenome
+            let indicador_vaga = response.vagas[clicked_id.replace("btn_", "")].Indicador
+            let descricao = response.vagas[clicked_id.replace("btn_", "")].Descricao
+            let largura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Largura
+            let comprimento = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Comprimento
+            let altura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Altura
+            let cep = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cep
+            let endereco = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Endereco
+            let numero = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Numero
+            let bairro = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Bairro
+            let cidade = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cidade
+            let estado = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Estado
+            let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
+
+            let data = {
+              nome,
+              sobrenome,
+              indicador_vaga,
+              foto_vaga,
+              descricao,
+              largura,
+              comprimento,
+              altura,
+              cep,
+              endereco,
+              numero,
+              bairro,
+              cidade,
+              estado
+            };
+
+            let post = await $.post("http://localhost:880/alugar", data);
+            console.log(data);
+
+          },
+          onDeny: function () {
+            // alert('Rejeitar');
+          }
         })
         .modal("show");
     });
@@ -31,7 +74,6 @@ async function getCoordenadas(Endereco) {
 async function get() {
   try {
     let response = await $.getJSON("http://127.0.0.1:880/vagas");
-
     let vagas = "";
     response.vagas.forEach(async (element, index) => {
       let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +

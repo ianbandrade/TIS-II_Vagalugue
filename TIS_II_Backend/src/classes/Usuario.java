@@ -14,10 +14,16 @@ public class Usuario {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
+		this.email = null;
+		this.senha = null;
 	}
 	
 	public Usuario() {
 		super();
+		this.nome = null;
+		this.sobrenome = null;
+		this.email = null;
+		this.senha = null;
 	}
 
 	public String getNome() {

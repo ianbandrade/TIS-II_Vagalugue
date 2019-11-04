@@ -1,4 +1,5 @@
 package webService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,44 @@ import dao.VagaDAO;
 public final class VagaService {
 
 	public JSONObject adicionar(Request request) {
+		Vaga vaga = new Vaga();
+		vaga = queryVaga(request);
+		System.out.println(vaga);
+		VagaDAO vagaDAO = new VagaDAO();
+		vagaDAO.add(vaga);
+
+		return vaga.getJson();
+	}
+
+	public JSONObject listar() {
+		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+		VagaDAO vagaDAO = new VagaDAO();
+		vagas = vagaDAO.getAll();
+
+		for (Vaga v : vagas) {
+			jsonArray.put(v.getJson());
+		}
+		json.put("vagas", jsonArray);
+		return json;
+	}
+
+	public JSONObject alugar(Request request) {
+		Vaga vaga = new Vaga();
+		vaga = queryVaga(request);
+		System.out.println(vaga);
+
+		VagaDAO vagaDAO = new VagaDAO();
+
+		vaga.setAlugada(true);
+		vagaDAO.update(vaga);
+		
+		return vaga.getJson();
+	}
+
+	public Vaga queryVaga(Request request) {
 		String nome;
 		String sobrenome;
 
@@ -34,7 +73,7 @@ public final class VagaService {
 		String cidade;
 		String estado;
 
-		Vaga v = null;
+		Vaga vaga = null;
 
 		Query query = request.getQuery();
 
@@ -43,9 +82,9 @@ public final class VagaService {
 		indicador = query.get("indicador_vaga");
 		foto = query.get("foto_vaga");
 		descricao = query.get("descricao");
-		largura = Math.round(query.getFloat("largura")*10)/10.0;
-		comprimento = Math.round(query.getFloat("comprimento")*10)/10.0;
-		altura = Math.round(query.getFloat("altura")*10)/10.0;
+		largura = Math.round(query.getFloat("largura") * 10) / 10.0;
+		comprimento = Math.round(query.getFloat("comprimento") * 10) / 10.0;
+		altura = Math.round(query.getFloat("altura") * 10) / 10.0;
 		cep = query.get("cep");
 		endereco = query.get("endereco");
 		numero = query.getInteger("numero");
@@ -53,29 +92,10 @@ public final class VagaService {
 		cidade = query.get("cidade");
 		estado = query.get("estado");
 
-		v = new Vaga(new Usuario(nome, sobrenome), indicador, foto, descricao,
+		vaga = new Vaga(new Usuario(nome, sobrenome), indicador, foto, descricao,
 				new Dimensoes(largura, comprimento, altura),
 				new Localizacao(cep, endereco, numero, bairro, cidade, estado));
-		
-		VagaDAO vagaDAO = new VagaDAO();
-		vagaDAO.add(v);
-		
-		return v.getJson();
+
+		return vaga;
 	}
-
-	public JSONObject listar() {
-		JSONObject json = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		
-		List<Vaga> vagas = new ArrayList<Vaga>();
-		VagaDAO vagaDAO = new VagaDAO();
-		vagas = vagaDAO.getAll();
-		
-		for(Vaga v: vagas) {
-			jsonArray.put(v.getJson());
-		}
-		json.put("vagas", jsonArray);
-		return json;
-	}	
 }
-
