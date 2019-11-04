@@ -1,0 +1,10 @@
+.map {
+    height: 600px;
+    width: 96%;
+    margin: 2%;
+}
+
+.centered {
+    width: 100%;
+    text-align: center;
+}

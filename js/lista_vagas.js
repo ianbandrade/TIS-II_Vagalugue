@@ -41,9 +41,9 @@ async function reply_click(clicked_id) {
               estado
             };
 
-            let post = await $.post("http://localhost:880/alugar", data);
-            console.log(data);
-
+            await $.post("http://localhost:880/alugar", data);
+            alert("Vaga alugada com sucesso!");
+            location.reload(true);
           },
           onDeny: function () {
             // alert('Rejeitar');
@@ -56,7 +56,7 @@ async function reply_click(clicked_id) {
   }
 }
 
-get();
+listar("http://127.0.0.1:880/vagas");
 
 async function getCoordenadas(Endereco) {
   return new Promise((resolve, reject) => {
@@ -71,15 +71,19 @@ async function getCoordenadas(Endereco) {
   });
 }
 
-async function get() {
+async function listar(url) {
   try {
-    let response = await $.getJSON("http://127.0.0.1:880/vagas");
+    let response = await $.getJSON(url);
     let vagas = "";
-    response.vagas.forEach(async (element, index) => {
-      let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
-        element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
-      coordenadas = await getCoordenadas(endereco)
-      vagas += `
+    if (response.vagas.length == 0) {
+      document.getElementById("vagas").innerHTML = "<h2 style='color: #f79307; width: 100%; text-align: center'>Não existem vagas cadastradas nesta categoria</h2>";
+    } else {
+      response.vagas.forEach(async (element, index) => {
+        let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
+          element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
+        coordenadas = await getCoordenadas(endereco)
+        if (!element.Alugada) {
+        vagas += `
       <li class="cards_item">
       <div class="card">
         <div class="card_image"><img class="card-img" src="${
@@ -135,9 +139,29 @@ async function get() {
       </div>
     </div>
   </div>`;
-
-      document.getElementById("vagas").innerHTML = vagas;
-    });
+    } else {
+      vagas += `
+      <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img class="card-img" src="${
+          element["Foto"]
+        }"></div>
+        <div class="card_content">
+          <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
+        element.Localizacao.Numero
+      }</h2>
+          <p class="card_text">${element["Descricao"]}
+          </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
+        element.Dimensoes.Largura
+      }m x ${element.Dimensoes.Altura}m </h5>
+          <button class="btn card_btn ui disabled button" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada...</button>
+        </div>
+      </div>
+    </li>`;
+    }
+        document.getElementById("vagas").innerHTML = vagas;
+      })
+    };
   } catch (errors) {
     console.log(errors);
   }

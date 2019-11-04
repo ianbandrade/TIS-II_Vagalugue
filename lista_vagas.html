@@ -49,7 +49,7 @@
   <section class="centered">
     <div class="ui category search">
       <div class="ui icon input">
-        <input class="prompt" type="text" placeholder="Search animals...">
+        <input class="prompt" type="text" placeholder="Buscar vagas...">
         <i class="search icon"></i>
       </div>
       <div class="results">
@@ -57,9 +57,12 @@
       <br>
       <br>
       <div class="ui buttons">
-        <button class="ui button active">Todas</button>
-        <button class="ui button">Disponíveis</button>
-        <button class="ui button">Alugadas</button>
+        <button class="btn_listar ui button active"
+          onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas')">Todas</button>
+        <button class="btn_listar ui button"
+          onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/naoalugadas')">Disponíveis</button>
+        <button class="btn_listar ui button"
+          onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/alugadas')">Alugadas</button>
       </div>
   </section>
 
