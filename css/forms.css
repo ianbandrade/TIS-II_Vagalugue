@@ -8,8 +8,7 @@ body {
   background-color: #f79307;
 }
 
-.content,
-parag {
+.content, parag, i.user.outline.icon {
   color: #f79307;
 }
 
@@ -17,7 +16,12 @@ i.search.hide.icon.hide {
   display: none;
 }
 
-form#form-vaga.ui.form.segment,
-form.ui.form.segment {
+form#form-vaga.ui.form.segment, form.ui.form.segment {
   margin: 5% 20%;
+}
+
+div.content>section>div>p {
+  color: black;
+  margin-right: 35px;
+  font-size: 15px
 }

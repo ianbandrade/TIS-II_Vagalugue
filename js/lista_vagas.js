@@ -101,13 +101,13 @@ async function get() {
     <div class="ui icon header">
       <i class="user outline icon"></i>
     </div>
-    <div class="content ui grid">
+    <div class="content" class="ui grid">
       <section style="display: flex">
         <div style="flex-grow: 1">
           <h2>Locador: </h2>
           <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
           <p>Indicador da vaga:  ${element["Indicador"]}</p>
-          <h2>Localização:</h2>
+          <h2>Localização: </h2>
           <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
           <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
           <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
