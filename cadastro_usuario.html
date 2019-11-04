@@ -37,7 +37,7 @@
                         <a href="login.html" class="ui button">Login</a>
                     </div>
                     <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button"   >Cadastre-se</a>
+                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <label>Endereço</label>
                 <div class="four fields">
                     <div class="eight wide field">
-                        <input id="logradouro"  type="text" name="shipping[address]" placeholder="Logradouro">
+                        <input id="logradouro" type="text" name="shipping[address]" placeholder="Logradouro">
                     </div>
                     <div class="four wide field">
                         <input id="numero" type="text" name="shipping[address-2]" placeholder="Número">
@@ -77,40 +77,43 @@
             <div class="field">
                 <div class="four fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="Bairro">
+                        <input id="bairro" type="text" name="shipping[address]" placeholder="Bairro">
                     </div>
                     <!-- dropdown de estado -->
                     <div class="four wide field">
-                        <select id="estado" class="ui fluid dropdown">
-                            <option value="">Estado</option>
-                            <option value="AL">Acre</option>
-                            <option value="AK">Alagoas</option>
-                            <option value="AZ">Amapá</option>
-                            <option value="AR">Amazonas</option>
-                            <option value="CA">Bahia</option>
-                            <option value="CO">Ceará</option>
-                            <option value="CT">Distrito Federal</option>
-                            <option value="DE">Espírito Santo</option>
-                            <option value="DC">Goiás</option>
-                            <option value="FL">Maranhão</option>
-                            <option value="GA">Mato Grosso</option>
-                            <option value="HI">Mato Grosso do Sul</option>
-                            <option value="ID">Minas Gerais</option>
-                            <option value="IL">Pará</option>
-                            <option value="IN">Paraíba</option>
-                            <option value="IA">Paraná</option>
-                            <option value="KS">Pernambuco</option>
-                            <option value="KY">Piauí</option>
-                            <option value="LA">Rio de Janeiro</option>
-                            <option value="ME">Rio Grande do Norte</option>
-                            <option value="MD">Rio Grande do Sul</option>
-                            <option value="MA">Rondônia</option>
-                            <option value="MI">Roraima</option>
-                            <option value="MN">Santa Catarina</option>
-                            <option value="MS">São Paulo</option>
-                            <option value="MO">Sergipe</option>
-                            <option value="MT">Tocantins</option>
-                        </select>
+                        <div id="estado-select">
+                            <select id="estado" name="estado" class="ui fluid dropdown" required="True">
+                                <option value="" disabled selected value>Selecione um estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <input id="estado-input" class="hide" type="text" name="estado-input">
                     </div>
                     <div class="four wide field">
                         <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
