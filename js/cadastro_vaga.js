@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var foto_vaga = "";
 
   //mascaras
@@ -6,13 +6,13 @@ $(document).ready(function() {
   $("#numero").mask("000000");
 
   //Converter imagem para Base64
-  $("#foto-vaga").on("change", function() {
+  $("#foto-vaga").on("change", function () {
     var file = $("#foto-vaga")[0].files[0];
     var reader = new FileReader();
 
     reader.addEventListener(
       "load",
-      function() {
+      function () {
         foto_vaga = reader.result;
       },
       false
@@ -40,11 +40,11 @@ $(document).ready(function() {
     foto_vaga = "";
   }
 
-  $("#form-vaga").submit(async function(event) {
+  $("#form-vaga").submit(async function (event) {
     event.preventDefault();
     let nome = $("#nome").val();
     let sobrenome = $("#sobrenome").val();
-    let indicador = $("#indicador").val();
+    let indicador_vaga = $("#indicador").val();
     let descricao = $("#descricao").val();
     let largura = $("#largura").val();
     let comprimento = $("#comprimento").val();
@@ -59,7 +59,7 @@ $(document).ready(function() {
     let data = {
       nome,
       sobrenome,
-      indicador,
+      indicador_vaga,
       foto_vaga,
       descricao,
       largura,
@@ -77,26 +77,27 @@ $(document).ready(function() {
       let response = await $.post("http://localhost:880/vaga", data);
       alert("Form Enviado");
       limpa_form();
+      limpa_form_cep();
       console.log(response);
     } catch (error) {
       console.log(error);
     }
   });
 
-  $("#submit-form").click(function() {
-    $(".required-input").each(function() {
+  $("#submit-form").click(function () {
+    $(".required-input").each(function () {
       if (
         !$(this)
-          .find("input")
-          .val()
+        .find("input")
+        .val()
       ) {
         $(this).addClass("ui error");
       }
     });
     if (
       !$(".required-select")
-        .find("select")
-        .val()
+      .find("select")
+      .val()
     ) {
       $(".required-select").addClass("ui error");
     }
@@ -105,22 +106,22 @@ $(document).ready(function() {
   //Volta a cor dos campos para a normal se preenchidos
   $(".required-input")
     .find("input")
-    .blur(function() {
-      $(".required-input").each(function() {
+    .blur(function () {
+      $(".required-input").each(function () {
         if (
           $(this)
-            .find("input")
-            .val()
+          .find("input")
+          .val()
         ) {
           $(this).removeClass("ui error");
         }
       });
     });
-  $(".required-select").click(function() {
+  $(".required-select").click(function () {
     if (
       $(".required-select")
-        .find("select")
-        .val()
+      .find("select")
+      .val()
     ) {
       $(".required-select").removeClass("ui error");
     }
@@ -141,7 +142,7 @@ $(document).ready(function() {
     $("#estado-input").addClass("hide");
   }
 
-  $("#cep").blur(function() {
+  $("#cep").blur(function () {
     var cep = $(this)
       .val()
       .replace(/\D/g, "");
@@ -159,7 +160,7 @@ $(document).ready(function() {
 
         $.getJSON(
           "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
-          function(dados) {
+          function (dados) {
             if (!("erro" in dados)) {
               $(".ui.input.loading").removeClass("left icon");
               $(".search.icon.form").addClass("hide");

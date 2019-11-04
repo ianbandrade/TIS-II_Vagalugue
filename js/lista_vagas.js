@@ -1,52 +1,143 @@
-$(".special.cards .image").dimmer({
-  on: "hover"
-});
+async function reply_click(clicked_id) {
+  try {
+    $(() => {
+      $(`#modal_${clicked_id}`)
+        .modal({
+          closable: false,
+          inverted: true,
+          onApprove: async function () {
 
-var req = new XMLHttpRequest();
-var url = "http://127.0.0.1:880/vagas";
+            let response = await $.getJSON("http://127.0.0.1:880/vagas");
+
+            let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
+            let sobrenome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Sobrenome
+            let indicador_vaga = response.vagas[clicked_id.replace("btn_", "")].Indicador
+            let descricao = response.vagas[clicked_id.replace("btn_", "")].Descricao
+            let largura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Largura
+            let comprimento = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Comprimento
+            let altura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Altura
+            let cep = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cep
+            let endereco = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Endereco
+            let numero = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Numero
+            let bairro = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Bairro
+            let cidade = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cidade
+            let estado = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Estado
+            let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
+
+            let data = {
+              nome,
+              sobrenome,
+              indicador_vaga,
+              foto_vaga,
+              descricao,
+              largura,
+              comprimento,
+              altura,
+              cep,
+              endereco,
+              numero,
+              bairro,
+              cidade,
+              estado
+            };
+
+            let post = await $.post("http://localhost:880/alugar", data);
+            console.log(data);
+
+          },
+          onDeny: function () {
+            // alert('Rejeitar');
+          }
+        })
+        .modal("show");
+    });
+  } catch (errors) {
+    console.log(errors);
+  }
+}
 
 get();
+
+async function getCoordenadas(Endereco) {
+  return new Promise((resolve, reject) => {
+    $.getJSON(
+      "https://api.mapbox.com/geocoding/v5/mapbox.places/" + Endereco +
+      ".json?country=BR&access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A",
+      function (dados) {
+        let coordenadas = dados.features[0].geometry.coordinates
+        resolve(coordenadas)
+      }
+    )
+  });
+}
 
 async function get() {
   try {
     let response = await $.getJSON("http://127.0.0.1:880/vagas");
     let vagas = "";
-    response.vagas.forEach(element => {
-      vagas += `<div class="ui stackable grid container">
-    <div class="four wide column">
-      <div class="ui card">
-        <div class="ui slide masked reveal image">
-          <img src="imgs/vaga.JPG" class="visible content">
-          <img src="imgs/vaga2.jpg" class="hidden content">
-        </div>
-        <div class="content">
-          <a class="header" >${element.Localizacao.Numero}</a>
-          <div class="meta">
-            <span class="description">Breve descricao</span>
-          </div>
-        </div>
-        <div class="extra content">
-          <a>
-            <i class="table icon"></i>
-            Média
-          </a>
-          <br>
-          <a>
-            <i class="phone icon"></i>
-            (DD) XXXXX-XXXX
-          </a>
-          <br>
-          <a>
-            <i class="dollar sign icon"></i>
-            15,00/dia
-          </a>
+    response.vagas.forEach(async (element, index) => {
+      let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
+        element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
+      coordenadas = await getCoordenadas(endereco)
+      vagas += `
+      <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img class="card-img" src="${
+          element["Foto"]
+        }"></div>
+        <div class="card_content">
+          <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
+        element.Localizacao.Numero
+      }</h2>
+          <p class="card_text">${element["Descricao"]}
+          </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
+        element.Dimensoes.Largura
+      }m x ${element.Dimensoes.Altura}m </h5>
+          <button class="btn card_btn" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
         </div>
       </div>
+    </li>
+    <div class="ui test modal" id="modal_btn_${index}">
+    <div class="ui icon header">
+      <i class="user outline icon"></i>
     </div>
-  </div>
+    <div class="content ui grid">
+      <section style="display: flex">
+        <div style="flex-grow: 1">
+          <h2>Locador: </h2>
+          <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
+          <p>Indicador da vaga:  ${element["Indicador"]}</p>
+          <h2>Localização:</h2>
+          <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
+          <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
+          <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
+          <p>Estado: ${element["Localizacao"]["Estado"]}</p>
+          <h2>Dimensões:</h2>
+          <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
+          <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
+          <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
+        </div>
+        <div>
+          <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
+        </div>
+      </section>
+
+    </div>
+    <div class="actions" style="text-align: center">
+    <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
+    <div class="ui red cancel inverted button">
+        <i class="remove icon"></i>
+        Cancelar
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Alugar
+      </div>
+    </div>
   </div>`;
+
+      document.getElementById("vagas").innerHTML = vagas;
     });
-    document.getElementById("vagas").innerHTML = vagas;
   } catch (errors) {
     console.log(errors);
   }

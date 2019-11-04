@@ -31,6 +31,7 @@
         <a href="index.html" class="item">Início</a>
         <a href="lista_vagas.html" class="active item">Vagas</a>
         <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
+        <a href="mapa_vagas.html" class="item">Mapa de Vagas</a>
         <div class="right menu">
           <div class="item">
             <a href="login.html" class="ui button">Login</a>
@@ -45,74 +46,55 @@
   </header>
 
   <br>
-  <div class="main">
-    <ul class="cards" id="vagas">
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Alugar</button>
+  <section>
+    <div class="main">
+      <ul class="cards" id="vagas-exemplo">
+        <li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="/img/vaga.JPG"></div>
+            <div class="card_content">
+              <h2 class="card_title">Rua Cláudio Manoel, 546</h2>
+              <br>
+              <p class="card_text">Vaga bem localizada, possui fácil acesso ao Centro e região da Savassi
+              </p>
+              <h5> Dimensões: 4m x 6m x 7m </h5>
+              <button class="btn card_btn" id="btn_X" onclick="reply_click(this.id)"> Alugar</button>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=5"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Read More</button>
+        </li>
+        <li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="/img/vaga.JPG"></div>
+            <div class="card_content">
+              <h2 class="card_title">Rua Cláudio Manoel, 546</h2>
+              <br>
+              <p class="card_text">Vaga bem localizada, possui fácil acesso ao Centro e região da Savassi
+              </p>
+              <h5> Dimensões: 4m x 6m x 7m </h5>
+              <button class="btn card_btn" id="btn_Y" onclick="reply_click(this.id)"> Alugar</button>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=11"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Read More</button>
+        </li>
+        <li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="/img/vaga.JPG"></div>
+            <div class="card_content">
+              <h2 class="card_title">Rua Cláudio Manoel, 546</h2>
+              <br>
+              <p class="card_text">Vaga bem localizada, possui fácil acesso ao Centro e região da Savassi
+              </p>
+              <h5> Dimensões: 4m x 6m x 7m </h5>
+              <button class="btn card_btn" id="btn_Y" onclick="reply_click(this.id)"> Alugar</button>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=14"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=17"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li class="cards_item">
-        <div class="card">
-          <div class="card_image"><img src="https://picsum.photos/500/300/?image=2"></div>
-          <div class="card_content">
-            <h2 class="card_title">Card Grid Layout</h2>
-            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-            <button class="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+        </li>
+      </ul>
+      <ul class="cards" id="vagas"></ul>
+    </div>
+  </section>
 
   <br>
-
-  <footer class="ui landing-image-footer inverted vertical footer segment">
+  <footer class="ui inverted vertical footer segment">
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
         <div class="four wide column">
@@ -136,7 +118,7 @@
             <a href="#" class="item">Locador</a>
           </div>
         </div>
-        <div class="three wide column">
+        <div class="four wide column">
           <h3 class="ui inverted header">Codigo</h3>
           <a href="">
             <i class="github icon" id="github_icon"></i>
@@ -145,6 +127,53 @@
       </div>
     </div>
   </footer>
+
+  <div class="ui test modal" id="modal_btn_X">
+    <div class="ui icon header">
+      <i class="user outline icon"></i>
+    </div>
+    <div class="content" class="ui grid">
+
+      <h2>Locador: </h2>
+      <p>Nome: Miguel Rodrigues</p>
+      <p>Indicador da vaga: 402B</p>
+      <h2>Localização: </h2>
+      <p>Rua: Cláudio Manoel, 546</p>
+      <p>Bairro: Savassi</p>
+      <p>Cidade: Belo Horizonte</p>
+      <p>Estado: Minas Gerais</p>
+      <h2>Dimensões:</h2>
+      <p>Altura: 4m</p>
+      <p>Largura: 6m</p>
+      <p>Comprimento: 7m</p>
+      <p class="confirmacao">Confirmar aluguel da vaga?</p>
+
+    </div>
+    <div class="actions">
+      <div class="ui red cancel inverted button">
+        <i class="remove icon"></i>
+        Cancelar
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Alugar
+      </div>
+    </div>
+  </div>
+
+  <div class="ui test modal" id="modal_btn_Y">
+    <h1>TESTE MODAL Y</h1>
+    <div class="actions">
+      <div class="ui red cancel inverted button">
+        <i class="remove icon"></i>
+        Cancelar
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Alugar
+      </div>
+    </div>
+  </div>
 
 </body>
 

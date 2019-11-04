@@ -1,3 +1,7 @@
+.hide {
+  display: none;
+}
+
 .logo {
   max-width: 100%;
 }
@@ -146,4 +150,9 @@ body > .grid {
   background-image: url("/img/fundo.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+body > footer {
+  width: 100%;
+  position: inherit;
 }

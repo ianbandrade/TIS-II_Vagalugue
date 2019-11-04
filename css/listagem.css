@@ -1,8 +1,7 @@
 /* Font */
+
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -61,7 +60,7 @@ img {
 }
 
 .card {
-  background-color: black;
+  background-color: #ffff;
   border-radius: 0.475rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.664);
   display: flex;
@@ -76,23 +75,48 @@ img {
 
 .card_title {
   color: black;
-  font-size: 1.1rem;
+  font-size: 1.4em;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
   margin: 0px;
+  padding: 0px 5px 5px 0px;
+}
+
+.card-img {
+  width: 480px;
+  height: 270px;
+  object-fit: cover;
+}
+
+.card-content {
+  height: 100%;
 }
 
 .card_text {
   color: black;
-  font-size: 0.875rem;
+  font-size: 1em;
   line-height: 1.5;
   margin-bottom: 1.25rem;
-  font-weight: 400;
+  font-weight: 450;
 }
-.made_by {
-  font-weight: 400;
-  font-size: 13px;
-  margin-top: 35px;
-  text-align: center;
+
+footer.ui.inverted.vertical.footer.segment {
+  width: 100%;
+  position: relative !important;
+  bottom: -25px;
+}
+
+.confirmacao {
+  text-align: right;
+}
+
+div.content>p {
+  color: black;
+  margin-right: 35px;
+  font-size: 15px
+}
+
+.ui.icon.header .icon {
+  color: #f79307;
 }
