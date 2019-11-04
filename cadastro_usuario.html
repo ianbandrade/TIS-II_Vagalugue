@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/listagem.css">
 
     <script src="js/cadastro_usuario.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -20,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/visibility.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
+    <script src="/js/cadastro_usuario.js"></script>
 </head>
 
 <body>
@@ -50,10 +52,10 @@
                 <label>Nome Completo</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[first-name]" placeholder="Nome">
+                        <input id="nome" type="text" name="shipping[first-name]" placeholder="Nome" required="True">
                     </div>
                     <div class="eight wide field">
-                        <input type="text" name="shipping[last-name]" placeholder="Sobrenome">
+                        <input id="sobrenome" type="text" name="shipping[last-name]" placeholder="Sobrenome">
                     </div>
                 </div>
             </div>
@@ -61,13 +63,13 @@
                 <label>Endereço</label>
                 <div class="four fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="Logradouro">
+                        <input id="logradouro"  type="text" name="shipping[address]" placeholder="Logradouro">
                     </div>
                     <div class="four wide field">
-                        <input type="text" name="shipping[address-2]" placeholder="Número">
+                        <input id="numero" type="text" name="shipping[address-2]" placeholder="Número">
                     </div>
                     <div class="four wide field">
-                        <input type="text" name="shipping[address-2]" placeholder="Complemento">
+                        <input id="complemento" type="text" name="shipping[address-2]" placeholder="Complemento">
                     </div>
                 </div>
             </div>
@@ -79,7 +81,7 @@
                     </div>
                     <!-- dropdown de estado -->
                     <div class="four wide field">
-                        <select class="ui fluid dropdown">
+                        <select id="estado" class="ui fluid dropdown">
                             <option value="">Estado</option>
                             <option value="AL">Acre</option>
                             <option value="AK">Alagoas</option>
@@ -111,7 +113,7 @@
                         </select>
                     </div>
                     <div class="four wide field">
-                        <input type="text" id="cep" name="shipping[address]" placeholder="CEP">
+                        <input id="cep" type="text" name="cep" placeholder="CEP" required="True">
                     </div>
                 </div>
             </div>
@@ -120,7 +122,7 @@
                 <label>Contato</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="E-mail">
+                        <input id=email type="text" name="shipping[address]" placeholder="E-mail">
                     </div>
                     <div class="eight wide field">
                         <input id="telefone" type="text" name="shipping[address]" placeholder="Telefone">
@@ -132,27 +134,32 @@
                 <label>Senha</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="password" name="shipping[address]" placeholder="Senha">
+                        <input id="senha" type="password" name="shipping[address]" placeholder="Senha">
                     </div>
                     <div class="eight wide field">
-                        <input type="password" name="shipping[address]" placeholder="Confirmar senha">
+                        <input id="password" type="password" name="shipping[address]" placeholder="Confirmar senha">
                     </div>
                 </div>
             </div>
             <!-- checkbox -->
             <div class="ui form">
                 <div class="ui checkbox">
-                    <input type="checkbox" name="example">
+                    <input id="deacordo" type="checkbox" name="example">
                     <label>Concordo com as condições e termos de uso</label>
                 </div>
             </div>
             <br>
             <!-- botão de cadastrar -->
-            <button class="ui central button" tabindex="1">Cadastrar</button>
+            <button id="submit-form" class="ui central button" tabindex="1">Cadastrar</button>
         </form>
 
     </div>
 
+    <!-- o footer não estava fixando no fim da página como nos demais html que usam as mesmas stylesheets
+         creio que o problema seja a falta de algum termo ao chamar as classes no footer abaixo
+         como solução provisória, adotei a tag style dentro do footer. bem feio, corrijam depois, por favor, rs 
+         style="position:fixed; bottom:0; width:100%"
+        -->
     <footer class="ui landing-image-footer inverted vertical footer segment">
         <div class="ui container">
             <div class="ui stackable inverted divided equal height stackable grid">

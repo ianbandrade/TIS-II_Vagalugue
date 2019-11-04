@@ -22,7 +22,7 @@ public class URLMetodo implements Container {
 	public void handle(Request request, Response response) {
 		try {
 
-			// Recupera a URL e o método utilizado.
+			// Recupera a URL e o mï¿½todo utilizado.
 			String path = request.getPath().getPath();
 			System.out.println(path);
 			String method = request.getMethod();
@@ -30,7 +30,7 @@ public class URLMetodo implements Container {
 
 			System.out.println(method);
 
-			// Verifica qual ação está sendo chamada
+			// Verifica qual aï¿½ï¿½o estï¿½ sendo chamada
 			if (path.equalsIgnoreCase("/login") && "POST".equals(method)) {
 				mensagem = tisService.verificarLogin(request);
 
@@ -41,6 +41,7 @@ public class URLMetodo implements Container {
 				this.enviaResposta(Status.CREATED, response, mensagem);
 			} else if (path.equalsIgnoreCase("/vagas")) {
 				mensagem = tisService.listar();
+				system.out.println(mensagem);
 				this.enviaResposta(Status.CREATED, response, mensagem);
 			} else {
 				this.naoEncontrado(response, path);
