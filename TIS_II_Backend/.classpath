@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/json-20160810.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-common-6.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-http-6.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-transport-6.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/User/Desktop/PUC/2º Periodo/PM/Web Services/Bibliotecas Externas/simple/simple-xml-2.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/simple/simple-common-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/simple/simple-http-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/simple/simple-transport-6.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/simple/simple-xml-2.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/camil/OneDrive/Desktop/Engenharia de Software/2019 - 2/Programação Modular/Recursos/BibliotecasExternasJavaWebService/external/json-20160810.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
