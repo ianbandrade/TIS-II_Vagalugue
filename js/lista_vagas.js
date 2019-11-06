@@ -1,3 +1,25 @@
+$(document).ready(function () {
+  $('#input_pesquisa').on('keypress', function (e) {
+    if (e.which == 13) {
+      this.blur();
+    }
+  }).blur(async function () {
+    try {
+      $('.btn_listar').removeClass('active');
+      $('#btn_listas_todas').addClass('active');
+      let input_pesquisa = $('#input_pesquisa').val()
+      if (input_pesquisa != "") {
+        listar("http://127.0.0.1:880/vagas/pesquisar/rua?input_pesquisa=" + input_pesquisa);
+      } else {
+        listar("http://127.0.0.1:880/vagas")
+      }
+    } catch (errors) {
+      console.log(errors);
+    }
+  })
+})
+
+
 async function reply_click(clicked_id) {
   try {
     $(() => {
@@ -83,7 +105,7 @@ async function listar(url) {
           element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
         coordenadas = await getCoordenadas(endereco)
         if (!element.Alugada) {
-        vagas += `
+          vagas += `
       <li class="cards_item">
       <div class="card">
         <div class="card_image"><img class="card-img" src="${
@@ -139,8 +161,8 @@ async function listar(url) {
       </div>
     </div>
   </div>`;
-    } else {
-      vagas += `
+        } else {
+          vagas += `
       <li class="cards_item">
       <div class="card">
         <div class="card_image"><img class="card-img" src="${
@@ -154,11 +176,11 @@ async function listar(url) {
           </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
         element.Dimensoes.Largura
       }m x ${element.Dimensoes.Altura}m </h5>
-          <button class="btn card_btn ui disabled button" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada...</button>
+          <button class="btn card_btn ui disabled button" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada</button>
         </div>
       </div>
     </li>`;
-    }
+        }
         document.getElementById("vagas").innerHTML = vagas;
       })
     };

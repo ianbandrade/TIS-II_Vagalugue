@@ -102,7 +102,7 @@ $(document).ready(function () {
                     <p class="card_text">${Element["Descricao"]}
                     </p><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x 
                     ${Element.Dimensoes.Largura}m x ${Element.Dimensoes.Altura}m </h5>
-                    <button class="btn card_btn ui disabled button centered" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada...</button>
+                    <button class="btn card_btn ui disabled button centered" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada</button>
                     </div>
                     </div>
                     </section>
