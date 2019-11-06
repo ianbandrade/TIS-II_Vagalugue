@@ -6,10 +6,18 @@ import org.json.JSONObject;
 public class Usuario {
 
 	private String nome;
-    private String sobrenome;
-    private String email;
-    private String senha;
-	
+	private String sobrenome;
+	private String email;
+	private String senha;
+
+	public Usuario(String nome, String sobrenome, String email, String senha) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.email = email;
+		this.senha = senha;
+	}
+
 	public Usuario(String nome, String sobrenome) {
 		super();
 		this.nome = nome;
@@ -17,7 +25,7 @@ public class Usuario {
 		this.email = null;
 		this.senha = null;
 	}
-	
+
 	public Usuario() {
 		super();
 		this.nome = null;
@@ -41,7 +49,7 @@ public class Usuario {
 	public String getSenha() {
 		return senha;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -63,10 +71,12 @@ public class Usuario {
 		return "Usuario [nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha=" + senha + "]";
 	}
 
-	public JSONObject toJson() throws JSONException {
+	public JSONObject getJson() throws JSONException {
 		JSONObject json = new JSONObject();
-		json.put("Nome", nome);
-		json.put("Sobrenome", sobrenome);
+		json.put("Nome", getNome());
+		json.put("Sobrenome", getSobrenome());
+		json.put("Email", getEmail());
+		json.put("Senha", getSenha());
 		return json;
 	}
 }

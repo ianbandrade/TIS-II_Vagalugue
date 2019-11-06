@@ -43,7 +43,7 @@ public class Vaga {
 	}
 
 	public JSONObject getLocatarioJson() {
-		return locatario.toJson();
+		return locatario.getJson(); //alterei de toJson() para getJson( )
 	}
 
 	public String getIndicador() {
