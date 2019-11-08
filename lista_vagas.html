@@ -55,11 +55,11 @@
     <br>
     <div class="ui buttons">
       <button id="btn_listar_todas" class="btn_listar ui button active"
-        onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas')">Todas</button>
+        onclick=" $('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas')">Todas</button>
       <button id="btn_listar_disponiveis" class="btn_listar ui button"
-        onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/naoalugadas')">Disponíveis</button>
+        onclick="$('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/naoalugadas')">Disponíveis</button>
       <button id="btn_listar_alugadas" class="btn_listar ui button"
-        onclick="$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/alugadas')">Alugadas</button>
+        onclick="$('#input_pesquisa').val('') ;$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/alugadas')">Alugadas</button>
     </div>
   </section>
 

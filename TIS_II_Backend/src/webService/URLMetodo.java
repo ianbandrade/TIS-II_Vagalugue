@@ -45,6 +45,9 @@ public class URLMetodo implements Container {
 			} else if (path.equalsIgnoreCase("/vagas/naoalugadas")) {
 				mensagem = vagaService.listarNaoAlugadas();
 				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/vagas/pesquisar/rua")) {
+				mensagem = vagaService.listarPesquisaRua(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
 			} else if (path.equalsIgnoreCase("/alugar")) {
 				mensagem = vagaService.alugar(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);

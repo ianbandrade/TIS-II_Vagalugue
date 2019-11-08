@@ -72,6 +72,24 @@ public final class VagaService {
 		return json;
 	}
 	
+	public JSONObject listarPesquisaRua(Request request) {
+		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+		VagaCollection vagaCollection = new VagaCollection();
+		Query query = request.getQuery();
+		String rua = query.get("input_pesquisa");
+		System.out.println(rua);
+		vagas = vagaCollection.getVagasPesquisaRua(rua);
+
+		for (Vaga v : vagas) {
+			jsonArray.put(v.getJson());
+		}
+		json.put("vagas", jsonArray);
+		return json;
+	}
+	
 	public JSONObject alugar(Request request) {
 		Vaga vaga = new Vaga();
 		vaga = queryVaga(request);
