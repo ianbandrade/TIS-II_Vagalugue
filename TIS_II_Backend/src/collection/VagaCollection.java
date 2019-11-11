@@ -25,21 +25,8 @@ public class VagaCollection {
 		return vagas.stream().filter(vaga -> vaga.isAlugada().equals(true)).collect(Collectors.toList());
 	}
 
-	public static void main(String[] args) {
-//		Vaga v = new Vaga();
-//		VagaDAO vd = new VagaDAO();
-//		v.setIndicador("1");
-//		v.setAlugada(true);
-//		vd.add(v);
-//		v.setIndicador("2");
-//		v.setAlugada(false);
-//		vd.add(v);
-//		v.setIndicador("3");
-//		v.setAlugada(true);
-//		vd.add(v);
-		VagaCollection vc = new VagaCollection(); //Deve ser declarado por ultimo
-		System.out.println(vc.getVagasAlugadas());
-		System.out.println(vc.getVagasNaoAlugadas());
-
+	public List<Vaga> getVagasPesquisaRua(String rua) {
+		return vagas.stream().filter(vaga -> vaga.getLocalizacao().getEndereco().equalsIgnoreCase(rua)).collect(Collectors.toList());
 	}
+
 }

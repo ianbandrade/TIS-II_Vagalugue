@@ -111,7 +111,7 @@ footer.ui.inverted.vertical.footer.segment {
   text-align: right;
 }
 
-div.content>p {
+div.content>section>div>p {
   color: black;
   margin-right: 35px;
   font-size: 15px
@@ -119,4 +119,8 @@ div.content>p {
 
 .ui.icon.header .icon {
   color: #f79307;
+}
+
+.centered {
+  text-align: center;
 }

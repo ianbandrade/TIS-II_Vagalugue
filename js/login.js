@@ -15,7 +15,7 @@ $(document).ready(function() {
         ]
       },
       password: {
-        identifier: "password",
+        identifier: "senha",
         rules: [
           {
             type: "empty",

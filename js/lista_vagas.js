@@ -1,3 +1,25 @@
+$(document).ready(function () {
+  $('#input_pesquisa').on('keypress', function (e) {
+    if (e.which == 13) {
+      this.blur();
+    }
+  }).blur(async function () {
+    try {
+      $('.btn_listar').removeClass('active');
+      $('#btn_listas_todas').addClass('active');
+      let input_pesquisa = $('#input_pesquisa').val()
+      if (input_pesquisa != "") {
+        listar("http://127.0.0.1:880/vagas/pesquisar/rua?input_pesquisa=" + input_pesquisa);
+      } else {
+        listar("http://127.0.0.1:880/vagas")
+      }
+    } catch (errors) {
+      console.log(errors);
+    }
+  })
+})
+
+
 async function reply_click(clicked_id) {
   try {
     $(() => {
@@ -41,9 +63,9 @@ async function reply_click(clicked_id) {
               estado
             };
 
-            let post = await $.post("http://localhost:880/alugar", data);
-            console.log(data);
-
+            await $.post("http://localhost:880/alugar", data);
+            alert("Vaga alugada com sucesso!");
+            location.reload(true);
           },
           onDeny: function () {
             // alert('Rejeitar');
@@ -56,7 +78,7 @@ async function reply_click(clicked_id) {
   }
 }
 
-get();
+listar("http://127.0.0.1:880/vagas");
 
 async function getCoordenadas(Endereco) {
   return new Promise((resolve, reject) => {
@@ -71,15 +93,19 @@ async function getCoordenadas(Endereco) {
   });
 }
 
-async function get() {
+async function listar(url) {
   try {
-    let response = await $.getJSON("http://127.0.0.1:880/vagas");
+    let response = await $.getJSON(url);
     let vagas = "";
-    response.vagas.forEach(async (element, index) => {
-      let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
-        element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
-      coordenadas = await getCoordenadas(endereco)
-      vagas += `
+    if (response.vagas.length == 0) {
+      document.getElementById("vagas").innerHTML = "<br><br><br><h2 style='color: #f79307; height: 470px; width: 100%; text-align: center; vertical-align: middle'>Não existem vagas cadastradas nesta categoria</h2>";
+    } else {
+      response.vagas.forEach(async (element, index) => {
+        let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
+          element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
+        coordenadas = await getCoordenadas(endereco)
+        if (!element.Alugada) {
+          vagas += `
       <li class="cards_item">
       <div class="card">
         <div class="card_image"><img class="card-img" src="${
@@ -101,13 +127,13 @@ async function get() {
     <div class="ui icon header">
       <i class="user outline icon"></i>
     </div>
-    <div class="content ui grid">
+    <div class="content" class="ui grid">
       <section style="display: flex">
         <div style="flex-grow: 1">
           <h2>Locador: </h2>
           <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
           <p>Indicador da vaga:  ${element["Indicador"]}</p>
-          <h2>Localização:</h2>
+          <h2>Localização: </h2>
           <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
           <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
           <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
@@ -135,9 +161,29 @@ async function get() {
       </div>
     </div>
   </div>`;
-
-      document.getElementById("vagas").innerHTML = vagas;
-    });
+        } else {
+          vagas += `
+      <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img class="card-img" src="${
+          element["Foto"]
+        }"></div>
+        <div class="card_content">
+          <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
+        element.Localizacao.Numero
+      }</h2>
+          <p class="card_text">${element["Descricao"]}
+          </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
+        element.Dimensoes.Largura
+      }m x ${element.Dimensoes.Altura}m </h5>
+          <button class="btn card_btn ui disabled button" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada</button>
+        </div>
+      </div>
+    </li>`;
+        }
+        document.getElementById("vagas").innerHTML = vagas;
+      })
+    };
   } catch (errors) {
     console.log(errors);
   }

@@ -116,5 +116,4 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 			e.printStackTrace();
 		}
 	}
-
 }
