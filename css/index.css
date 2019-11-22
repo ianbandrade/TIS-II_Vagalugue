@@ -10,19 +10,15 @@
   margin-top: 0px;
 }
 
-a.ui.huge.button:hover,
-a.ui.primary.button:hover {
+a.ui.huge.button:hover, a.ui.primary.button:hover {
   background-color: rgba(255, 173, 40, 0.675);
 }
 
-.ui.huge.primary.button,
-a.ui.primary.button,
-.ui.primary.buttons .button {
+.ui.huge.primary.button, a.ui.primary.button, .ui.primary.buttons .button {
   background-color: #f79307;
 }
 
-.ui.primary.button:hover,
-.ui.primary.buttons:hover .button:hover {
+.ui.primary.button:hover, .ui.primary.buttons:hover .button:hover {
   background-color: #f79307;
 }
 
@@ -63,8 +59,7 @@ a.ui.primary.button,
   font-size: 2em;
 }
 
-.ui.vertical.stripe .button + h3,
-.ui.vertical.stripe p + h3 {
+.ui.vertical.stripe .button+h3, .ui.vertical.stripe p+h3 {
   margin-top: 3em;
 }
 
@@ -98,18 +93,28 @@ a.ui.primary.button,
 }
 
 @media only screen and (max-width: 700px) {
+  .ui.large.secondary.inverted.pointing.menu>a.item {
+    display: none
+  }
+  #sidebar-icon {
+    display: flex;
+  }
+  .ui.sombreamento-header.text.container>a {
+    width: 37%;
+    padding: 4px;
+    display: inline;
+  }
   .ui.fixed.menu {
     display: none !important;
   }
-  .secondary.pointing.menu .item,
-  .secondary.pointing.menu .menu {
+  .secondary.pointing.menu .item, .secondary.pointing.menu .menu {
     display: none;
   }
   .secondary.pointing.menu .toc.item {
     display: block;
   }
-  .masthead.segment {
-    min-height: 350px;
+  #background_div {
+    max-height: 100px;
   }
   .masthead h1.ui.header {
     font-size: 2em;
@@ -121,7 +126,7 @@ a.ui.primary.button,
   }
 }
 
-body > .grid {
+body>.grid {
   height: 100%;
 }
 
@@ -152,7 +157,7 @@ body > .grid {
   background-size: cover;
 }
 
-body > footer {
+body>footer {
   width: 100%;
   position: inherit;
 }
