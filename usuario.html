@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Mapa Vagas</title>
+    <title>Usuario</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/forms.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -17,13 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/visibility.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
-    <script src="js/cadastro_vaga.js"></script>
-
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="/css/mapa.css">
-    <script src="/js/mapa_vagas.js"></script>
-
+    <script src="/js/cadastro_vaga.js"></script>
 </head>
 
 <body>
@@ -32,26 +26,22 @@
             <div class="ui container">
                 <a href="index.html" class="item">Início</a>
                 <a href="lista_vagas.html" class="item">Vagas</a>
-                <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-                <a href="mapa_vagas.html" class="active item">Mapa de Vagas</a>
+                <a href="cadastro_vaga.html" class="active item">Cadastro de Vagas</a>
+                <a href="mapa_vagas.html" class="item">Mapa de Vagas</a>
                 <div class="right menu">
-                    <div class="item">
-                        <a href="login.html" class="ui button">Login</a>
-                    </div>
-                    <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
+                    <div class="right menu">
+                        <div class="item">
+                            <a href="login.html" class="ui button">Login</a>
+                        </div>
+                        <div class="item">
+                            <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
     </header>
-
-    <main>
-
-        <div id="map" class="map"></div>
-
-    </main>
 
     <footer class="ui landing-image-footer inverted vertical footer segment">
         <div class="ui container">
@@ -86,25 +76,24 @@
             </div>
         </div>
     </footer>
+
     <script>
         $(document).ready(function () {
             console.log(localStorage.getItem("nome"))
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
                     `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
-            <button id="sair-btn" class="ui large basic button" onclick="sair()">
-            Sair 
-            <i class="icon sign-out"></i>
-            </button>`)
+        <button id="sair-btn" class="ui large basic button" onclick="sair()">
+        Sair 
+        <i class="icon sign-out"></i>
+        </button>`)
             }
-            $('#user').click(function () {
-                window.location.href = "usuario.html";
-            })
         })
 
         function sair() {
             localStorage.clear();
             location.reload();
+            window.location.href="index.html";
         }
     </script>
 </body>

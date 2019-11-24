@@ -80,8 +80,24 @@ public final class VagaService {
 		VagaCollection vagaCollection = new VagaCollection();
 		Query query = request.getQuery();
 		String rua = query.get("input_pesquisa");
-		System.out.println(rua);
 		vagas = vagaCollection.getVagasPesquisaRua(rua);
+
+		for (Vaga v : vagas) {
+			jsonArray.put(v.getJson());
+		}
+		json.put("vagas", jsonArray);
+		return json;
+	}
+	
+	public JSONObject listarPesquisaUsuario(Request request) {
+		JSONObject json = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+
+		List<Vaga> vagas = new ArrayList<Vaga>();
+		VagaCollection vagaCollection = new VagaCollection();
+		Query query = request.getQuery();
+		String usuario = query.get("email");
+		vagas = vagaCollection.getVagasPesquisaRua(usuario);
 
 		for (Vaga v : vagas) {
 			jsonArray.put(v.getJson());
@@ -97,12 +113,14 @@ public final class VagaService {
 		Query query = request.getQuery();
 		String data_inicio = query.get("data_inicio");
 		String data_fim = query.get("data_fim");
+		String alugada_por = query.get("alugada_por");
 
 		VagaDAO vagaDAO = new VagaDAO();
 
 		vaga.setAlugada(true);
 		vaga.setDataInicio(data_inicio);
 		vaga.setDataFim(data_fim);
+		vaga.setAlugadaPor(alugada_por);
 		vagaDAO.update(vaga);
 		
 		return vaga.getJson();

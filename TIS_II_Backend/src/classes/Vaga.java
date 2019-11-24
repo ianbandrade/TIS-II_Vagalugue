@@ -18,6 +18,7 @@ public class Vaga {
 	private Boolean alugada = false;
 	private String data_inicio = null;
 	private String data_fim = null;
+	private String alugada_por = null;
 
 	public Vaga() {
 		super();
@@ -87,6 +88,10 @@ public class Vaga {
 	public String getDataFim() {
 		return data_fim;
 	}
+	
+	public String getAlugadaPor() {
+		return alugada_por;
+	}
 
 	public void setLocatario(Usuario locatario) {
 		this.locatario = locatario;
@@ -123,12 +128,17 @@ public class Vaga {
 	public void setDataFim(String dataFim) {
 		this.data_fim = dataFim;
 	}
+	
+	public void setAlugadaPor(String alugadaPor) {
+		this.alugada_por = alugadaPor;
+	}
 
 	@Override
 	public String toString() {
 		return "Vaga [locatario=" + locatario + ", indicador=" + indicador + ", foto=" + foto + ", descricao="
 				+ descricao + ", dimensoes=" + dimensoes + ", localizacao=" + localizacao + ", alugada=" + alugada
-				+ ", data inicio=" + data_inicio + ", data_fim=" + data_fim + "[";
+				+ ", data inicio=" + data_inicio + ", data_fim=" + data_fim +
+				", alugada por=" + alugada_por + "[";
 	}
 
 	public JSONObject getJson() throws JSONException {
@@ -140,8 +150,9 @@ public class Vaga {
 		json.put("Dimensoes", getDimensoesJson());
 		json.put("Localizacao", getLocalizacaoJson());
 		json.put("Alugada", isAlugada());
-		json.put("Data inicio", getDataInicio());
-		json.put("Data fim", getDataFim());
+		json.put("Data_inicio", getDataInicio());
+		json.put("Data_fim", getDataFim());
+		json.put("Alugada_por", getAlugadaPor());
 		return json;
 	}
 

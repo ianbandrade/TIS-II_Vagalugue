@@ -53,6 +53,7 @@ async function reply_click(clicked_id) {
             let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
             let data_inicio = $(`#data-inicio_${clicked_id.replace("btn_", "")}`).val()
             let data_fim = $(`#data-fim_${clicked_id.replace("btn_", "")}`).val()
+            let alugada_por = localStorage.getItem("email")
 
             let data = {
               nome,
@@ -70,7 +71,8 @@ async function reply_click(clicked_id) {
               cidade,
               estado,
               data_inicio,
-              data_fim
+              data_fim,
+              alugada_por
             };
 
             await $.post("http://localhost:880/alugar", data);

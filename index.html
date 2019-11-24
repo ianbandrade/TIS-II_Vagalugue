@@ -136,6 +136,37 @@
         </div>
     </footer>
 
+    <script>
+        $(document).ready(function () {
+            console.log(localStorage.getItem("nome"))
+            if (localStorage.getItem("nome") != null) {
+                $('.right.menu').html(
+                    `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                <button id="sair-btn" class="ui large basic button" onclick="sair()">
+                Sair 
+                <i class="icon sign-out"></i>
+                </button>`)
+                $('.right.item').html(
+                    `<h3 id ="user2">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                <button id="sair-btn" class="ui large button" onclick="sair()">
+                Sair 
+                <i class="icon sign-out"></i>
+                </button>`)
+            }
+            $('#user').click(function () {
+                window.location.href = "usuario.html";
+            })
+            $('#user2').click(function () {
+                window.location.href = "usuario.html";
+            })
+        })
+
+        function sair() {
+            localStorage.clear();
+            location.reload();
+        }
+    </script>
+
 </body>
 
 </html>

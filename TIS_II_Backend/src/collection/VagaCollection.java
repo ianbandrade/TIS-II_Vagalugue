@@ -28,5 +28,9 @@ public class VagaCollection {
 	public List<Vaga> getVagasPesquisaRua(String rua) {
 		return vagas.stream().filter(vaga -> vaga.getLocalizacao().getEndereco().equalsIgnoreCase(rua)).collect(Collectors.toList());
 	}
+	
+	public List<Vaga> getVagasPesquisaUsuario(String usuario) {
+		return vagas.stream().filter(vaga -> vaga.getAlugadaPor().equalsIgnoreCase(usuario)).collect(Collectors.toList());
+	}
 
 }

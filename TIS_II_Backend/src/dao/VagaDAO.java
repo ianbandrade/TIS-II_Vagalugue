@@ -29,6 +29,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 					vaga.setAlugada(Boolean.parseBoolean(buffer_entrada.readLine()));
 					vaga.setDataInicio(buffer_entrada.readLine());
 					vaga.setDataFim(buffer_entrada.readLine());
+					vaga.setAlugadaPor(buffer_entrada.readLine());
 					vaga.setLocatario(new Usuario(buffer_entrada.readLine(), buffer_entrada.readLine()));
 					vaga.setFoto(buffer_entrada.readLine());
 					vaga.setDescricao(buffer_entrada.readLine());
@@ -39,6 +40,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 							Integer.parseInt(buffer_entrada.readLine()), buffer_entrada.readLine(),
 							buffer_entrada.readLine(), buffer_entrada.readLine()));
 				} else {
+					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
@@ -74,6 +76,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 			buffer_saida.write(v.isAlugada() + separadorDeLinha);
 			buffer_saida.write(v.getDataInicio() + separadorDeLinha);
 			buffer_saida.write(v.getDataFim() + separadorDeLinha);
+			buffer_saida.write(v.getAlugadaPor() + separadorDeLinha);
 			buffer_saida.write(v.getLocatario().getNome() + separadorDeLinha);
 			buffer_saida.write(v.getLocatario().getSobrenome() + separadorDeLinha);
 			buffer_saida.write(v.getFoto() + separadorDeLinha);
@@ -127,8 +130,9 @@ public class VagaDAO implements DAO<Vaga, String> {
 				vaga = new Vaga();
 				vaga.setIndicador(idSTR);
 				vaga.setAlugada(Boolean.parseBoolean(buffer_entrada.readLine()));
-				vaga.setDataInicio(buffer_entrada.readLine());
+				vaga.setDataInicio(buffer_entrada.readLine());	
 				vaga.setDataFim(buffer_entrada.readLine());
+				vaga.setAlugadaPor(buffer_entrada.readLine());
 				vaga.setLocatario(new Usuario(buffer_entrada.readLine(), buffer_entrada.readLine()));
 				vaga.setFoto(buffer_entrada.readLine());
 				vaga.setDescricao(buffer_entrada.readLine());
@@ -155,6 +159,7 @@ public class VagaDAO implements DAO<Vaga, String> {
 				buffer_saida.write(v.isAlugada() + separadorDeLinha);
 				buffer_saida.write(v.getDataInicio() + separadorDeLinha);
 				buffer_saida.write(v.getDataFim() + separadorDeLinha);
+				buffer_saida.write(v.getAlugadaPor() + separadorDeLinha);
 				buffer_saida.write(v.getLocatario().getNome() + separadorDeLinha);
 				buffer_saida.write(v.getLocatario().getSobrenome() + separadorDeLinha);
 				buffer_saida.write(v.getFoto() + separadorDeLinha);
