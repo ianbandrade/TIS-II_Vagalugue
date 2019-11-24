@@ -15,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
   <script src="js/login.js"></script>
-  
+
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/forms.css">
 </head>
@@ -49,21 +49,21 @@
           Entre com sua conta
         </div>
       </h1>
-      <form class="ui large form" action="http://localhost:880/login" method="post">
+      <form class="ui large form">
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" value="" placeholder="E-mail">
+              <input id="email" type="text" name="email" value="" placeholder="E-mail">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" name="senha" value="" placeholder="Senha">
+              <input id="senha" type="password" name="senha" value="" placeholder="Senha">
             </div>
           </div>
-          <input type="submit" value="Entrar" class="ui form fluid large submit button">
+          <input id="submit-btn" value="Entrar" class="ui form fluid large submit button">
         </div>
         <div class="ui error message"></div>
       </form>
@@ -107,6 +107,35 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function limpa_form() {
+      $('#email').val("")
+      $('#senha').val("")
+    }
+
+    $('#submit-btn').click(async function (event) {
+      event.preventDefault();
+      let email = $('#email').val()
+      let senha = $('#senha').val()
+
+      try {
+        let response = await $.getJSON("http://localhost:880/login?email=" + email + "&senha=" + senha);
+        console.log(response)
+        limpa_form();
+        if (response.Login == true) {
+          localStorage.setItem("email", response.Email)
+          localStorage.setItem("nome", response.Nome)
+          localStorage.setItem("sobrenome", response.Sobrenome)
+          alert("logado")
+        } else
+          alert("nao logado")
+      } catch (error) {
+        console.log(error);
+      }
+
+    });
+  </script>
 
 </body>
 

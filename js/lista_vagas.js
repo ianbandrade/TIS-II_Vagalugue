@@ -29,6 +29,12 @@ async function reply_click(clicked_id) {
           inverted: true,
           onApprove: async function () {
 
+            $(`#modal2_${clicked_id}`)
+        .modal({
+          closable: false,
+          inverted: true,
+          onApprove: async function () {
+
             let response = await $.getJSON("http://127.0.0.1:880/vagas");
 
             let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
@@ -45,6 +51,8 @@ async function reply_click(clicked_id) {
             let cidade = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cidade
             let estado = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Estado
             let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
+            let data_inicio = $(`#data-inicio_${clicked_id.replace("btn_", "")}`).val()
+            let data_fim = $(`#data-fim_${clicked_id.replace("btn_", "")}`).val()
 
             let data = {
               nome,
@@ -60,13 +68,21 @@ async function reply_click(clicked_id) {
               numero,
               bairro,
               cidade,
-              estado
+              estado,
+              data_inicio,
+              data_fim
             };
 
             await $.post("http://localhost:880/alugar", data);
             alert("Vaga alugada com sucesso!");
             location.reload(true);
           },
+          onDeny: function () {
+            // alert('Rejeitar');
+          }
+        })
+        .modal("show");
+      },
           onDeny: function () {
             // alert('Rejeitar');
           }
@@ -150,6 +166,21 @@ async function listar(url) {
 
     </div>
     <div class="actions" style="text-align: center">
+    <div class="ui red cancel inverted button">
+        <i class="remove icon"></i>
+        Cancelar
+      </div>
+      <div class="ui green ok inverted button">
+        <i class="checkmark icon"></i>
+        Alugar
+      </div>
+    </div>
+  </div>
+  <div class="ui test modal" id="modal2_btn_${index}">
+  <h3>Selecione o tempo de locação da vaga</h3>
+  <input id="data-inicio_${index}" type="datetime-local"">
+  <input id="data-fim_${index}" type="datetime-local">
+  <div class="actions" style="text-align: center">
     <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
     <div class="ui red cancel inverted button">
         <i class="remove icon"></i>
@@ -160,7 +191,8 @@ async function listar(url) {
         Alugar
       </div>
     </div>
-  </div>`;
+  </div>
+  `;
         } else {
           vagas += `
       <li class="cards_item">

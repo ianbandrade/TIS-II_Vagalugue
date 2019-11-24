@@ -16,9 +16,6 @@ import org.simpleframework.http.core.ContainerSocketProcessor;
 import org.simpleframework.transport.connect.Connection;
 import org.simpleframework.transport.connect.SocketConnection;
 
-import classes.Usuario;
-import dao.UsuarioDAO;
-
 public class URLMetodo implements Container {
 
 	static VagaService vagaService;
@@ -51,7 +48,10 @@ public class URLMetodo implements Container {
 			} else if (path.equalsIgnoreCase("/alugar")) {
 				mensagem = vagaService.alugar(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);
-			} else if (path.equalsIgnoreCase("/login")) {
+			}  else if (path.equalsIgnoreCase("/usuario")) {
+				mensagem = usuarioService.adicionar(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			}else if (path.equalsIgnoreCase("/login")) {
 				mensagem = usuarioService.verificarLogin(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);
 			} else {
@@ -89,11 +89,6 @@ public class URLMetodo implements Container {
 	}
 
 	public static void main(String[] list) throws Exception {
-
-		// Código apenas para testar o funcionamento do login, toda vez que o main rodar
-		// esse objeto será adicionado
-		UsuarioDAO uDAO = new UsuarioDAO();
-		uDAO.add(new Usuario("Camila", "Campos", "user@gmail.com", "123456"));
 
 		vagaService = new VagaService();
 		usuarioService = new UsuarioService();

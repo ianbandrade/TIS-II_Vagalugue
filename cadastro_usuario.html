@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/forms.css">
 
-    <script src="js/cadastro_usuario.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -20,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/visibility.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
+
+    <script src="js/cadastro_usuario.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
                         <a href="login.html" class="ui button">Login</a>
                     </div>
                     <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button"   >Cadastre-se</a>
+                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
                     </div>
                 </div>
             </div>
@@ -46,73 +47,15 @@
     </header>
 
     <div class="centralizar">
-        <form class="ui form segment">
+        <form id="form-usuario" class="ui form segment">
             <div class="field">
                 <label>Nome Completo</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[first-name]" placeholder="Nome">
+                        <input id="nome" type="text" name="nome" placeholder="Nome">
                     </div>
                     <div class="eight wide field">
-                        <input type="text" name="shipping[last-name]" placeholder="Sobrenome">
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <label>Endereço</label>
-                <div class="four fields">
-                    <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="Logradouro">
-                    </div>
-                    <div class="four wide field">
-                        <input type="text" name="shipping[address-2]" placeholder="Número">
-                    </div>
-                    <div class="four wide field">
-                        <input type="text" name="shipping[address-2]" placeholder="Complemento">
-                    </div>
-                </div>
-            </div>
-            <!-- linha 3: bairro, estado e cep -->
-            <div class="field">
-                <div class="four fields">
-                    <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="Bairro">
-                    </div>
-                    <!-- dropdown de estado -->
-                    <div class="four wide field">
-                        <select class="ui fluid dropdown">
-                            <option value="">Estado</option>
-                            <option value="AL">Acre</option>
-                            <option value="AK">Alagoas</option>
-                            <option value="AZ">Amapá</option>
-                            <option value="AR">Amazonas</option>
-                            <option value="CA">Bahia</option>
-                            <option value="CO">Ceará</option>
-                            <option value="CT">Distrito Federal</option>
-                            <option value="DE">Espírito Santo</option>
-                            <option value="DC">Goiás</option>
-                            <option value="FL">Maranhão</option>
-                            <option value="GA">Mato Grosso</option>
-                            <option value="HI">Mato Grosso do Sul</option>
-                            <option value="ID">Minas Gerais</option>
-                            <option value="IL">Pará</option>
-                            <option value="IN">Paraíba</option>
-                            <option value="IA">Paraná</option>
-                            <option value="KS">Pernambuco</option>
-                            <option value="KY">Piauí</option>
-                            <option value="LA">Rio de Janeiro</option>
-                            <option value="ME">Rio Grande do Norte</option>
-                            <option value="MD">Rio Grande do Sul</option>
-                            <option value="MA">Rondônia</option>
-                            <option value="MI">Roraima</option>
-                            <option value="MN">Santa Catarina</option>
-                            <option value="MS">São Paulo</option>
-                            <option value="MO">Sergipe</option>
-                            <option value="MT">Tocantins</option>
-                        </select>
-                    </div>
-                    <div class="four wide field">
-                        <input type="text" id="cep" name="shipping[address]" placeholder="CEP">
+                        <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome">
                     </div>
                 </div>
             </div>
@@ -121,10 +64,10 @@
                 <label>Contato</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="text" name="shipping[address]" placeholder="E-mail">
+                        <input id="email" type="text" name="email" placeholder="E-mail">
                     </div>
                     <div class="eight wide field">
-                        <input id="telefone" type="text" name="shipping[address]" placeholder="Telefone">
+                        <input id="telefone" type="text" name="telefone" placeholder="Telefone">
                     </div>
                 </div>
             </div>
@@ -133,23 +76,17 @@
                 <label>Senha</label>
                 <div class="two fields">
                     <div class="eight wide field">
-                        <input type="password" name="shipping[address]" placeholder="Senha">
+                        <input id="senha" type="password" name="senha" placeholder="Senha">
                     </div>
                     <div class="eight wide field">
-                        <input type="password" name="shipping[address]" placeholder="Confirmar senha">
+                        <input id="senha-confirmacao" type="password" name="senha-confirmacao"
+                            placeholder="Confirmar senha">
                     </div>
-                </div>
-            </div>
-            <!-- checkbox -->
-            <div class="ui form">
-                <div class="ui checkbox">
-                    <input type="checkbox" name="example">
-                    <label>Concordo com as condições e termos de uso</label>
                 </div>
             </div>
             <br>
             <!-- botão de cadastrar -->
-            <button class="ui central button" tabindex="1">Cadastrar</button>
+            <button id="submit-btn" class="ui central button" tabindex="1" type="submit">Cadastrar</button>
         </form>
 
     </div>
@@ -189,9 +126,44 @@
     </footer>
 </body>
 
-<style>
+<script>
+    $('#telefone').mask("0000-0000")
 
-</style>
+    function limpa_form() {
+        $('#nome').val("")
+        $('#sobrenome').val("")
+        $('#email').val("")
+        $('#telefone').val("")
+        $('#senha').val("")
+        $('#senha-confirmacao').val("")
+    }
+
+    $('#submit-btn').click(async function (event) {
+        event.preventDefault();
+        let nome = $('#nome').val()
+        let sobrenome = $('#sobrenome').val()
+        let email = $('#email').val()
+        let telefone = $('#telefone').val()
+        let senha = $('#senha-confirmacao').val()
+
+        let data = {
+            nome,
+            sobrenome,
+            email,
+            telefone,
+            senha
+        };
+
+        try {
+            let response = await $.post("http://localhost:880/usuario", data);
+            alert("Form Enviado");
+            limpa_form();
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+</script>
 
 
 </html>

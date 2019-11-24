@@ -25,8 +25,10 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 					usuario.setEmail(idSTR);
 					usuario.setNome(buffer_entrada.readLine());
 					usuario.setSobrenome(buffer_entrada.readLine());
+					usuario.setTelefone(buffer_entrada.readLine());
 					usuario.setSenha(buffer_entrada.readLine());
 				} else {
+					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
 					buffer_entrada.readLine();
@@ -49,6 +51,7 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 			buffer_saida.write(u.getEmail() + separadorDeLinha);
 			buffer_saida.write(u.getNome() + separadorDeLinha);
 			buffer_saida.write(u.getSobrenome() + separadorDeLinha);
+			buffer_saida.write(u.getTelefone() + separadorDeLinha);
 			buffer_saida.write(u.getSenha() + separadorDeLinha);
 			buffer_saida.flush();
 
@@ -90,6 +93,7 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 				usuario.setEmail(idSTR);
 				usuario.setNome(buffer_entrada.readLine());
 				usuario.setSobrenome(buffer_entrada.readLine());
+				usuario.setTelefone(buffer_entrada.readLine());
 				usuario.setSenha(buffer_entrada.readLine());
 				usuarios.add(usuario);
 			}
@@ -108,6 +112,7 @@ public class UsuarioDAO implements DAO<Usuario, String> {
 				buffer_saida.write(u.getEmail() + separadorDeLinha);
 				buffer_saida.write(u.getNome() + separadorDeLinha);
 				buffer_saida.write(u.getSobrenome() + separadorDeLinha);
+				buffer_saida.write(u.getTelefone() + separadorDeLinha);
 				buffer_saida.write(u.getSenha() + separadorDeLinha);
 				buffer_saida.flush();
 			}

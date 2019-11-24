@@ -15,6 +15,9 @@ public final class UsuarioService {
 	public JSONObject verificarLogin(Request request) {
 
 		boolean eLoginValido = false;
+		String email = null;
+		String nome = null;
+		String sobrenome = null;
 
 		Usuario queryUsuario = queryUsuario(request);
 
@@ -26,11 +29,18 @@ public final class UsuarioService {
 		usuarios = usuarioDAO.getAll();
 
 		for (Usuario u : usuarios) {
-			if (u.getEmail().equals(queryUsuario.getEmail()) && u.getSenha().equals(queryUsuario.getSenha()))
+			if (u.getEmail().equals(queryUsuario.getEmail()) && u.getSenha().equals(queryUsuario.getSenha())){
 				eLoginValido = true;
+				email = u.getEmail();
+				nome = u.getNome();
+				sobrenome = u .getSobrenome();
+			}
 		}
 
 		json.put("Login", eLoginValido);
+		json.put("Email", email);
+		json.put("Nome", nome);
+		json.put("Sobrenome", sobrenome);
 		return json;
 
 	}
@@ -50,6 +60,7 @@ public final class UsuarioService {
 		String sobrenome;
 
 		String email;
+		String telefone;
 		String senha;
 
 		Usuario usuario = null;
@@ -59,9 +70,10 @@ public final class UsuarioService {
 		nome = query.get("nome");
 		sobrenome = query.get("sobrenome");
 		email = query.get("email");
+		telefone = query.get("telefone");
 		senha = query.get("senha");
 
-		usuario = new Usuario(nome, sobrenome, email, senha);
+		usuario = new Usuario(nome, sobrenome, email, telefone, senha);
 
 		return usuario;
 	}

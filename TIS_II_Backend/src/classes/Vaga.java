@@ -16,6 +16,8 @@ public class Vaga {
 	private Localizacao localizacao;
 
 	private Boolean alugada = false;
+	private String data_inicio = null;
+	private String data_fim = null;
 
 	public Vaga() {
 		super();
@@ -24,7 +26,7 @@ public class Vaga {
 		this.foto = null;
 		this.descricao = null;
 		this.dimensoes = new Dimensoes(0, 0, 0);
-		this.localizacao = new Localizacao(null, null, 0, null, null, null);	
+		this.localizacao = new Localizacao(null, null, 0, null, null, null);
 	}
 
 	public Vaga(Usuario locatario, String indicador, String foto, String descricao, Dimensoes dimensoes,
@@ -43,7 +45,7 @@ public class Vaga {
 	}
 
 	public JSONObject getLocatarioJson() {
-		return locatario.getJson(); //alterei de toJson() para getJson( )
+		return locatario.getJson();
 	}
 
 	public String getIndicador() {
@@ -78,6 +80,14 @@ public class Vaga {
 		return alugada;
 	}
 
+	public String getDataInicio() {
+		return data_inicio;
+	}
+
+	public String getDataFim() {
+		return data_fim;
+	}
+
 	public void setLocatario(Usuario locatario) {
 		this.locatario = locatario;
 	}
@@ -106,11 +116,19 @@ public class Vaga {
 		this.alugada = alugada;
 	}
 
+	public void setDataInicio(String dataInicio) {
+		this.data_inicio = dataInicio;
+	}
+
+	public void setDataFim(String dataFim) {
+		this.data_fim = dataFim;
+	}
+
 	@Override
 	public String toString() {
 		return "Vaga [locatario=" + locatario + ", indicador=" + indicador + ", foto=" + foto + ", descricao="
 				+ descricao + ", dimensoes=" + dimensoes + ", localizacao=" + localizacao + ", alugada=" + alugada
-				+ "]";
+				+ ", data inicio=" + data_inicio + ", data_fim=" + data_fim + "[";
 	}
 
 	public JSONObject getJson() throws JSONException {
@@ -122,6 +140,8 @@ public class Vaga {
 		json.put("Dimensoes", getDimensoesJson());
 		json.put("Localizacao", getLocalizacaoJson());
 		json.put("Alugada", isAlugada());
+		json.put("Data inicio", getDataInicio());
+		json.put("Data fim", getDataFim());
 		return json;
 	}
 

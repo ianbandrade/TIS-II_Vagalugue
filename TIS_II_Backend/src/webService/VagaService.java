@@ -94,10 +94,15 @@ public final class VagaService {
 		Vaga vaga = new Vaga();
 		vaga = queryVaga(request);
 		System.out.println(vaga);
+		Query query = request.getQuery();
+		String data_inicio = query.get("data_inicio");
+		String data_fim = query.get("data_fim");
 
 		VagaDAO vagaDAO = new VagaDAO();
 
 		vaga.setAlugada(true);
+		vaga.setDataInicio(data_inicio);
+		vaga.setDataFim(data_fim);
 		vagaDAO.update(vaga);
 		
 		return vaga.getJson();

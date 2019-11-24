@@ -8,13 +8,15 @@ public class Usuario {
 	private String nome;
 	private String sobrenome;
 	private String email;
+	private String telefone;
 	private String senha;
 
-	public Usuario(String nome, String sobrenome, String email, String senha) {
+	public Usuario(String nome, String sobrenome, String email, String telefone, String senha) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
+		this.telefone = telefone;
 		this.senha = senha;
 	}
 
@@ -23,6 +25,7 @@ public class Usuario {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = null;
+		this.telefone = null;
 		this.senha = null;
 	}
 
@@ -31,6 +34,7 @@ public class Usuario {
 		this.nome = null;
 		this.sobrenome = null;
 		this.email = null;
+		this.telefone = null;
 		this.senha = null;
 	}
 
@@ -44,6 +48,10 @@ public class Usuario {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getTelefone() {
+		return telefone;
 	}
 
 	public String getSenha() {
@@ -61,6 +69,10 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -68,7 +80,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha=" + senha + "]";
+		return "Usuario [nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", telefone" + telefone + ", senha=" + senha + "]";
 	}
 
 	public JSONObject getJson() throws JSONException {
@@ -76,6 +88,7 @@ public class Usuario {
 		json.put("Nome", getNome());
 		json.put("Sobrenome", getSobrenome());
 		json.put("Email", getEmail());
+		json.put("Telefone", getTelefone());
 		json.put("Senha", getSenha());
 		return json;
 	}
