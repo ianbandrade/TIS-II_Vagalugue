@@ -6,8 +6,11 @@ $(document).ready(function () {
         style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
         center: [-43.9286357, -19.9346282], // starting position [lng, lat]
         zoom: 11, // starting zoom   
-        maxBounds: [ [ -44.0632916, -20.0594646 ], [ -43.8572199, -19.7765438 ] ]
-    });
+        // maxBounds: [ [ -44.0632916, -20.0594646 ], [ -43.8572199, -19.7765438 ] ]
+    })
+    
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', function () {
 
@@ -36,8 +39,8 @@ $(document).ready(function () {
             },
             'layout': {},
             'paint': {
-                'fill-color': '#E6E4E0',
-                'fill-opacity': 1   
+                'fill-color': '#EF0000',
+                'fill-opacity': 0.1   
             }
         });
     });
