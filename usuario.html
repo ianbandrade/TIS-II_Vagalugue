@@ -18,6 +18,13 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
     <script src="/js/cadastro_vaga.js"></script>
+
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/list@4.2.0/main.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/list@4.2.0/main.js'></script>
 </head>
 
 <body>
@@ -42,6 +49,18 @@
         </div>
 
     </header>
+
+    <main style="margin: 5%">
+        <div style="background-color:#1B1C1D; text-align: center">
+            <h2 style="color:#F79307">Alugueis futuros</h2>
+        </div>
+        <div id='calendar-list' style="background-color: #FAFAFA"></div>
+        <br>
+        <div style="background-color: #1B1C1D; text-align: center">
+            <h2 style="color:#F79307">Calendário</h2>
+        </div>
+        <div id='calendar' style="background-color: #FAFAFA"></div>
+    </main>
 
     <footer class="ui landing-image-footer inverted vertical footer segment">
         <div class="ui container">
@@ -79,7 +98,6 @@
 
     <script>
         $(document).ready(function () {
-            console.log(localStorage.getItem("nome"))
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
                     `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
@@ -88,12 +106,60 @@
         <i class="icon sign-out"></i>
         </button>`)
             }
+
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                locale: 'pt-br',
+                time_zone: 'local',
+                aspectRatio: 3.3,
+                height: 'auto'
+            });
+            calendar.render();
+
+            var calendarListEl = document.getElementById('calendar-list');
+
+            var calendarList = new FullCalendar.Calendar(calendarListEl, {
+                plugins: ['dayGrid', 'list'],
+                locale: 'pt-br',
+                time_zone: 'local',
+                defaultView: 'listWeek',
+                height: 'auto',
+            });
+            calendarList.render();
+
+
+            async function listar() {
+                let response = await $.getJSON("http://127.0.0.1:880/vagas/pesquisar/usuario?email=" +
+                    localStorage
+                    .getItem(
+                        "email"))
+                response = response.vagas
+                response.forEach(element => {
+                    calendarList.addEventSource([{
+                        title: element.Indicador + " (" + element.Localizacao
+                            .Endereco + ", " +
+                            element.Localizacao.Numero + ")",
+                        start: element.Data_inicio,
+                        end: element.Data_fim
+                    }])
+                    calendar.addEventSource([{
+                        title: element.Indicador,
+                        start: element.Data_inicio,
+                        end: element.Data_fim
+                    }])
+                });
+            }
+
+            listar()
+
         })
 
         function sair() {
             localStorage.clear();
             location.reload();
-            window.location.href="index.html";
+            window.location.href = "index.html";
         }
     </script>
 </body>

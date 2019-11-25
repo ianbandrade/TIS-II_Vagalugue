@@ -97,7 +97,7 @@ public final class VagaService {
 		VagaCollection vagaCollection = new VagaCollection();
 		Query query = request.getQuery();
 		String usuario = query.get("email");
-		vagas = vagaCollection.getVagasPesquisaRua(usuario);
+		vagas = vagaCollection.getVagasPesquisaUsuario(usuario);
 
 		for (Vaga v : vagas) {
 			jsonArray.put(v.getJson());
