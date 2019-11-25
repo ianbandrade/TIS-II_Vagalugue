@@ -136,6 +136,10 @@ body > .grid {
   height: 100%;
 }
 
+.ui.large.secondary.inverted.pointing.menu {
+  display: flex;
+}
+
 .image {
   margin-top: -100px;
 }
@@ -169,10 +173,23 @@ body > .grid {
   top: 32px;
 }
 
+#second-menu {
+  position: relative;
+  top: 10px;
+  color: #f79307;
+  padding-right: 10px;
+}
+
+#first-menu {
+  padding: 10px;
+  position: relative;
+  color: #f79307;
+  margin: 10px;
+}
+
 #user {
   padding: 10px;
   position: relative;
-  top: 3px;
   color: #f79307;
   margin: 10px;
 }
@@ -180,7 +197,23 @@ body > .grid {
 #sair-btn {
   height: 35px;
   text-align: center;
-  top: 24px;
+  top: 10px;
+  background-color: rgba(236, 235, 235, 0.76) !important;
+  padding: 10px;
+}
+
+#sair-btn-second {
+  height: 35px;
+  text-align: center;
+  top: 10px;
+  background-color: rgba(236, 235, 235, 0.76) !important;
+  padding: 10px;
+}
+
+#sair-btn-first {
+  height: 35px;
+  text-align: center;
+  margin: 10px;
   background-color: rgba(236, 235, 235, 0.76) !important;
 }
 
