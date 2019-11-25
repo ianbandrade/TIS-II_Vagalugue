@@ -46,11 +46,11 @@ $(document).ready(function () {
 
     async function getEnderecoVagas() {
         let resposta = await $.getJSON("http://127.0.0.1:880/vagas");
-        resposta.vagas.forEach((element, index) => {
-            e = element
-            element = element["Localizacao"]
-            let endereco = element.Numero + ", " + element.Endereco + ", " + element.Bairro + ", " +
-                element.Cidade + ", " + element.Estado + ", " + element.Cep + ", Brazil"
+        resposta.vagas.forEach((Element, index) => {
+            e = Element
+            Element = Element["Localizacao"]
+            let endereco = Element.Numero + ", " + Element.Endereco + ", " + Element.Bairro + ", " +
+                Element.Cidade + ", " + Element.Estado + ", " + Element.Cep + ", Brazil"
             addPin(endereco, e, index)
         });
     }
@@ -71,16 +71,16 @@ $(document).ready(function () {
                             `<li class="cards_item">
                             <div class="card">
                               <div class="card_image"><img class="card-img" src="${
-                                element["Foto"]
+                                Element["Foto"]
                               }" width="220"></div>
                               <div class="card_content">
-                                <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
-                              element.Localizacao.Numero
+                                <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
+                              Element.Localizacao.Numero
                             }</h2>
-                                <p class="card_text">${element["Descricao"]}
-                                </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
-                              element.Dimensoes.Largura
-                            }m x ${element.Dimensoes.Altura}m </h5>
+                                <p class="card_text">${Element["Descricao"]}
+                                </p><br><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x ${
+                              Element.Dimensoes.Largura
+                            }m x ${Element.Dimensoes.Altura}m </h5>
                                 <button class="btn card_btn" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
                               </div>
                             </div>
@@ -93,17 +93,17 @@ $(document).ready(function () {
                             <section style="display: flex">
                               <div style="flex-grow: 1">
                                 <h2>Locador: </h2>
-                                <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
-                                <p>Indicador da vaga:  ${element["Indicador"]}</p>
+                                <p>Nome: ${Element["Locatario"]["Nome"]} ${Element["Locatario"]["Sobrenome"]}</p>
+                                <p>Indicador da vaga:  ${Element["Indicador"]}</p>
                                 <h2>Localização: </h2>
-                                <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
-                                <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
-                                <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
-                                <p>Estado: ${element["Localizacao"]["Estado"]}</p>
+                                <p>Rua: ${Element["Localizacao"]["Endereco"]}, ${Element["Localizacao"]["Numero"]}</p>
+                                <p>Bairro: ${Element["Localizacao"]["Bairro"]}</p>
+                                <p>Cidade: ${Element["Localizacao"]["Cidade"]}</p>
+                                <p>Estado: ${Element["Localizacao"]["Estado"]}</p>
                                 <h2>Dimensões:</h2>
-                                <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
-                                <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
-                                <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
+                                <p>Altura: ${Element["Dimensoes"]["Altura"]}m</p>
+                                <p>Largura: ${Element["Dimensoes"]["Largura"]}m</p>
+                                <p>Comprimento: ${Element["Dimensoes"]["Comprimento"]}m</p>
                               </div>
                               <div>
                                 <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
@@ -149,16 +149,16 @@ $(document).ready(function () {
                             `<li class="cards_item">
                             <div class="card">
                               <div class="card_image"><img class="card-img" src="${
-                                element["Foto"]
+                                Element["Foto"]
                               }" width="220"></div>
                               <div class="card_content">
-                                <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
-                              element.Localizacao.Numero
+                                <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
+                              Element.Localizacao.Numero
                             }</h2>
-                                <p class="card_text">${element["Descricao"]}
-                                </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
-                              element.Dimensoes.Largura
-                            }m x ${element.Dimensoes.Altura}m </h5>
+                                <p class="card_text">${Element["Descricao"]}
+                                </p><br><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x ${
+                              Element.Dimensoes.Largura
+                            }m x ${Element.Dimensoes.Altura}m </h5>
                                 <button class="btn card_btn ui disabled button" id="btn_${index}" onclick="reply_click(this.id)">Vaga já alugada</button>
                               </div>
                             </div>
