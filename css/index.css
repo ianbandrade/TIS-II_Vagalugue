@@ -10,15 +10,19 @@
   margin-top: 0px;
 }
 
-a.ui.huge.button:hover, a.ui.primary.button:hover {
+a.ui.huge.button:hover,
+a.ui.primary.button:hover {
   background-color: rgba(255, 173, 40, 0.675);
 }
 
-.ui.huge.primary.button, a.ui.primary.button, .ui.primary.buttons .button {
+.ui.huge.primary.button,
+a.ui.primary.button,
+.ui.primary.buttons .button {
   background-color: #f79307;
 }
 
-.ui.primary.button:hover, .ui.primary.buttons:hover .button:hover {
+.ui.primary.button:hover,
+.ui.primary.buttons:hover .button:hover {
   background-color: #f79307;
 }
 
@@ -59,7 +63,8 @@ a.ui.huge.button:hover, a.ui.primary.button:hover {
   font-size: 2em;
 }
 
-.ui.vertical.stripe .button+h3, .ui.vertical.stripe p+h3 {
+.ui.vertical.stripe .button + h3,
+.ui.vertical.stripe p + h3 {
   margin-top: 3em;
 }
 
@@ -93,13 +98,13 @@ a.ui.huge.button:hover, a.ui.primary.button:hover {
 }
 
 @media only screen and (max-width: 700px) {
-  .ui.large.secondary.inverted.pointing.menu>a.item {
-    display: none
+  .ui.large.secondary.inverted.pointing.menu > a.item {
+    display: none;
   }
   #sidebar-icon {
     display: flex;
   }
-  .ui.sombreamento-header.text.container>a {
+  .ui.sombreamento-header.text.container > a {
     width: 37%;
     padding: 4px;
     display: inline;
@@ -107,7 +112,8 @@ a.ui.huge.button:hover, a.ui.primary.button:hover {
   .ui.fixed.menu {
     display: none !important;
   }
-  .secondary.pointing.menu .item, .secondary.pointing.menu .menu {
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
     display: none;
   }
   .secondary.pointing.menu .toc.item {
@@ -126,7 +132,7 @@ a.ui.huge.button:hover, a.ui.primary.button:hover {
   }
 }
 
-body>.grid {
+body > .grid {
   height: 100%;
 }
 
@@ -157,7 +163,31 @@ body>.grid {
   background-size: cover;
 }
 
-body>footer {
+#user2 {
+  padding: 15px;
+  position: relative;
+  top: 30px;
+}
+
+#user {
+  padding: 10px;
+  position: relative;
+  top: 10px;
+}
+
+#sair-btn {
+  height: 35px;
+  text-align: center;
+  top: 25px;
+}
+
+button#sair-btn.ui.large.basic.button {
+  position: relative;
+  top: 14px;
+  text-align: center;
+}
+
+body > footer {
   width: 100%;
   position: inherit;
 }

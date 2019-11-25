@@ -141,13 +141,13 @@
             console.log(localStorage.getItem("nome"))
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
-                    `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                    `<h4 id ="user" class="nome" >Bem Vindo, ${localStorage.getItem("nome")} </h4> 
                 <button id="sair-btn" class="ui large basic button" onclick="sair()">
                 Sair 
                 <i class="icon sign-out"></i>
                 </button>`)
                 $('.right.item').html(
-                    `<h3 id ="user2">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                    `<h4 id ="user2" class="nome" >Bem Vindo, ${localStorage.getItem("nome")}</h4> 
                 <button id="sair-btn" class="ui large button" onclick="sair()">
                 Sair 
                 <i class="icon sign-out"></i>
