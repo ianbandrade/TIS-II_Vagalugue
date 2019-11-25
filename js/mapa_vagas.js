@@ -126,9 +126,11 @@ $(document).ready(function () {
                         </div>
                       </div>
                       <div class="ui test modal" id="modal2_btn_${index}">
-                      <h3>Selecione o tempo de locação da vaga</h3>
-                      <input id="data-inicio_${index}" type="datetime-local"">
-                      <input id="data-fim_${index}" type="datetime-local">
+                      <h2 class="titulo" >Selecione o tempo de locação da vaga</h2>
+                      <div class="div-input">
+                      <p>Data inicial:   <input id="data-inicio_${index}" type="datetime-local""> </p>
+                      <p>Data final: <input id="data-fim_${index}" type="datetime-local"> </p>
+                      </div>
                       <div class="actions" style="text-align: center">
                         <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
                         <div class="ui red cancel inverted button">

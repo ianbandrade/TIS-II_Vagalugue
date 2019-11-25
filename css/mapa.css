@@ -11,3 +11,15 @@
     width: 100%;
     text-align: center;
 }
+
+.titulo {
+    padding-top: 20px;
+    text-align: center;
+    position: flex;
+}
+
+.div-input>p {
+    text-align: center;
+    position: flex;
+    padding-bottom: 10px;
+}
