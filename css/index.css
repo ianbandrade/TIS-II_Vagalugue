@@ -172,8 +172,9 @@ body > .grid {
 #user {
   padding: 10px;
   position: relative;
-  top: 12px;
+  top: 3px;
   color: #f79307;
+  margin: 10px;
 }
 
 #sair-btn {

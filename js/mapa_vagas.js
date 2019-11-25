@@ -68,11 +68,11 @@ $(document).ready(function () {
                         .setPopup(new mapboxgl.Popup({
                             offset: 25
                         }).setHTML(
-                          `<li class="cards_item">
+                          `<li class="cards_item" style="list-style: none">
                           <div class="card">
                             <div class="card_image"><img class="card-img" src="${
                               Element["Foto"]
-                            }"></div>
+                            }" width = "220" "></div>
                             <div class="card_content">
                               <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
                             Element.Localizacao.Numero
@@ -146,11 +146,11 @@ $(document).ready(function () {
                       .setPopup(new mapboxgl.Popup({
                           offset: 25
                       }).setHTML(
-                        `<li class="cards_item">
+                        `<li class="cards_item" style="list-style: none">
           <div class="card">
             <div class="card_image"><img class="card-img" src="${
               Element["Foto"]
-            }"></div>
+            }"width = "220"></div>
             <div class="card_content">
               <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
             Element.Localizacao.Numero
@@ -207,7 +207,7 @@ $(document).ready(function () {
                         .setPopup(new mapboxgl.Popup({
                             offset: 25
                         }).setHTML(
-                            `<li class="cards_item">
+                            `<li class="cards_item" style="list-style: none">
                             <div class="card">
                               <div class="card_image"><img class="card-img" src="${
                                 Element["Foto"]

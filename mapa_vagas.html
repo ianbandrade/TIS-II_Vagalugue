@@ -90,15 +90,12 @@
         $(document).ready(function () {
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
-                    `<h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4> 
+                    `<a href = "usuario.html"><h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4></a>
             <button id="sair-btn" class="ui large basic button" onclick="sair()">
             Sair 
             <i class="icon sign-out"></i>
             </button>`)
             }
-            $('#user').click(function () {
-                window.location.href = "usuario.html";
-            })
         })
 
         function sair() {
