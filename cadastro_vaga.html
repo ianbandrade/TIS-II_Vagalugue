@@ -38,8 +38,8 @@
                 </div>
             </div>
         </div>
-
     </header>
+
     <form id="form-vaga" class="ui form segment">
         <h1>Cadastro de Vaga</h1>
         <br>
@@ -237,7 +237,7 @@
         $(document).ready(function () {
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
-                    `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                    `<h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4> 
                 <button id="sair-btn" class="ui large basic button" onclick="sair()">
                 Sair 
                 <i class="icon sign-out"></i>

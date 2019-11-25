@@ -100,7 +100,7 @@
         $(document).ready(function () {
             if (localStorage.getItem("nome") != null) {
                 $('.right.menu').html(
-                    `<h3 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h3> 
+                    `<h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4> 
         <button id="sair-btn" class="ui large basic button" onclick="sair()">
         Sair 
         <i class="icon sign-out"></i>
@@ -133,8 +133,8 @@
             async function listar() {
                 let response = await $.getJSON("http://127.0.0.1:880/vagas/pesquisar/usuario?email=" +
                     localStorage
-                    .getItem(
-                        "email"))
+                        .getItem(
+                            "email"))
                 response = response.vagas
                 response.forEach(element => {
                     calendarList.addEventSource([{

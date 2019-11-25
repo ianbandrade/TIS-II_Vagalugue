@@ -166,19 +166,25 @@ body > .grid {
 #user2 {
   padding: 15px;
   position: relative;
-  top: 30px;
+  top: 32px;
 }
 
 #user {
   padding: 10px;
   position: relative;
-  top: 10px;
+  top: 12px;
+  color: #f79307;
 }
 
 #sair-btn {
   height: 35px;
   text-align: center;
-  top: 25px;
+  top: 24px;
+  background-color: rgba(236, 235, 235, 0.76) !important;
+}
+
+#sair-btn:hover {
+  color: rgb(0, 0, 0) !important;
 }
 
 button#sair-btn.ui.large.basic.button {
@@ -189,5 +195,5 @@ button#sair-btn.ui.large.basic.button {
 
 body > footer {
   width: 100%;
-  position: inherit;
+  position: relative;
 }
