@@ -17,6 +17,7 @@ $(document).ready(function () {
       console.log(errors);
     }
   })
+
 })
 
 
@@ -30,61 +31,61 @@ async function reply_click(clicked_id) {
           onApprove: async function () {
 
             $(`#modal2_${clicked_id}`)
-        .modal({
-          closable: false,
-          inverted: true,
-          onApprove: async function () {
+              .modal({
+                closable: false,
+                inverted: true,
+                onApprove: async function () {
 
-            let response = await $.getJSON("http://127.0.0.1:880/vagas");
+                  let response = await $.getJSON("http://127.0.0.1:880/vagas");
 
-            let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
-            let sobrenome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Sobrenome
-            let indicador_vaga = response.vagas[clicked_id.replace("btn_", "")].Indicador
-            let descricao = response.vagas[clicked_id.replace("btn_", "")].Descricao
-            let largura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Largura
-            let comprimento = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Comprimento
-            let altura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Altura
-            let cep = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cep
-            let endereco = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Endereco
-            let numero = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Numero
-            let bairro = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Bairro
-            let cidade = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cidade
-            let estado = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Estado
-            let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
-            let data_inicio = $(`#data-inicio_${clicked_id.replace("btn_", "")}`).val()
-            let data_fim = $(`#data-fim_${clicked_id.replace("btn_", "")}`).val()
-            let alugada_por = localStorage.getItem("email")
+                  let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
+                  let sobrenome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Sobrenome
+                  let indicador_vaga = response.vagas[clicked_id.replace("btn_", "")].Indicador
+                  let descricao = response.vagas[clicked_id.replace("btn_", "")].Descricao
+                  let largura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Largura
+                  let comprimento = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Comprimento
+                  let altura = response.vagas[clicked_id.replace("btn_", "")].Dimensoes.Altura
+                  let cep = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cep
+                  let endereco = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Endereco
+                  let numero = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Numero
+                  let bairro = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Bairro
+                  let cidade = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Cidade
+                  let estado = response.vagas[clicked_id.replace("btn_", "")].Localizacao.Estado
+                  let foto_vaga = response.vagas[clicked_id.replace("btn_", "")].Foto
+                  let data_inicio = $(`#data-inicio_${clicked_id.replace("btn_", "")}`).val()
+                  let data_fim = $(`#data-fim_${clicked_id.replace("btn_", "")}`).val()
+                  let alugada_por = localStorage.getItem("email")
 
-            let data = {
-              nome,
-              sobrenome,
-              indicador_vaga,
-              foto_vaga,
-              descricao,
-              largura,
-              comprimento,
-              altura,
-              cep,
-              endereco,
-              numero,
-              bairro,
-              cidade,
-              estado,
-              data_inicio,
-              data_fim,
-              alugada_por
-            };
+                  let data = {
+                    nome,
+                    sobrenome,
+                    indicador_vaga,
+                    foto_vaga,
+                    descricao,
+                    largura,
+                    comprimento,
+                    altura,
+                    cep,
+                    endereco,
+                    numero,
+                    bairro,
+                    cidade,
+                    estado,
+                    data_inicio,
+                    data_fim,
+                    alugada_por
+                  };
 
-            await $.post("http://localhost:880/alugar", data);
-            alert("Vaga alugada com sucesso!");
-            location.reload(true);
+                  await $.post("http://localhost:880/alugar", data);
+                  alert("Vaga alugada com sucesso!");
+                  location.reload(true);
+                },
+                onDeny: function () {
+                  // alert('Rejeitar');
+                }
+              })
+              .modal("show");
           },
-          onDeny: function () {
-            // alert('Rejeitar');
-          }
-        })
-        .modal("show");
-      },
           onDeny: function () {
             // alert('Rejeitar');
           }
@@ -122,7 +123,7 @@ async function listar(url) {
         let endereco = element.Localizacao.Numero + ", " + element.Localizacao.Endereco + ", " + element.Localizacao.Bairro + ", " +
           element.Localizacao.Cidade + ", " + element.Localizacao.Estado + ", " + element.Localizacao.Cep + ", Brazil"
         coordenadas = await getCoordenadas(endereco)
-        if (!element.Alugada) {
+        if (!element.Alugada && localStorage.getItem("email") != null) {
           vagas += `
       <li class="cards_item">
       <div class="card">
@@ -193,8 +194,62 @@ async function listar(url) {
         Alugar
       </div>
     </div>
-  </div>
-  `;
+  </div>`
+        } else if (!element.Alugada) {
+          vagas += 
+          `<li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="${
+              element["Foto"]
+            }"></div>
+            <div class="card_content">
+              <h2 class="card_title">${element["Localizacao"]["Endereco"]}, ${
+            element.Localizacao.Numero
+          }</h2>
+              <p class="card_text">${element["Descricao"]}
+              </p><br><h5>Dimensoes: ${element.Dimensoes.Comprimento}m x ${
+            element.Dimensoes.Largura
+          }m x ${element.Dimensoes.Altura}m </h5>
+              <button class="btn card_btn" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
+            </div>
+          </div>
+        </li>
+        <div class="ui test modal" id="modal_btn_${index}">
+        <div class="ui icon header">
+          <i class="user outline icon"></i>
+        </div>
+        <div class="content" class="ui grid">
+          <section style="display: flex">
+            <div style="flex-grow: 1">
+              <h2>Locador: </h2>
+              <p>Nome: ${element["Locatario"]["Nome"]} ${element["Locatario"]["Sobrenome"]}</p>
+              <p>Indicador da vaga:  ${element["Indicador"]}</p>
+              <h2>Localização: </h2>
+              <p>Rua: ${element["Localizacao"]["Endereco"]}, ${element["Localizacao"]["Numero"]}</p>
+              <p>Bairro: ${element["Localizacao"]["Bairro"]}</p>
+              <p>Cidade: ${element["Localizacao"]["Cidade"]}</p>
+              <p>Estado: ${element["Localizacao"]["Estado"]}</p>
+              <h2>Dimensões:</h2>
+              <p>Altura: ${element["Dimensoes"]["Altura"]}m</p>
+              <p>Largura: ${element["Dimensoes"]["Largura"]}m</p>
+              <p>Comprimento: ${element["Dimensoes"]["Comprimento"]}m</p>
+            </div>
+            <div>
+              <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
+            </div>
+          </section>
+    
+        </div>
+        <div class="actions" style="text-align: center">
+        <div class="ui red cancel inverted button">
+            <i class="remove icon"></i>
+            Cancelar
+          </div>
+          <div class="ui green ok inverted disabled button">
+            Faça Log-in para alugar
+          </div>
+        </div>
+      </div>`
         } else {
           vagas += `
       <li class="cards_item">

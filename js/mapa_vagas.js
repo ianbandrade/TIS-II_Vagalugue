@@ -60,7 +60,7 @@ $(document).ready(function () {
             ".json?country=BR&access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A",
             function (dados) {
                 let coordenadas = dados.features[0].geometry.coordinates;
-                if (!Element.Alugada) {
+                if (!Element.Alugada && localStorage.getItem("email") != null) {
                     new mapboxgl
                         .Marker()
                         .setLngLat(coordenadas)
@@ -68,77 +68,138 @@ $(document).ready(function () {
                         .setPopup(new mapboxgl.Popup({
                             offset: 25
                         }).setHTML(
-                            `<li class="cards_item">
-                            <div class="card">
-                              <div class="card_image"><img class="card-img" src="${
-                                Element["Foto"]
-                              }" width="220"></div>
-                              <div class="card_content">
-                                <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
-                              Element.Localizacao.Numero
-                            }</h2>
-                                <p class="card_text">${Element["Descricao"]}
-                                </p><br><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x ${
-                              Element.Dimensoes.Largura
-                            }m x ${Element.Dimensoes.Altura}m </h5>
-                                <button class="btn card_btn" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
-                              </div>
+                          `<li class="cards_item">
+                          <div class="card">
+                            <div class="card_image"><img class="card-img" src="${
+                              Element["Foto"]
+                            }"></div>
+                            <div class="card_content">
+                              <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
+                            Element.Localizacao.Numero
+                          }</h2>
+                              <p class="card_text">${Element["Descricao"]}
+                              </p><br><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x ${
+                            Element.Dimensoes.Largura
+                          }m x ${Element.Dimensoes.Altura}m </h5>
+                              <button class="btn card_btn ui button" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
                             </div>
-                          </li>
-                          <div class="ui test modal" id="modal_btn_${index}">
-                          <div class="ui icon header">
-                            <i class="user outline icon"></i>
                           </div>
-                          <div class="content" class="ui grid">
-                            <section style="display: flex">
-                              <div style="flex-grow: 1">
-                                <h2>Locador: </h2>
-                                <p>Nome: ${Element["Locatario"]["Nome"]} ${Element["Locatario"]["Sobrenome"]}</p>
-                                <p>Indicador da vaga:  ${Element["Indicador"]}</p>
-                                <h2>Localização: </h2>
-                                <p>Rua: ${Element["Localizacao"]["Endereco"]}, ${Element["Localizacao"]["Numero"]}</p>
-                                <p>Bairro: ${Element["Localizacao"]["Bairro"]}</p>
-                                <p>Cidade: ${Element["Localizacao"]["Cidade"]}</p>
-                                <p>Estado: ${Element["Localizacao"]["Estado"]}</p>
-                                <h2>Dimensões:</h2>
-                                <p>Altura: ${Element["Dimensoes"]["Altura"]}m</p>
-                                <p>Largura: ${Element["Dimensoes"]["Largura"]}m</p>
-                                <p>Comprimento: ${Element["Dimensoes"]["Comprimento"]}m</p>
-                              </div>
-                              <div>
-                                <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
-                              </div>
-                            </section>
-                      
+                        </li>
+                        <div class="ui test modal" id="modal_btn_${index}">
+                        <div class="ui icon header">
+                          <i class="user outline icon"></i>
+                        </div>
+                        <div class="content" class="ui grid">
+                          <section style="display: flex">
+                            <div style="flex-grow: 1">
+                              <h2>Locador: </h2>
+                              <p>Nome: ${Element["Locatario"]["Nome"]} ${Element["Locatario"]["Sobrenome"]}</p>
+                              <p>Indicador da vaga:  ${Element["Indicador"]}</p>
+                              <h2>Localização: </h2>
+                              <p>Rua: ${Element["Localizacao"]["Endereco"]}, ${Element["Localizacao"]["Numero"]}</p>
+                              <p>Bairro: ${Element["Localizacao"]["Bairro"]}</p>
+                              <p>Cidade: ${Element["Localizacao"]["Cidade"]}</p>
+                              <p>Estado: ${Element["Localizacao"]["Estado"]}</p>
+                              <h2>Dimensões:</h2>
+                              <p>Altura: ${Element["Dimensoes"]["Altura"]}m</p>
+                              <p>Largura: ${Element["Dimensoes"]["Largura"]}m</p>
+                              <p>Comprimento: ${Element["Dimensoes"]["Comprimento"]}m</p>
+                            </div>
+                            <div>
+                              <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
+                            </div>
+                          </section>
+                    
+                        </div>
+                        <div class="actions" style="text-align: center">
+                        <div class="ui red cancel inverted button">
+                            <i class="remove icon"></i>
+                            Cancelar
                           </div>
-                          <div class="actions" style="text-align: center">
-                          <div class="ui red cancel inverted button">
-                              <i class="remove icon"></i>
-                              Cancelar
-                            </div>
-                            <div class="ui green ok inverted button">
-                              <i class="checkmark icon"></i>
-                              Alugar
-                            </div>
+                          <div class="ui green ok inverted button">
+                            <i class="checkmark icon"></i>
+                            Alugar
                           </div>
                         </div>
-                        <div class="ui test modal" id="modal2_btn_${index}">
-                        <h3>Selecione o tempo de locação da vaga</h3>
-                        <input id="data-inicio_${index}" type="datetime-local"">
-                        <input id="data-fim_${index}" type="datetime-local">
-                        <div class="actions" style="text-align: center">
-                          <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
-                          <div class="ui red cancel inverted button">
-                              <i class="remove icon"></i>
-                              Cancelar
-                            </div>
-                            <div class="ui green ok inverted button">
-                              <i class="checkmark icon"></i>
-                              Alugar
-                            </div>
+                      </div>
+                      <div class="ui test modal" id="modal2_btn_${index}">
+                      <h3>Selecione o tempo de locação da vaga</h3>
+                      <input id="data-inicio_${index}" type="datetime-local"">
+                      <input id="data-fim_${index}" type="datetime-local">
+                      <div class="actions" style="text-align: center">
+                        <p class="confirmacao" style="text-align: center">Confirmar aluguel da vaga?</p>
+                        <div class="ui red cancel inverted button">
+                            <i class="remove icon"></i>
+                            Cancelar
                           </div>
-                        </div>`))
-                } else {
+                          <div class="ui green ok inverted button">
+                            <i class="checkmark icon"></i>
+                            Alugar
+                          </div>
+                        </div>
+                      </div>`))
+                } else if (!Element.Alugada) {
+                  new mapboxgl
+                      .Marker()
+                      .setLngLat(coordenadas)
+                      .addTo(map)
+                      .setPopup(new mapboxgl.Popup({
+                          offset: 25
+                      }).setHTML(
+                        `<li class="cards_item">
+          <div class="card">
+            <div class="card_image"><img class="card-img" src="${
+              Element["Foto"]
+            }"></div>
+            <div class="card_content">
+              <h2 class="card_title">${Element["Localizacao"]["Endereco"]}, ${
+            Element.Localizacao.Numero
+          }</h2>
+              <p class="card_text">${Element["Descricao"]}
+              </p><br><h5>Dimensoes: ${Element.Dimensoes.Comprimento}m x ${
+            Element.Dimensoes.Largura
+          }m x ${Element.Dimensoes.Altura}m </h5>
+              <button class="btn card_btn ui button" id="btn_${index}" onclick="reply_click(this.id)">Alugar</button>
+            </div>
+          </div>
+        </li>
+        <div class="ui test modal" id="modal_btn_${index}">
+        <div class="ui icon header">
+          <i class="user outline icon"></i>
+        </div>
+        <div class="content" class="ui grid">
+          <section style="display: flex">
+            <div style="flex-grow: 1">
+              <h2>Locador: </h2>
+              <p>Nome: ${Element["Locatario"]["Nome"]} ${Element["Locatario"]["Sobrenome"]}</p>
+              <p>Indicador da vaga:  ${Element["Indicador"]}</p>
+              <h2>Localização: </h2>
+              <p>Rua: ${Element["Localizacao"]["Endereco"]}, ${Element["Localizacao"]["Numero"]}</p>
+              <p>Bairro: ${Element["Localizacao"]["Bairro"]}</p>
+              <p>Cidade: ${Element["Localizacao"]["Cidade"]}</p>
+              <p>Estado: ${Element["Localizacao"]["Estado"]}</p>
+              <h2>Dimensões:</h2>
+              <p>Altura: ${Element["Dimensoes"]["Altura"]}m</p>
+              <p>Largura: ${Element["Dimensoes"]["Largura"]}m</p>
+              <p>Comprimento: ${Element["Dimensoes"]["Comprimento"]}m</p>
+            </div>
+            <div>
+              <img src="https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/pin-s(${coordenadas[0]},${coordenadas[1]})/${coordenadas[0]},${coordenadas[1]},16,0,0/450x450?access_token=pk.eyJ1IjoiaWFuZ3VlbG1hbiIsImEiOiJjazJjY2JmaXcxeHN3M2hvamozNGsxazF5In0.xA8KBv93NZZAu44gw_fc3A">
+            </div>
+          </section>
+    
+        </div>
+        <div class="actions" style="text-align: center">
+        <div class="ui red cancel inverted button">
+            <i class="remove icon"></i>
+            Cancelar
+          </div>
+          <div class="ui green ok inverted disabled button">
+            Faça Log-in para alugar
+          </div>
+        </div>
+      </div>`))
+              }else {
                     new mapboxgl
                         .Marker()
                         .setLngLat(coordenadas)
