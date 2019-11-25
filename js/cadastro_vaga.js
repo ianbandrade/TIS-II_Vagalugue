@@ -37,7 +37,16 @@ $(document).ready(function () {
     bairro = $("#bairro").val("");
     cidade = $("#cidade").val("");
     estado = $("#estado-input").val("");
+    $('#nome').prop("readOnly", false);
+    $('#sobrenome').prop("readOnly", false);
     foto_vaga = "";
+  }
+
+  if(localStorage.getItem("nome")!=null) {
+    $('#nome').val(localStorage.getItem("nome"));
+    $('#sobrenome').val(localStorage.getItem("sobrenome"));
+    $('#nome').prop("readOnly", true);
+    $('#sobrenome').prop("readOnly", true);
   }
 
   $("#form-vaga").submit(async function (event) {
