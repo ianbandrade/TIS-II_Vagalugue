@@ -1,0 +1,18 @@
+.title {
+    color: #f79307;
+}
+
+.indicadores {
+    color: black;
+    list-style: circle;
+}
+
+.bairros {
+    list-style: square;
+}
+
+main {
+    margin: 2%;
+    height: 488px;
+    background-color: #FAFAFA;
+}

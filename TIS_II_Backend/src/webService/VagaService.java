@@ -2,7 +2,6 @@ package webService;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.simpleframework.http.Query;
@@ -20,7 +19,6 @@ public final class VagaService {
 	public JSONObject adicionar(Request request) {
 		Vaga vaga = new Vaga();
 		vaga = queryVaga(request);
-		System.out.println(vaga);
 		VagaDAO vagaDAO = new VagaDAO();
 		vagaDAO.add(vaga);
 
@@ -106,10 +104,68 @@ public final class VagaService {
 		return json;
 	}
 	
+	public JSONObject percentualVagasALugadas(Request request) {
+		JSONObject json = new JSONObject();
+		
+		long porcentagem;
+
+		VagaCollection vagaCollection = new VagaCollection();
+		
+		porcentagem = vagaCollection.getPercentualAlugadas();
+
+		json.put("Porcentagem", porcentagem);
+		return json;
+	}
+	
+	public JSONObject taxaRetorno(Request request) {
+		JSONObject json = new JSONObject();
+		
+		long taxa;
+
+		VagaCollection vagaCollection = new VagaCollection();
+		
+		taxa = vagaCollection.getTaxaRetorno();
+
+		json.put("Taxa Retorno", taxa);
+		return json;
+	}
+	
+	public JSONObject tempoMedio(Request request) {
+		JSONObject json = new JSONObject();
+		
+		Double tempo;
+
+		VagaCollection vagaCollection = new VagaCollection();
+		
+		tempo = vagaCollection.getTempoMedio();
+
+		json.put("Tempo Medio", tempo);
+		return json;
+	}
+	
+	public JSONObject alugueis30dias(Request request) {
+		JSONObject json = new JSONObject();
+		
+		int alugueis;
+
+		VagaCollection vagaCollection = new VagaCollection();
+		
+		alugueis = vagaCollection.getAlugueis30Dias();
+
+		json.put("Alugueis", alugueis);
+		return json;
+	}
+	
+	public JSONObject vagasPorBairro(Request request) {
+		VagaCollection vagaCollection = new VagaCollection();
+		JSONObject json = new JSONObject(vagaCollection.getVagasPorBairro());
+
+		return json;
+	}
+	
 	public JSONObject alugar(Request request) {
 		Vaga vaga = new Vaga();
 		vaga = queryVaga(request);
-		System.out.println(vaga);
 		Query query = request.getQuery();
 		String data_inicio = query.get("data_inicio");
 		String data_fim = query.get("data_fim");

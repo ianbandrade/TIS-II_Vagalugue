@@ -51,11 +51,26 @@ public class URLMetodo implements Container {
 			} else if (path.equalsIgnoreCase("/alugar")) {
 				mensagem = vagaService.alugar(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);
-			}  else if (path.equalsIgnoreCase("/usuario")) {
+			} else if (path.equalsIgnoreCase("/usuario")) {
 				mensagem = usuarioService.adicionar(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);
-			}else if (path.equalsIgnoreCase("/login")) {
+			} else if (path.equalsIgnoreCase("/login")) {
 				mensagem = usuarioService.verificarLogin(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/desempenho/percentualalugadas")) {
+				mensagem = vagaService.percentualVagasALugadas(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/desempenho/taxaretorno")) {
+				mensagem = vagaService.taxaRetorno(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/desempenho/tempomedio")) {
+				mensagem = vagaService.tempoMedio(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/desempenho/alugueis30dias")) {
+				mensagem = vagaService.alugueis30dias(request);
+				this.enviaResposta(Status.CREATED, response, mensagem);
+			} else if (path.equalsIgnoreCase("/desempenho/vagasporbairro")) {
+				mensagem = vagaService.vagasPorBairro(request);
 				this.enviaResposta(Status.CREATED, response, mensagem);
 			} else {
 				this.naoEncontrado(response, path);
