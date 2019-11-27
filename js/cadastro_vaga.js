@@ -42,7 +42,7 @@ $(document).ready(function () {
     foto_vaga = "";
   }
 
-  if(localStorage.getItem("nome")!=null) {
+  if (localStorage.getItem("nome") != null) {
     $('#nome').val(localStorage.getItem("nome"));
     $('#sobrenome').val(localStorage.getItem("sobrenome"));
     $('#nome').prop("readOnly", true);

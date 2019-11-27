@@ -20,155 +20,65 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/components/transition.js"></script>
 
+    <link rel="stylesheet" href="css/cadastro.css">
+
     <script src="js/cadastro_usuario.js"></script>
+
+    <script src="js/main.js"></script>
 </head>
 
 <body>
-
-    <header>
-        <div class="ui large top  menu">
-            <div class="ui container">
-                <a href="index.html" class="item">Início</a>
-                <a href="lista_vagas.html" class="item">Vagas</a>
-                <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-                <a href="mapa_vagas.html" class="item">Mapa de Vagas</a>
-                <a href="desempenho.html" class="item">Desempenho</a>
-                <div class="right menu">
-                    <div class="item">
-                        <a href="login.html" class="ui button">Login</a>
-                    </div>
-                    <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </header>
+    <header id="header" class="ui large top menu"></header>
 
     <br><br><br>
 
-
     <form id="form-usuario" class="ui form segment">
-        <div class="field">
+        <div class="field required">
             <label>Nome completo</label>
             <div class="two fields">
-                <div class="eight wide field">
-                    <input id="nome" type="text" name="nome" placeholder="Nome">
+                <div class="eight wide field required-input">
+                    <input id="nome" type="text" name="nome" placeholder="Nome" required="True">
                 </div>
-                <div class="eight wide field">
-                    <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome">
+                <div class="eight wide field required-input">
+                    <input id="sobrenome" type="text" name="sobrenome" placeholder="Sobrenome" required="True">
                 </div>
             </div>
         </div>
-        <!-- linha 4: label, e-mail e telefone -->
-        <div class="field">
+     
+        <div class="field required">
             <label>Contato</label>
             <div class="two fields">
-                <div class="eight wide field">
-                    <input id="email" type="text" name="email" placeholder="E-mail">
+                <div class="eight wide field required-input">
+                    <input id="email" type="text" name="email" placeholder="E-mail" required="True">
                 </div>
-                <div class="eight wide field">
-                    <input id="telefone" type="text" name="telefone" placeholder="Telefone">
+                <div class="eight wide field required-input">
+                    <input id="telefone" type="text" name="telefone" placeholder="Telefone" required="True">
                 </div>
             </div>
         </div>
-        <!-- linha 5: label, senha e confirmar senha -->
-        <div class="field">
+       
+        <div class="field required">
             <label>Senha</label>
-            <div class="two fields">
-                <div class="eight wide field">
-                    <input id="senha" type="password" name="senha" placeholder="Senha">
+            <div id="senhas" class="two fields">
+                <div class="eight wide field required-input">
+                    <input id="senha" type="password" name="senha" placeholder="Senha" required="True">
                 </div>
-                <div class="eight wide field">
+                <div class="eight wide field required-input">
                     <input id="senha-confirmacao" type="password" name="senha-confirmacao"
-                        placeholder="Confirmar senha">
+                        placeholder="Confirmar senha" required="True">
                 </div>
             </div>
+            <p id="aviso-senha" class="aviso right hidden">Senhas não coincidem</p>
         </div>
         <br>
-        <!-- botão de cadastrar -->
+      
+        <p class="aviso">( * ) Itens Obrigatórios</p>
         <button id="submit-btn" class="ui central button" tabindex="1" type="submit">Cadastrar</button>
     </form>
     
     <br><br><br><br>
 
-    <footer class="ui landing-image-footer inverted vertical footer segment">
-        <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Beatriz Melo</p>
-                        <p class="item">Belle Nerissa </p>
-                        <p class="item">Camila Campos</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Ian Bittencourt</p>
-                        <p class="item">Ian Guelman</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <h3 class="ui inverted header">Páginas</h3>
-                    <div class="ui inverted link list">
-                        <a href="index.html" class="item">Home</a>
-                        <a href="#" class="item">Locatário</a>
-                        <a href="#" class="item">Locador</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h3 class="ui inverted header">Codigo</h3>
-                    <a href="">
-                        <i class="github icon" id="github_icon"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
+    <footer id="footer" class="ui landing-image-footer inverted vertical footer segment"></footer>
 </body>
-
-<script>
-    $('#telefone').mask("0000-0000")
-
-    function limpa_form() {
-        $('#nome').val("")
-        $('#sobrenome').val("")
-        $('#email').val("")
-        $('#telefone').val("")
-        $('#senha').val("")
-        $('#senha-confirmacao').val("")
-    }
-
-    $('#submit-btn').click(async function (event) {
-        event.preventDefault();
-        let nome = $('#nome').val()
-        let sobrenome = $('#sobrenome').val()
-        let email = $('#email').val()
-        let telefone = $('#telefone').val()
-        let senha = $('#senha-confirmacao').val()
-
-        let data = {
-            nome,
-            sobrenome,
-            email,
-            telefone,
-            senha
-        };
-
-        try {
-            let response = await $.post("http://localhost:880/usuario", data);
-            alert("Form Enviado");
-            limpa_form();
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
-    });
-</script>
-
 
 </html>

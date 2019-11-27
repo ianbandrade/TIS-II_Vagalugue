@@ -24,86 +24,19 @@
     <link rel="stylesheet" href="/css/mapa.css">
     <script src="/js/mapa_vagas.js"></script>
 
+    <script src="js/main.js"></script>
+    
 </head>
 
 <body>
-    <header>
-        <div class="ui large top  menu">
-            <div class="ui container">
-                <a href="index.html" class="item">Início</a>
-                <a href="lista_vagas.html" class="item">Vagas</a>
-                <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-                <a href="mapa_vagas.html" class="active item">Mapa de Vagas</a>
-                <a href="desempenho.html" class="item">Desempenho</a>
-                <div class="right menu">
-                    <div class="item">
-                        <a href="login.html" class="ui button">Login</a>
-                    </div>
-                    <div class="item">
-                        <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </header>
+    <header id="header" class="ui large top menu"></header>
 
     <main>
-
         <div id="map" class="map"></div>
-
     </main>
 
-    <footer class="ui landing-image-footer inverted vertical footer segment">
-        <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Beatriz Melo</p>
-                        <p class="item">Belle Nerissa </p>
-                        <p class="item">Camila Campos</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Ian Bittencourt</p>
-                        <p class="item">Ian Guelman</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <h3 class="ui inverted header">Páginas</h3>
-                    <div class="ui inverted link list">
-                        <a href="index.html" class="item">Home</a>
-                        <a href="#" class="item">Locatário</a>
-                        <a href="#" class="item">Locador</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h3 class="ui inverted header">Codigo</h3>
-                    <a href="">
-                        <i class="github icon" id="github_icon"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        $(document).ready(function () {
-            if (localStorage.getItem("nome") != null) {
-                $('.right.menu').html(
-                    `<a href = "usuario.html"><h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4></a>
-            <button id="sair-btn" class="ui large basic button" onclick="sair()">
-            Sair 
-            <i class="icon sign-out"></i>
-            </button>`)
-            }
-        })
+    <footer id="footer" class="ui landing-image-footer inverted vertical footer segment"></footer>
 
-        function sair() {
-            localStorage.clear();
-            location.reload();
-        }
-    </script>
 </body>
 
 </html>

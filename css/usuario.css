@@ -1,0 +1,13 @@
+main {
+    margin: 5%;
+}
+
+.titulo {
+    background-color: #1B1C1D;
+    text-align: center;
+    color:#F79307;
+}
+
+.calendario {
+    background-color: #FAFAFA;
+}

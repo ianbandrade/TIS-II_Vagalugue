@@ -1,0 +1,11 @@
+p.aviso {
+    color: rgba(255, 41, 41, 0.995);
+}
+
+.hidden {
+    display: none;
+}
+
+.right {
+    float: right;
+}

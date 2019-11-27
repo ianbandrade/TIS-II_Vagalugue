@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $(".masthead").visibility({
     once: false,
-    onBottomPassed: function() {
+    onBottomPassed: function () {
       $(".fixed.menu").transition("fade in");
     },
-    onBottomPassedReverse: function() {
+    onBottomPassedReverse: function () {
       $(".fixed.menu").transition("fade out");
     }
   });

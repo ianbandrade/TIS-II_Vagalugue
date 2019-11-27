@@ -24,143 +24,31 @@
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.2.0/main.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.2.0/main.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/list@4.2.0/main.js'></script>
+
+    <link rel="stylesheet" href="css/usuario.css">
+
+    <script src="js/usuario.js"></script>
+
+    <script src="js/main.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="ui large top  menu">
-            <div class="ui container">
-                <a href="index.html" class="item">Início</a>
-                <a href="lista_vagas.html" class="item">Vagas</a>
-                <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-                <a href="mapa_vagas.html" class="item">Mapa de Vagas</a>
-                <div class="right menu">
-                    <div class="right menu">
-                        <div class="item">
-                            <a href="login.html" class="ui button">Login</a>
-                        </div>
-                        <div class="item">
-                            <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <header id="header" class="ui large top menu"></header>
 
-    </header>
-
-    <main style="margin: 5%">
-        <div style="background-color:#1B1C1D; text-align: center">
-            <h2 style="color:#F79307">Alugueis futuros</h2>
+    <main>
+        <div class="titulo">
+            <h2>Alugueis futuros</h2>
         </div>
-        <div id='calendar-list' style="background-color: #FAFAFA"></div>
+        <div id='calendar-list' class="calendario"></div>
         <br>
-        <div style="background-color: #1B1C1D; text-align: center">
-            <h2 style="color:#F79307">Calendário</h2>
+        <div class="titulo">
+            <h2>Calendário</h2>
         </div>
-        <div id='calendar' style="background-color: #FAFAFA"></div>
+        <div id='calendar' class="calendario"></div>
     </main>
 
-    <footer class="ui landing-image-footer inverted vertical footer segment">
-        <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Beatriz Melo</p>
-                        <p class="item">Belle Nerissa </p>
-                        <p class="item">Camila Campos</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <div class="ui inverted list">
-                        <p class="item">Ian Bittencourt</p>
-                        <p class="item">Ian Guelman</p>
-                    </div>
-                </div>
-                <div class="four wide column">
-                    <h3 class="ui inverted header">Páginas</h3>
-                    <div class="ui inverted link list">
-                        <a href="index.html" class="item">Home</a>
-                        <a href="#" class="item">Locatário</a>
-                        <a href="#" class="item">Locador</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h3 class="ui inverted header">Codigo</h3>
-                    <a href="">
-                        <i class="github icon" id="github_icon"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer id="footer" class="ui landing-image-footer inverted vertical footer segment"></footer>
 
-    <script>
-        $(document).ready(function () {
-            if (localStorage.getItem("nome") != null) {
-                $('.right.menu').html(
-                    `<h4 id ="user">Bem Vindo, ${localStorage.getItem("nome")}</h4> 
-        <button id="sair-btn" class="ui large basic button" onclick="sair()">
-        Sair 
-        <i class="icon sign-out"></i>
-        </button>`)
-            }
-
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['dayGrid'],
-                locale: 'pt-br',
-                time_zone: 'local',
-                aspectRatio: 3.3,
-                height: 'auto'
-            });
-            calendar.render();
-
-            var calendarListEl = document.getElementById('calendar-list');
-
-            var calendarList = new FullCalendar.Calendar(calendarListEl, {
-                plugins: ['dayGrid', 'list'],
-                locale: 'pt-br',
-                time_zone: 'local',
-                defaultView: 'listWeek',
-                height: 'auto',
-            });
-            calendarList.render();
-
-
-            async function listar() {
-                let response = await $.getJSON("http://127.0.0.1:880/vagas/pesquisar/usuario?email=" +
-                    localStorage
-                        .getItem(
-                            "email"))
-                response = response.vagas
-                response.forEach(element => {
-                    calendarList.addEventSource([{
-                        title: element.Indicador + " (" + element.Localizacao
-                            .Endereco + ", " +
-                            element.Localizacao.Numero + ")",
-                        start: element.Data_inicio,
-                        end: element.Data_fim
-                    }])
-                    calendar.addEventSource([{
-                        title: element.Indicador,
-                        start: element.Data_inicio,
-                        end: element.Data_fim
-                    }])
-                });
-            }
-
-            listar()
-
-        })
-
-        function sair() {
-            localStorage.clear();
-            location.reload();
-            window.location.href = "index.html";
-        }
-    </script>
 </body>
 
 </html>
