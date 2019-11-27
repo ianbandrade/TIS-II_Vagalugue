@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<script src="js/usuario_logado.js"></script>
+<script src="js/header.js"></script>
+<link rel="stylesheet" href="css/header.css">
 
 <body>
 
     <div class="ui container">
-        <a href="index.html" class="active item">Início</a>
-        <a href="lista_vagas.html" class="item">Vagas</a>
-        <a href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
-        <a href="mapa_vagas.html" class="item">Mapa de Vagas</a>
-        <a href="desempenho.html" class="item">Desempenho</a>
+        <a class="toc item" id="sidebar-icon">
+            <i class="sidebar icon"></i>
+        </a>
+        <a id="index" href="index.html" class="item">Início</a>
+        <a id="lista_vagas" href="lista_vagas.html" class="item">Vagas</a>
+        <a id="cadastro_vaga" href="cadastro_vaga.html" class="item">Cadastro de Vagas</a>
+        <a id="mapa_vagas" href="mapa_vagas.html" class="item">Mapa de Vagas</a>
+        <a id="desempenho" href="desempenho.html" class="item">Desempenho</a>
         <div class="right menu">
             <div class="item">
-                <a href="login.html" class="ui button">Login</a>
+                <a id="login" href="login.html" class="ui button">Login</a>
             </div>
             <div class="item">
-                <a href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
+                <a id="cadastro" href="cadastro_usuario.html" class="ui primary button">Cadastre-se</a>
             </div>
         </div>
     </div>
