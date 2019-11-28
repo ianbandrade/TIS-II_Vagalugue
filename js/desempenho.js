@@ -32,8 +32,15 @@ $(document).ready(function () {
         function (dados) {
             var lista = "";
             Object.keys(dados).forEach(element => {
-                lista += `<li class="bairro">${element}: <b>${dados[element]}</b></li>`
+                addData(chartGraph, element, dados[element])
             });
-            $('#lista-bairros').html(lista)
         })
 })
+
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}

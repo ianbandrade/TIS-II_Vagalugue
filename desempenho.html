@@ -25,26 +25,132 @@
 </head>
 
 <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
     <header id="header" class="ui large top menu"></header>
 
-    <main>
-        <h1 class="title">Indicadores de Desempenho</h1>
-        <ul class="indicadores">
-            <li class="indicador">Percentual de vagas alugadas: <b id="vagas-alugadas" class="valor"></b></li>
-            <br>
-            <li class="indicador">Taxa de retorno: <b id="taxa-retorno" class="valor"></b></li>
-            <br>
-            <li class="indicador">Alugueis nos ultimos 30 dias: <b id="alugueis-30dias" class="valor"></b></li>
-            <br>
-            <li class="indicador">Tempo medio de aluguel: <b id="tempo-medio" class="valor"></b></li>
-            <br>
-            <li class="indicador">Vagas por bairro:
-                <ul id="lista-bairros" class="bairros"></ul>
-            </li>
-        </ul>
-    </main>
+    <main class="container">
 
+        <h1 id="titulo-indicadores" class="ui horizontal header divider">
+            INDICADORES DE DESEMPENHO
+        </h1>
+        
+        <div class="ui grid center aligned">
+
+            <div class="ui vertical stripe quote segment">
+                <div class="ui equal width stackable internally celled grid">
+                    <div class="center aligned row">
+                        <div class="column">
+                            <div class="ui statistic">
+                                <div id="vagas-alugadas" class="value">
+
+                                </div>
+                                <div class="label">
+                                    das vagas foram alugadas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui statistic">
+                                <div id="taxa-retorno" class="value">
+
+                                </div>
+                                <div class="label">
+                                    de retorno
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="column">
+                            <div class="ui statistic">
+                                <div id="alugueis-30dias" class="value">
+                                    0
+                                </div>
+                                <div class="label">
+                                    aluguéis em 30 dias
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Tempo médio de aluguel:
+                                </div>
+                                <div id="tempo-medio" class="value">
+                                    0
+                                </div>
+                                <div class="label">
+                                    horas
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center aligned row">
+                <div class="column center aligned">
+                    <div id="chart">
+                        <div>
+                            <canvas id="grafico1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </main>
     <footer id="footer" class="ui landing-image-footer inverted vertical footer segment"></footer>
+    <script>
+
+        var ctx = document.getElementById("grafico1");
+        var ctx2 = document.getElementById("grafico2");
+
+        var chartGraph = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [],
+                    backgroundColor: [
+                        '#FF8C00',
+                        '#F19644',
+                        '#e0a06b',
+                        '#ffc93b',
+                        '#c49255',
+                        '#af8c64',
+                        '#ffb444',
+                        '#ffc26c',
+                        '#ffd191',
+
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: []
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'right',
+
+                },
+                title: {
+                    display: true,
+                    text: 'Vagas por Bairro',
+                    fontSize: 25,
+                    fontFamily: 'sans-serif',
+                    fontColor: "#111"
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+
+        });
+
+    </script>
 
 </body>
 

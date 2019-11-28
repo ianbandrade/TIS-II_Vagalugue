@@ -34,3 +34,111 @@ Rua Cl√°udio Manoel
 Funcion√°rios
 Belo Horizonte
 Minas Gerais
+hgfds
+false
+null
+null
+null
+Cmial
+campos
+
+mhngbfd
+2.0
+2.0
+2.0
+32920-000
+rgfewsa
+545
+Camin Verde
+S„o Joaquim de Bicas
+Minas Gerais
+hygtrfd
+false
+null
+null
+null
+Camila
+cacaca
+
+kiujytgr
+2.0
+2.0
+2.0
+32920-000
+tgrfd
+22
+Lopel
+S„o Joaquim de Bicas
+Minas Gerais
+tgrfgtrf
+false
+null
+null
+null
+Camila
+Campos
+
+tgrff
+22.0
+2.0
+2.0
+32920-000
+hygtrf
+55
+Fornalhas
+S„o Joaquim de Bicas
+Minas Gerais
+yhgtr
+false
+null
+null
+null
+yhgtr
+hytgrf
+
+yhgtrf
+2.0
+2.0
+2.0
+32920-000
+yhgtr
+54
+Lousina
+S„o Joaquim de Bicas
+Minas Gerais
+yhgtrf
+false
+null
+null
+null
+hygtrfe
+hygtrfed
+
+ujyhgtr
+2.0
+2.0
+2.0
+32920-000
+juhygf
+65
+Mario Campos
+S„o Joaquim de Bicas
+Minas Gerais
+uyhgtrf
+false
+null
+null
+null
+hygtrf
+yhgtrf
+
+uyhgt
+333.0
+3.0
+3.0
+32920-000
+grfed
+54
+Laranjeiras
+S„o Joaquim de Bicas
+Minas Gerais

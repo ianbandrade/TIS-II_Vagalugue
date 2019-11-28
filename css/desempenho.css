@@ -1,18 +1,17 @@
-.title {
+#titulo-indicadores {
     color: #f79307;
-}
-
-.indicadores {
-    color: black;
-    list-style: circle;
-}
-
-.bairros {
-    list-style: square;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    font-family: sans-serif;
+    font-weight: 300;
 }
 
 main {
     margin: 2%;
-    height: 488px;
-    background-color: #FAFAFA;
+    display: contents;
+
+}
+
+#chart{
+    padding-top: 50px;
 }
