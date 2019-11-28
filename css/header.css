@@ -3,6 +3,25 @@
 }
 
 @media only screen and (max-width: 700px) {
+    
+    .ui.container > a#index{
+        display: none!important;
+    }
+
+    .ui.container > a#lista_vagas{
+        display: none!important;
+    }
+
+    .ui.container > a#cadastro_vaga{
+        display: none!important;
+    }
+    .ui.container > a#mapa_vagas{
+        display: none!important;
+    }
+    .ui.container > a#desempenho{
+        display: none!important;
+    }
+    
     #sidebar-icon {
         display: flex;
     }
