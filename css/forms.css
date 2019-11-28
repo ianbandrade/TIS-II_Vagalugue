@@ -25,3 +25,9 @@ div.content>section>div>p {
   margin-right: 35px;
   font-size: 15px
 }
+
+#background_div {
+  background-image: url("/img/fundo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

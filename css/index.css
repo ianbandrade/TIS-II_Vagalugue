@@ -44,7 +44,7 @@ a.ui.primary.button,
 }
 
 .masthead h1.ui.header {
-  margin-top: 3em;
+  margin-top: 50px;
   margin-bottom: 0em;
   font-size: 4em;
   font-weight: normal;
@@ -154,7 +154,9 @@ body > .grid {
   display: flex;
 }
 
-
+#header{
+  margin: 0px ;
+}
 
 .column {
   max-width: 550px;
@@ -177,6 +179,7 @@ body > .grid {
   background-image: url("/img/fundo.png");
   background-repeat: no-repeat;
   background-size: cover;
+  max-height: 500px !important;
 }
 
 #user2 {
