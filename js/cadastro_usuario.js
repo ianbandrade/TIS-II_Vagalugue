@@ -11,7 +11,7 @@ $(document).ready(function () {
     }
     $("#form-usuario").submit(async function (event) {
         event.preventDefault();
-        if ($('#senha').val == $('#senha-confirmaca')) {
+        if ($('#senha').val() == $('#senha-confirmacao').val()) {
             let nome = $('#nome').val()
             let sobrenome = $('#sobrenome').val()
             let email = $('#email').val()
