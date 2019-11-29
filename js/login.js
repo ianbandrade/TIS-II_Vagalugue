@@ -10,7 +10,7 @@ $(document).ready(function () {
     let senha = $('#senha').val()
 
     try {
-      let response = await $.getJSON("http://191.235.95.241:8080/login?email=" + email + "&senha=" + senha);
+      let response = await $.getJSON("http://localhost:880/login?email=" + email + "&senha=" + senha);
       console.log(response)
       limpa_form();
       if (response.Login == true) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
       let senha = $('#senha').val()
 
       try {
-        let response = await $.getJSON("http://191.235.95.241:8080/login?email=" + email + "&senha=" + senha);
+        let response = await $.getJSON("http://localhost:880/login?email=" + email + "&senha=" + senha);
         console.log(response)
         limpa_form();
         if (response.Login == true) {

@@ -48,7 +48,7 @@ $(document).ready(function () {
     getEnderecoVagas()
 
     async function getEnderecoVagas() {
-        let resposta = await $.getJSON("http://191.235.95.241:8080/vagas");
+        let resposta = await $.getJSON("http://localhost:880/vagas");
         resposta.vagas.forEach((Element, index) => {
             e = Element
             Element = Element["Localizacao"]
@@ -251,7 +251,7 @@ async function reply_click(clicked_id) {
               inverted: true,
               onApprove: async function () {
     
-                let response = await $.getJSON("http://191.235.95.241:8080/vagas");
+                let response = await $.getJSON("http://localhost:880/vagas");
     
                 let nome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Nome
                 let sobrenome = response.vagas[clicked_id.replace("btn_", "")].Locatario.Sobrenome
@@ -291,7 +291,7 @@ async function reply_click(clicked_id) {
                   alugada_por
                 };
     
-                await $.post("http://191.235.95.241:8080/alugar", data);
+                await $.post("http://localhost:880/alugar", data);
                 alert("Vaga alugada com sucesso!");
                 location.reload(true);
               },
