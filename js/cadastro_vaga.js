@@ -83,7 +83,7 @@ $(document).ready(function () {
     };
 
     try {
-      let response = await $.post("http://localhost:880/vaga", data);
+      let response = await $.post("http://191.235.95.241:8080/vaga", data);
       alert("Form Enviado");
       limpa_form();
       limpa_form_cep();

@@ -9,7 +9,10 @@ $(document).ready(function () {
     $("#desempenho").removeClass("active")
     document.getElementById(filename).classList.add("active")
 
-    $(".ui.sidebar").sidebar("attach events", ".toc.item");
+    $("#sidebar-icon").click(function () {
+        $('.ui.sidebar')
+            .sidebar('toggle')
+    });
 
     if (localStorage.getItem("nome") != null) {
         $('.right.menu').html(

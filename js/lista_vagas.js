@@ -12,11 +12,11 @@ $(document).ready(function() {
         let input_pesquisa = $("#input_pesquisa").val();
         if (input_pesquisa != "") {
           listar(
-            "http://127.0.0.1:880/vagas/pesquisar/rua?input_pesquisa=" +
+            "http://191.235.95.241:8080/vagas/pesquisar/rua?input_pesquisa=" +
               input_pesquisa
           );
         } else {
-          listar("http://127.0.0.1:880/vagas");
+          listar("http://191.235.95.241:8080/vagas");
         }
       } catch (errors) {
         console.log(errors);
@@ -37,7 +37,7 @@ async function reply_click(clicked_id) {
                 closable: false,
                 inverted: true,
                 onApprove: async function() {
-                  let response = await $.getJSON("http://127.0.0.1:880/vagas");
+                  let response = await $.getJSON("http://191.235.95.241:8080/vagas");
 
                   let nome =
                     response.vagas[clicked_id.replace("btn_", "")].Locatario
@@ -106,7 +106,7 @@ async function reply_click(clicked_id) {
                     alugada_por
                   };
 
-                  await $.post("http://localhost:880/alugar", data);
+                  await $.post("http://191.235.95.241:8080/alugar", data);
                   alert("Vaga alugada com sucesso!");
                   location.reload(true);
                 },
@@ -127,7 +127,7 @@ async function reply_click(clicked_id) {
   }
 }
 
-listar("http://127.0.0.1:880/vagas");
+listar("http://191.235.95.241:8080/vagas");
 
 async function getCoordenadas(Endereco) {
   return new Promise((resolve, reject) => {

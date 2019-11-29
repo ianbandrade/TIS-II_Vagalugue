@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 
     async function listar() {
-        let response = await $.getJSON("http://127.0.0.1:880/vagas/pesquisar/usuario?email=" +
+        let response = await $.getJSON("http://191.235.95.241:8080/vagas/pesquisar/usuario?email=" +
             localStorage
             .getItem(
                 "email"))

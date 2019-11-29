@@ -1,34 +1,34 @@
 $(document).ready(function () {
     $.getJSON(
-        "http://127.0.0.1:880/desempenho/percentualalugadas",
+        "http://191.235.95.241:8080/desempenho/percentualalugadas",
         function (dados) {
             let porcentagem = dados["Porcentagem"];
             $('#vagas-alugadas').html(porcentagem + "%")
         })
 
     $.getJSON(
-        "http://127.0.0.1:880/desempenho/taxaretorno",
+        "http://191.235.95.241:8080/desempenho/taxaretorno",
         function (dados) {
             let taxa = dados["Taxa Retorno"];
             $('#taxa-retorno').html(taxa + "%")
         })
 
     $.getJSON(
-        "http://127.0.0.1:880/desempenho/tempomedio",
+        "http://191.235.95.241:8080/desempenho/tempomedio",
         function (dados) {
             let tempo = dados["Tempo Medio"];
-            $('#tempo-medio').html(tempo + " h")
+            $('#tempo-medio').html(Math.round( tempo * 10 ) / 10 + " h")
         })
 
     $.getJSON(
-        "http://127.0.0.1:880/desempenho/alugueis30dias",
+        "http://191.235.95.241:8080/desempenho/alugueis30dias",
         function (dados) {
             let alugueis = dados["Alugueis"];
             $('#alugueis-30dias').html(alugueis)
         })
 
     $.getJSON(
-        "http://127.0.0.1:880/desempenho/vagasporbairro",
+        "http://191.235.95.241:8080/desempenho/vagasporbairro",
         function (dados) {
             var lista = "";
             Object.keys(dados).forEach(element => {

@@ -27,7 +27,7 @@
 <body>
 
   <header id="header" class="ui large top menu"></header>
-  <div class="ui inverted vertical masthead center aligned segment" id="background_div">
+
   <br>
   <section class="centered">
     <div class="ui icon input category search" style="width: 292.65px;">
@@ -38,11 +38,11 @@
     <br>
     <div class="ui buttons">
       <button id="btn_listar_todas" class="btn_listar ui button active"
-        onclick=" $('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas')">Todas</button>
+        onclick=" $('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://191.235.95.241:8080/vagas')">Todas</button>
       <button id="btn_listar_disponiveis" class="btn_listar ui button"
-        onclick="$('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/naoalugadas')">Disponíveis</button>
+        onclick="$('#input_pesquisa').val(''); $('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://191.235.95.241:8080/vagas/naoalugadas')">Disponíveis</button>
       <button id="btn_listar_alugadas" class="btn_listar ui button"
-        onclick="$('#input_pesquisa').val('') ;$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://127.0.0.1:880/vagas/alugadas')">Alugadas</button>
+        onclick="$('#input_pesquisa').val('') ;$('.btn_listar').removeClass('active'); $(this).addClass('active'); listar('http://191.235.95.241:8080/vagas/alugadas')">Alugadas</button>
     </div>
   </section>
 
@@ -54,7 +54,7 @@
       </ul>
     </div>
   </section>
-  </div>
+
   <br>
   <footer id="footer" class="ui landing-image-footer inverted vertical footer segment"></footer>
 
