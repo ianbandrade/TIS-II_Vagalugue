@@ -1,17 +1,16 @@
 $(document).ready(function () {
     var url = window.location.pathname
-    var filename = url.substring(url.lastIndexOf('/') + 1).replace(".html","")
+    var filename = url.substring(url.lastIndexOf('/') + 1).replace(".html", "")
 
     $("#index").removeClass("active")
-    $("#lista_vagas").removeClass("active")  
+    $("#lista_vagas").removeClass("active")
     $("#cadastro_vaga").removeClass("active")
     $("#mapa_vagas").removeClass("active")
     $("#desempenho").removeClass("active")
     document.getElementById(filename).classList.add("active")
 
-    $("#sidebar-icon").click(function () {
-        $('.ui.sidebar')
-            .sidebar('toggle')
+    $('#sidebar-icon').click(function () {
+        $('.ui.sidebar').sidebar('toggle')
     });
 
     if (localStorage.getItem("nome") != null) {

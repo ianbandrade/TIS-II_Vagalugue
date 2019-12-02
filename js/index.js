@@ -8,4 +8,7 @@ $(document).ready(function () {
       $(".fixed.menu").transition("fade out");
     }
   });
+  $('#sidebar-icon').click(function () {
+    $('.ui.sidebar').sidebar('toggle')
+});
 });
